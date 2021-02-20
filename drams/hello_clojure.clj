@@ -1,4 +1,4 @@
-(ns clojure-hello.world
+(ns hello_clojure
   (:require [clojure.string :as string]))
 
 ;; Start with loading this file
@@ -507,8 +507,8 @@ to the compiler, if it is evaluated together with the
     (do
       (println "The quick brown fox jumps over the lazy dog")
       (+ 2 2)))
-  ;; So both the extra `do` and the extra scanning to see
-  ;; that there is no else-branch.
+  ;; Here `when` saves us both the extra scanning for
+  ;; the else-branch and the use of `do`.
 
   ;; As far as macros go, `when` is about as simple as
   ;; they get. From two built-in special forms,
