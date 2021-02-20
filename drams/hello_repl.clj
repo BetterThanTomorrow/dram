@@ -1,14 +1,14 @@
 (ns hello-repl)
 
-;; We will often refer to commands by their name
-;; Use the VS Code Command palette to search for
-;; commands. All Calva commands are prefixed with,
-;; yes, Calva. The default keyboard shortcut for
-;; the command palette is Ctrl+Shift+P (Win/LLnux)
+;; When we refer to commands by their name, use
+;; the VS Code Command palette to search for them
+;; if you don't know the keyboard shortcut.
+;; All Calva commands are prefixed with ”Calva”.
+;; The default keyboard shortcut for the command
+;; palette is Ctrl+Shift+P (Win/LLnux)
 ;; Cmd+Shift+P (Mac).
 ;; The command palette displays any keyboard
 ;; shortcut bound to the command.
-
 
 ;; Alt+Enter evaluates ”top level” forms. Top level
 ;; meaning the outermost ”container” of forms, which
