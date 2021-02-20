@@ -1,6 +1,6 @@
 # dram
 
-The first sip of [Calva](https://calva.io), [Clojure](https://clojure.org), [Paredit](https://calva.io/paredit), or anything CLojurish, really.
+The first sip of [Calva](https://calva.io), [Clojure](https://clojure.org), [Paredit](https://calva.io/paredit), or anything Clojure-ish, really.
 
 ![Fire up a Calva REPL](https://github.com/BetterThanTomorrow/calva/blob/814-connect-without-project/docs/site/images/howto/start-hello-repl.png?raw=true)
 
