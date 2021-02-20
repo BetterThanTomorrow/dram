@@ -452,13 +452,15 @@ to the compiler, if it is evaluated together with the
   ;; created with Clojure, as macros.
 
   ;; This guide is mostly concerned with letting you
-  ;; know that macros are a thing, and to quickly
-  ;; realize when you are using a macro rather than
-  ;; a function. So we will not go into the subject
-  ;; of hpw to creating macros. Let's just briefly
-  ;; examine an often-used macro, `when`. This macro
-  ;; helps with writing more readable code. How?
-  ;; Let's say you want to conditionally evaluate
+  ;; know that macros are a thing, to help you to
+  ;; quicklyrealize when you are using a macro rather 
+  ;; thana function. So we will not go into the
+  ;; subject of hpw to creating macros.
+
+  ;; == `when` ==
+  ;; Let's just briefly examine the macro`when`.
+  ;; This macrohelps with writing more readable code.
+  ;; How?Let's say you want to conditionally evaluate
   ;; something. Above you learnt about that there is
   ;; a special form named `if` that can be used for
   ;; this. Like so:
@@ -475,26 +477,27 @@ to the compiler, if it is evaluated together with the
   (if 'this-is-true
     'evaluate-this
     nil)
-  ;; Bit that is a bit silly, what if there was a
+  ;; But that is a bit silly, what if there was a
   ;; way to tell the human reading the code that
-  ;; there is no else? There is:
+  ;; there is no else? There is!
   (when 'this-is-true
     'evaluate-this)
-  ;; Let's look att how `when` is defined, you can
+  ;; Let's look at how `when` is defined, you can
   ;; ctrl/cmd-click `when` to navigate to where
-  ;; it is defined in Clojure core. You can also
-  ;; use the function `macroexpand`
+  ;; it is defined in Clojure core.
+  ;; You can also use the function `macroexpand`
   (macroexpand '(when 'this-is-true
                   'evaluate-this))
   ;; You'll notice that `when` wraps the body in
-  ;; a `(do ...)`. This is a special form that lets
+  ;; a `(do ...)`, which is a special form that lets
   ;; you evaluate several expressions, returning the
   ;; results of the last one.
   ;; https://clojuredocs.org/clojure.core/do
   ;; `do` is handy when you want to have some side-
   ;; effect going in addition to evaluating something.
   ;; In development this often happens when you 
-  ;; want to `println` something
+  ;; want to `println` something before result of the
+  ;; expression is evaluated.
   (do (println "The quick brown fox jumps over the lazy dog")
       (+ 2 2))
   ;; The `when` macro let's you take advantage of that
@@ -514,6 +517,30 @@ to the compiler, if it is evaluated together with the
   ;; they get. From two built-in special forms,
   ;; `if` and `do`, it composes a form that helps us
   ;; write easy to write and easy to read code. 
+
+  ;; == `let` ==
+  ;; A less simple core library macro is `let`. It
+  ;; is a form that lets you bind values to variables
+  ;; that will be used in the body of the form.
+  (let [x 1
+        y 2]
+    (str x y))
+
+  ;; The bindings are provided as the first ”argument”,
+  ;; in a vector. This is a pattern that is used by
+  ;; other macrors that let you define bindings.
+  ;; It is similar to the lexical scope of other
+  ;; programming lannguages ()even if this rather is
+  ;; structural). Sibling and parent forms do not
+  ;; ”see” these bindings.
+  (do
+    (def x :namespace-x)
+    (println "`x` in `do` _before_ `let`: " x)
+    (let [x :let-x]
+      (println "`x` from `let`: " x))
+    (println "`x` in `do`, _after_ `let`: " x))
+  ;; The `def` special form defines things ”globally”
+  (println "`x` _outside_ `do`: " x)
   )
 
 ;; To be continued...
