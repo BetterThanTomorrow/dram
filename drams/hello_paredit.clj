@@ -91,3 +91,7 @@
 ;; to some basic Clojure knowledge.
 
 "Hello Calva Paredit"
+
+;; This guide downloaded from:
+;; https://github.com/BetterThanTomorrow/dram
+;; Please consider contributing.

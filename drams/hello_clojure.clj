@@ -535,6 +535,16 @@ to the compiler, if it is evaluated together with the
 ;; resources out:
 ;; https://ask.clojure.org/
 ;; https://clojurians.net
+;; https://clojureverse.org
+;; https://www.reddit.com/r/Clojure/
+
+;; Reference resources:
+;; https://clojure.org/api/cheatsheet
+;; https://clojuredocs.org
 
 
 "File loaded. The REPL is ready to greet the world"
+
+;; This guide downloaded from:
+;; https://github.com/BetterThanTomorrow/dram
+;; Please consider contributing.
