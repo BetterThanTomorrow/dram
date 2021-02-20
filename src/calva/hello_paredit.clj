@@ -1,4 +1,4 @@
-(ns hello-paredit)
+(ns calva.ello-paredit)
 
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter

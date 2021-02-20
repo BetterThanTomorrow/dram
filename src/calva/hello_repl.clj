@@ -1,4 +1,4 @@
-(ns hello-repl)
+(ns calva.hello-repl)
 
 ;; We will often refer to commands by their name
 ;; Use the VS Code Command palette to search for

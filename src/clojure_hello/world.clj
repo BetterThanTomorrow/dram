@@ -1,13 +1,12 @@
-(ns hello-clojure
+(ns clojure-hello.world
   (:require [clojure.string :as string]))
 
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; THen Alt+Enter this
+;; THen Alt+Enter this:
 "Hello World"
-;; Try to find a language where you can write a
-;; more concide Hello World program.
+;; That's a concise Hello World.
 ;; And note that there are no parens. 😀
 
 ;; This guide will try to give you a basic
@@ -34,7 +33,9 @@
 ;; encouraged to edit the examples, and add new code
 ;; and evaluate that. Evaluate this to warm up:
 
-(str "Learning " "by" " evaluating")
+(str "Learning"
+     " by "
+     "evaluating")
 
 (comment
   ;; = EXPRESSIONS =
@@ -52,19 +53,34 @@
     1
     (println 'side-effect-2)
     2)
-  ;; (Evaluate it)
-  ;; We'll come back to how functions are defined, for
-  ;; now, just accept that this defines a function named
-  ;; `last-eval-wins`, taking no arguments. The function
-  ;; body has three expressions.
-  ;; Calling the function will cause all the expressions
-  ;; to be evaluated.
+  ;; (Just, evaluate it. This defines a function named
+  ;; `last-eval-wins`, taking no argumentsm, with four
+  ;; expressions in its function body. We'll return to
+  ;; defining functions.)
+  ;; Calling the function (Just ealuate it.)
   (last-eval-wins)
-  ;; The result of the call will be the last expression
-  ;; that was evaluated. (In the output window you should
-  ;; also see the `println` calls happening). They are
-  ;; also expressions, but evaluates to `nil`
-  (println 'prints-this-evalautes-to-nil))
+  ;; will cause all four expressions in the function
+  ;; body to be evaluated. The result of the call will
+  ;; be the last expression that was evaluated.
+
+  ;; In the output window you will also see the
+  ;; `println` calls happening. They are also
+  ;; expressions, evaluating `nil`.
+  (println 'prints-this-evalautes-to-nil)
+
+  ;; Expressions are composed from literals (evaluating
+  ;; to themselves) and/or calls to either
+  ;; * special forms
+  ;; * macros
+  ;; * functions 
+  ;; Calls are written as lists with the called thing
+  ;; as the first element.
+  (str 1 2 3)
+  ;; Calls the function `str` with the arguments
+  ;; 1, 2, and 3. ”Hello World” above is a literal
+  ;; string (thus it evaluates to itself).
+  ;; More about literals coming up next!
+  )
 
 (comment
   ;; = LITERALS =
@@ -120,8 +136,9 @@ like this, if leading spaces are no-no."
   #{1 2 3}     ; set
   {:a 1 :b 2}  ; map
 
-  ;; They also compose
-  '(1 [1 #{1 {:a 1 :b '(1 2 3)}}])
+  ;; They compose
+  {:foo [1 2]
+   :bar #{1 2}}
 
   ;; = FUNCTIONS =
   ;; So far you have been able to evaluate all examples.
@@ -347,7 +364,7 @@ like this, if leading spaces are no-no."
   ;; The example above is equivalent to
   (fn [arg] (+ arg 2))
   ;; Nesting function literals is forbidden activity
-  ;; (#(+ % (#(- % 2) 3)))
+  ;(#(+ % (#(- % 2) 3)))
   ;; (thankfully)
 
   ;; The hash sign has a special role. It is a k a
@@ -520,4 +537,4 @@ to the compiler, if it is evaluated together with the
 ;; https://clojurians.net
 
 
-"Hello Clojure"
+"File loaded. The REPL is ready to greet the world"
