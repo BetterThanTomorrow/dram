@@ -6,7 +6,7 @@ The first sip of [Calva](https://calva.io), [Clojure](https://clojure.org), [Par
 
 This is a repository for some **Getting Started** files for Calva.
 
-A ”dram” is what the Scots say for a taste of Whiskey. Here is is of course Calva we take the first sip of. (Well, or Clojure).
+A ”dram” is what the Scots say for a taste of Whiskey. Here is of course Calva we take the first sip of. (Well, or Clojure).
 
 See the *drams* directory for the files.
 
