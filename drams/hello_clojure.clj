@@ -814,7 +814,7 @@ to the compiler") "This is not ignored"
       "baz"     :baz
       #_(count    test-str)))
 
-  ;; WATCH OUT. A test constant must be a compile
+  ;; WATCH OUT! A test constant must be a compile
   ;; time literal, and the compiler won't  help you
   ;; find bugs like this:
   (let [test-int 2
@@ -823,7 +823,9 @@ to the compiler") "This is not ignored"
       1     :one
       two   (str "That's not a literal 2")
       (str test-int ": Probably not expected")))
-  
+
+  ;; The usual Clojuredocs tips:
+  ;; https://clojuredocs.org/clojure.core/case
 
   ;; To be continued... 
   ;; mention filter etcetera
@@ -847,6 +849,10 @@ to the compiler") "This is not ignored"
 ;; There is also ClojureSript, the same wondeful language,
 ;; for JavaScript VMs: https://clojurescript.org
 
+;; There is so much about Clojure not mentioned in this
+;; short guide. https://clojure.org/ is where you
+;; go for the complete story.
+
 ;; To get help with your Clojure questions, check these
 ;; resources out:
 ;; https://ask.clojure.org/
@@ -854,9 +860,9 @@ to the compiler") "This is not ignored"
 ;; https://clojureverse.org
 ;; https://www.reddit.com/r/Clojure/
 
-;; Reference resources:
-;; https://clojure.org/api/cheatsheet
+;; And there are also many other resources, such as:
 ;; https://clojuredocs.org
+;; https://clojure.org/api/cheatsheet
 
 
 "File loaded. The REPL is ready to greet the world"
