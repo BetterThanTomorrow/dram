@@ -652,10 +652,13 @@ to the compiler") "This is not ignored"
   ;; Then this is treaded to `Math/abs`
   (Math/abs -8)
   ;; 🎉
-  ;; (In many Clojure capable editors, inclusing
+
+  ;; (In many Clojure capable editors, including
   ;; Calva, there are commands for ”unwinding”
   ;; a thread, and for converting a nested
-  ;; expressions into a thread)
+  ;; expressions into a thread. Search for ”thread”
+  ;; among the commands.)
+  ;; https://github.com/clojure-emacs/clj-refactor.el/wiki/cljr-unwind-all
 
   ;; There is also a thread-first macro
   ;; `->` https://clojuredocs.org/clojure.core/-%3E
@@ -680,11 +683,22 @@ to the compiler") "This is not ignored"
     true inc       ; the condition is true so (inc 1) => 2
     false (* 42)   ; the condition is false so the operation is skipped
     (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
-  
+
   ;; See ”Threading with Style” by Stuart Sierra
   ;; for idoamtic use of the threading facilities.
   ;; https://stuartsierra.com/2018/07/06/threading-with-style
   )
+
+;; With special forms, the special syntax of the Reader,
+;; and macros, the foundations of what is the Clojure
+;; language you use are laid. You can of course extend
+;; the language further with libraries including macros
+;; or create your own. However the core language, with
+;; its macros is very expressive. Taking data oriented
+;; approaches is often enough. Even to prefer, rather
+;; than creating more macros.
+
+;; On to flow control!
 
 (comment
   ;; = Flow Control, Conditionals, Branching =
@@ -714,9 +728,9 @@ to the compiler") "This is not ignored"
   ;;     "One time out of six you get a six" :
   ;;     "Five times out of six you get something else";
 
-  ;; == Truthy or Falsy? ==
+  ;; == The Search for Truth ==
   ;; Again, in Clojure we use expressions evaluating to
-  ;; values. When examiined for branching all values
+  ;; values. When examined for branching all values
   ;; are either truthy or falsy. In fact, almost all
   ;; values are truthy
   (if true :truthy :falsy)
@@ -745,8 +759,73 @@ to the compiler") "This is not ignored"
   ;; Thus
   (if (true? 0) :true :false)
 
+  ;; == `cond` ==
+  ;; Since deeply nested if/else structures can be
+  ;; hard to write, read, and maintain, Clojure core
+  ;; offers several more constructs for flow control,
+  ;; one very commone such is the `cond` macro. It
+  ;; takes pairs of condition/result forms, tests
+  ;; each condition, if it is true, then the result
+  ;; form is evaluated and ”returned”, short-cicuiting
+  ;; so that no more condition is tested.
+  (let [dice-roll (inc (rand-int 6))]
+    (cond
+      (= 6 dice-roll)  "Six is as high as it gets"
+      (odd? dice-roll) (str "An odd roll " dice-roll " is")
+      :else            (str "Not six, nor odd, instead: " dice-roll)))
+  ;; The `:else` is just the keyword `:else` which
+  ;; evaluates to itself and is truthy. It is the
+  ;; conventional way to give your cond forms a
+  ;; default value. Without a default clause, the
+  ;; form would evaluate to `nil` for anything not-six
+  ;; not-odd. Try it by placing two ignore markers
+  ;; (`#_ #_`) in front of the `:else` keyword.
+
+  ;; Gotta love Clojuredocs
+  ;; https://clojuredocs.org/clojure.core/cond
+  ;; Paste examples from there here and play around:
+
+  ;; See also links to `cond->` info above
+
+  ;; == `case` ==
+  ;; A bit similar to `switch/case` constructs in
+  ;; other languages, Clojure core has the `case`
+  ;; macro whcih takes a test expression, followed by
+  ;; zero or more clauses (pairs) of test constant/expr,
+  ;; followed by an optional expr. (However, the body
+  ;; after the test expression may not be empty.)
+  (let [test-str "foo bar"]
+    (case test-str
+      "foo bar" (str "That's very " :foo-bar)
+      "baz"     :baz
+      (count    test-str)))
+  ;; The trailing expression, if any, is ”returned” as
+  ;; the default value.
+  (let [test-str "foo bar"]
+    (case test-str
+      #_#_"foo bar" (str "That's very " :foo-bar)
+      "baz"     :baz
+      (count    test-str)))
+  ;; If no clause matches and there is no default,
+  ;; a run time error happens
+  (let [test-str "foo bar"]
+    (case test-str
+      #_#_"foo bar" (str "That's very " :foo-bar)
+      "baz"     :baz
+      #_(count    test-str)))
+
+  ;; WATCH OUT. A test constant must be a compile
+  ;; time literal, and the compiler won't  help you
+  ;; find bugs like this:
+  (let [test-int 2
+        two 2]
+    (case test-int
+      1     :one
+      two   (str "That's not a literal 2")
+      (str test-int ": Probably not expected")))
+  
+
   ;; To be continued... 
-  ;; cond
   ;; mention filter etcetera
 
   ;; The Functional Design in Clojure podcast has a
@@ -759,7 +838,7 @@ to the compiler") "This is not ignored"
 ;; immmutabibility
 ;; destructuring
 ;; atoms
-;; nil punning
+;; nil, nil safety, nil punning
 ;; seqs
 ;; lazyness
 ;; fizz-buzz
