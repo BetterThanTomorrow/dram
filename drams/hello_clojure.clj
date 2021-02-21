@@ -315,11 +315,11 @@ like this, if leading spaces are no-no."
          )
   ;;     ^ Healing the structure.        
   ;; If you remove the semicolon on the opening form
-  ;; above, make sure to also remove this closing one.           
+  ;; above, make sure to also remove this closing paren.           
 
   ;; Since everything on the line is ignored, you can
   ;; add as many semicolons as you want.
-  ;;;;;;;;;; (hidden from the Reader)
+  ;;;;;;;;;; (skipped by the Reader)
   ;; It's common to use two semicolons to start a full
   ;; line comment. 
 
@@ -609,8 +609,8 @@ to the compiler") "This is not ignored"
                (partition 2 [1 1 2 3 5 8 13 21])))))
   ;; You read Clojure from the innermost expression
   ;; and out, which gets easier with time, but an
-  ;; experienced Clojure coder would still have an
-  ;; easier time reading this
+  ;; experienced Clojure coder would still find it
+  ;; easier to read this
   (->> [1 1 2 3 5 8 13 21]
        (partition 2)
        (zipmap [:a :b :c :d])
@@ -618,25 +618,25 @@ to the compiler") "This is not ignored"
        (apply -)
        (Math/abs))
   ;; Let's read this together. The thread-last macro,
-  ;; `->>` is used, it takes the first element and
-  ;; puts it as the last argument to following function.
-  ;; Let's look at that in isolation:
+  ;; `->>` is used, it takes its first argument and
+  ;; places it (threads it) as the last argument to
+  ;; following function. The first such step in
+  ;; isolation:
   (->> [1 1 2 3 5 8 13 21]
        (partition 2))
-  ;; The first element passed to `->>` is
+  ;; The first argument/element passed to `->>` is
   ;; `[1 1 2 3 5 8 13 21]`
   ;; This is inserted as the last element of the
   ;; function call `(partition 2)`, yielding:
   (partition 2 [1 1 2 3 5 8 13 21])
-
-  ;; Which partitions the list into lists with
+  ;; This partitions the list into lists of
   ;; 2 elements => `((1 1) (2 3) (5 8) (13 21))`
   ;; This new list is then inserted (threaded)
   ;; as the last argument to the next function,
   ;; yielding:
   (zipmap [:a :b :c :d] '((1 1) (2 3) (5 8) (13 21)))
   ;; Which ”zips” together a Clojure map using
-  ;; the first list as keys and the next list
+  ;; the first list as keys and the second list
   ;; as values
   ;; => `{:a (1 1), :b (2 3), :c (5 8), :d (13 21)}`
   ;; This map is then threaded as the last argument
@@ -669,9 +669,8 @@ to the compiler") "This is not ignored"
     (interpose ":" $))
   ;; https://clojuredocs.org/clojure.core/as-%3E
 
-  ;; Some other core threading macros are:
+  ;; Other core threading macros are:
   ;; `cond->`, `cond->>`, `some->`, and `some->>`
-  ;; The last three are linked in ”See also” here:
   ;; https://clojuredocs.org/clojure.core/cond-%3E
 
   ;; Please feel encouraged to copy the examples
@@ -683,17 +682,82 @@ to the compiler") "This is not ignored"
     (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
   
   ;; See ”Threading with Style” by Stuart Sierra
-  ;; for idoamtic uses of the threading facilities.
+  ;; for idoamtic use of the threading facilities.
   ;; https://stuartsierra.com/2018/07/06/threading-with-style
+  )
+
+(comment
+  ;; = Flow Control, Conditionals, Branching =
+  ;; Clojure is richer than most languages in what it
+  ;; offers us to let our programs flow the way we want
+  ;; them to. Almost all the core library features for
+  ;; this are implemented using the primitive (special
+  ;; form) `if`. This is still the staple for us as
+  ;; Clojure coders. It takes three forms as its
+  ;; arguments:
+  ;; 1. A condition to evaluate
+  ;; 2. What to evaluate if the condition evaluates
+  ;;    to something true (truthy)
+  ;; 3. The form to evaluate if the condition does not
+  ;;    evaluate to something truthy (the ”else” branch)
+  ;; Roll this dice, some ten-twenty times, checking if
+  ;; it is a six:
+  (if (= 6 (inc (rand-int 6)))
+    "One time out of six you get a six"
+    "Five times out of six you get something else")
+  ;; Since there are no statements in Clojure `if` is
+  ;; the equivalent to the ternary `if` expressiong you
+  ;; find in C and many other languages:
+  ;;   test ? true-expressiong : false-expression
+  ;; Pseudo code for our dice:
+  ;;   int(rand() * 6) + 1 == 6 ?
+  ;;     "One time out of six you get a six" :
+  ;;     "Five times out of six you get something else";
+
+  ;; == Truthy or Falsy? ==
+  ;; Again, in Clojure we use expressions evaluating to
+  ;; values. When examiined for branching all values
+  ;; are either truthy or falsy. In fact, almost all
+  ;; values are truthy
+  (if true :truthy :falsy)
+  (if :foo :truthy :falsy)
+  (if '() :truthy :falsy)
+  (if 0 :truthy :falsy)
+  (if "" :truthy :falsy)
+  ;; The only falsy values are `false` and `nil`
+  (if false :truthy :falsy)
+  (if nil :truthy :falsy)
+  (when false :truthy)
+  ;; About that last one: `when` evaluates to `nil`
+  ;; when the condition is falsy. Since `nil` is 
+  ;; falsy the above `when` expression would be
+  ;; making the ”else” branch of an `if` to be
+  ;; evaluated
+  (if (when false :truthy) :true :falsy)
+  ;; (Super extra bad code, but anyway)
+  ;; When only boolean truth or falsehood can cut
+  ;; it for you, there is the `true?` function
+  (true? true)
+  (true? 0)
+  (true? '())
+  (true? nil)
+  (true? false)
+  ;; Thus
+  (if (true? 0) :true :false)
+
+  ;; To be continued... 
+  ;; cond
+  ;; mention filter etcetera
+
+  ;; The Functional Design in Clojure podcast has a
+  ;; fantastic episode about branching
+  ;; https://clojuredesign.club/episode/089-branching-out/
   )
 
 ;; To be continued...
 
-;; expressions and if
 ;; immmutabibility
-;; threading
 ;; destructuring
-;; cond
 ;; atoms
 ;; nil punning
 ;; seqs
