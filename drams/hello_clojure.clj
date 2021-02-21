@@ -264,7 +264,7 @@ like this, if leading spaces are no-no."
     'value-if-true
     'value-if-false)
   ;; Rumour has it that all conditional constructs (macros)
-  ;; are built using `if`. Try imagine a programming language
+  ;; are built using `if`. Try imagine a programming lnguage
   ;; without conditionals!
 
   ;; We'll return to `if` and conditionals. Let's wrap
@@ -359,9 +359,10 @@ like this, if leading spaces are no-no."
 
   ;; That hash sign shows up now and then, for instance
   #(+ % 2)
-  ;; Which is special syntax for a shorthand way to
-  ;; specify a function, a k a function literals.
-  ;; The example above is equivalent to
+  ;; Which is special syntax for ”function literals”, a
+  ;; way to specify a function.
+  ;; The example above is equivalent to this anonymous
+  ;; function.
   (fn [arg] (+ arg 2))
   ;; Nesting function literals is forbidden activity
   ;(#(+ % (#(- % 2) 3)))
@@ -376,13 +377,13 @@ like this, if leading spaces are no-no."
 
   ;; There is a very useful hash-dispatcher which
   ;; is used to make the Reader ignore the next form
-  #_(str "The reader will not send this function call
-to the compiler, if it is evaluated together with the
-#_ marker.")
-  ;; You'll need to select the ignore marker together with
-  ;; the function call and use Ctrl+Enter, to make Calva
-  ;; send the both the marker and the form to the Reader,
-  ;; which will read it, then ignore it. ¯\_(ツ)_/¯
+  #_(println "The reader will not send this function call
+to the compiler") "This is not ignored"
+  ;; To test this select the ignore marker together with
+  ;; the function call and the string, then use Ctrl+Enter,
+  ;; to make Calva send it all to the Reader, which will
+  ;; read it, ignore the function call, and only evaluate
+  ;; the string.
   ;; Since #_ ignores the next form it is a structural
   ;; comment mechanism, often used to temporarily disable
   ;; some code or some data
@@ -392,7 +393,10 @@ to the compiler, if it is evaluated together with the
   ;; Note that the Reader _will_ read the ignored form.
   ;; If there are syntactic errors in there, the
   ;; Reader will get sad, complain, and stop Reading.
-
+  ;; Select from the marker up to and including the string
+  ;; here and press Ctrl+Enter
+  ;#_(#(+ % (#(- % 2) 3))) "foo"
+  
   ;; Two more common #-variants you will see, and use,
   ;; are namespaced map keyword shorthand syntax and
   ;; tagged literals, a k a, data readers. Let's start
@@ -541,6 +545,146 @@ to the compiler, if it is evaluated together with the
     (println "`x` in `do`, _after_ `let`: " x))
   ;; The `def` special form defines things ”globally”
   (println "`x` _outside_ `do`: " x)
+
+  ;; == `for` ==
+  ;; The `for` macro really demonstrates how Clojure
+  ;; can be extended using Clojure. `for` gives us
+  ;; list comprehensions (if you have Pyhton experience,
+  ;; yes, that kind of list comprehensions).
+  ;; Here's how to produce the cartesian product of two
+  ;; vectors, `x` and `y`:
+  (for [x [1 2 3]
+        y [1 2 3 4]]
+    [x y])
+  ;; `for` also lets you filter the results
+  (for [x [1 2 3]
+        y [1 2 3 4]
+        :when (not= x y)]
+    [x y])
+  ;; You can bind variable names in the comprehension
+  (for [x [1 2 3]
+        y [1 2 3 4]
+        :let [d' (- x y)
+              d (Math/abs d')]]
+    d)
+  ;; Filters and bindings can be used together can you
+  ;; Use both `:let` and `:when` to meak this
+  ;; comprehension return a list of all `[x y]` where
+  ;; their sum is odd. The functions `+` and `odd?`
+  ;; are your friends here.
+  (for [x [1 2 3]
+        y [1 2 3 4]]
+    [x y])
+  ;; See https://www.youtube.com/watch?v=5lvV9ICwaMo for
+  ;; a great primer on Clojure list comprehensions
+  ;; See https://clojuredocs.org/clojure.core/for for
+  ;; example usages and tips.
+
+  ;; Note that even though `let` and `for` look like
+  ;; functions, they are not. The compiler would not
+  ;; like it if you are passing undefined symbols to a
+  ;; function. This is valid code:
+  (let [abc 1] 2)
+  ;; This isn't.
+  (str [abc 1] 2)
+  ;; We are mentioning this here so that you will know
+  ;; why when you ask other Clojurians something like:
+  ;;   ”Why is X not working, when Y is?” 
+  ;; you sometimes get the answer
+  ;;   ”It's because Y is a macro”
+  ;; Macros extend the Clojure compiler.
+  ;; We suggest bookmarking this page:
+  ;;   https://clojure.org/reference/macros
+
+  ;; == Threading macros ==
+  ;; Macros can totally rearrange your code. The
+  ;; built-in ”threading” macros do this. Sometimes
+  ;; when the nesting of function(-ish) calls get
+  ;; deep it can get a bit hard to read and to keep
+  ;; track of all the parens 
+  (Math/abs
+   (apply -
+          (:d (zipmap
+               [:a :b :c :d]
+               (partition 2 [1 1 2 3 5 8 13 21])))))
+  ;; You read Clojure from the innermost expression
+  ;; and out, which gets easier with time, but an
+  ;; experienced Clojure coder would still have an
+  ;; easier time reading this
+  (->> [1 1 2 3 5 8 13 21]
+       (partition 2)
+       (zipmap [:a :b :c :d])
+       :d
+       (apply -)
+       (Math/abs))
+  ;; Let's read this together. The thread-last macro,
+  ;; `->>` is used, it takes the first element and
+  ;; puts it as the last argument to following function.
+  ;; Let's look at that in isolation:
+  (->> [1 1 2 3 5 8 13 21]
+       (partition 2))
+  ;; The first element passed to `->>` is
+  ;; `[1 1 2 3 5 8 13 21]`
+  ;; This is inserted as the last element of the
+  ;; function call `(partition 2)`, yielding:
+  (partition 2 [1 1 2 3 5 8 13 21])
+
+  ;; Which partitions the list into lists with
+  ;; 2 elements => `((1 1) (2 3) (5 8) (13 21))`
+  ;; This new list is then inserted (threaded)
+  ;; as the last argument to the next function,
+  ;; yielding:
+  (zipmap [:a :b :c :d] '((1 1) (2 3) (5 8) (13 21)))
+  ;; Which ”zips” together a Clojure map using
+  ;; the first list as keys and the next list
+  ;; as values
+  ;; => `{:a (1 1), :b (2 3), :c (5 8), :d (13 21)}`
+  ;; This map is then threaded as the last argument
+  ;; to the function `:d`
+  (:d '{:a (1 1), :b (2 3), :c (5 8), :d (13 21)})
+  ;; (In clojure keywords are functions that look
+  ;;  themselves up in the map handed to them.)
+  ;; => `(13 21)`
+  ;; You know the drill by now, this is threaded
+  (apply - '(13 21))
+  ;; Which applies the `-` function over the list
+  ;; => `-8`
+  ;; Then this is treaded to `Math/abs`
+  (Math/abs -8)
+  ;; 🎉
+  ;; (In many Clojure capable editors, inclusing
+  ;; Calva, there are commands for ”unwinding”
+  ;; a thread, and for converting a nested
+  ;; expressions into a thread)
+
+  ;; There is also a thread-first macro
+  ;; `->` https://clojuredocs.org/clojure.core/-%3E
+  ;; Sometimes you neither want to thread first
+  ;; of last. There is a macro for this too.
+  ;; `as->` lets you bind a variable name to the
+  ;; threaded thing and place it wherever you
+  ;; fancy in each function call.
+  (as-> 15 $
+    (range 1 $ 3)
+    (interpose ":" $))
+  ;; https://clojuredocs.org/clojure.core/as-%3E
+
+  ;; Some other core threading macros are:
+  ;; `cond->`, `cond->>`, `some->`, and `some->>`
+  ;; The last three are linked in ”See also” here:
+  ;; https://clojuredocs.org/clojure.core/cond-%3E
+
+  ;; Please feel encouraged to copy the examples
+  ;; from clojuredocs here and play with them.
+  ;; Here's one:
+  (cond-> 1        ; we start with 1
+    true inc       ; the condition is true so (inc 1) => 2
+    false (* 42)   ; the condition is false so the operation is skipped
+    (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
+  
+  ;; See ”Threading with Style” by Stuart Sierra
+  ;; for idoamtic uses of the threading facilities.
+  ;; https://stuartsierra.com/2018/07/06/threading-with-style
   )
 
 ;; To be continued...
@@ -548,10 +692,12 @@ to the compiler, if it is evaluated together with the
 ;; expressions and if
 ;; immmutabibility
 ;; threading
-;; let
+;; destructuring
 ;; cond
 ;; atoms
 ;; nil punning
+;; seqs
+;; lazyness
 ;; fizz-buzz
 
 ;; Learn much more Clojure at https://clojure.org/
