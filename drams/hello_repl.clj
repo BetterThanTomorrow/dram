@@ -20,13 +20,13 @@
   (greet "World"))
 ;; You should see "Hello World!" displayed inline,
 ;; and also printed to the `output.calva-repl` editor,
-;; a k a ”The Outout Window”, a k a ”The REPL Window”.
+;; aka ”The Outout Window”, aka ”The REPL Window”.
 ;; To clear inline results display, press ESC.
 
 ;; Anything printed to stdout is not shown inline
 (comment
   (println (greet "World")))
-;; You should see the result of the evaluation, nil,)
+;; You should see the result of the evaluation, nil,
 ;; inline, and ”Hello World!” followed by the result
 ;; printed to the output window.
 
@@ -38,9 +38,7 @@
 ;; strings as forms. Don't panic if `three` causes
 ;; en evauation error. It is not defined, since
 ;; it shouldn't be. You can define it, of course,
-;; just for fun and learning:
-
-;; Top level eval these 
+;; just for fun and learning: Top level eval these 
 (comment
   (def three 3)
   (def four "four"))

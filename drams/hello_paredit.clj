@@ -12,7 +12,7 @@
 
 ;; Clojure is a LISP and therefore the code
 ;; is structural. Everything is organized in
-;; ”forms”, a k a S-expressions (sexprs).
+;; ”forms”, aka S-expressions (sexprs).
 ;; https://en.wikipedia.org/wiki/S-expression
 ;; A form is any literal or ”symbol” or
 ;; literal collection (different kinds of

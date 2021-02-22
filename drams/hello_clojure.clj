@@ -201,7 +201,7 @@ like this, if leading spaces are no-no."
   ;; The core libarary is composed from the functions and macros
   ;; in the library itself. Bootstrapping the library is
   ;; a few (15-ish) built-in primitive forms,
-  ;; a k a ”special forms”.
+  ;; aka ”special forms”.
 
   ;; You have met one of these special forms already:
   (quote (1 2 3))
@@ -368,7 +368,7 @@ like this, if leading spaces are no-no."
   ;(#(+ % (#(- % 2) 3)))
   ;; (thankfully)
 
-  ;; The hash sign has a special role. It is a k a
+  ;; The hash sign has a special role. It is aka
   ;; Dispatch. Depending on what character is following
   ;; it, different cool things happen.
   ;; In addition to sets, regexps and function literals
@@ -399,7 +399,7 @@ to the compiler") "This is not ignored"
   
   ;; Two more common #-variants you will see, and use,
   ;; are namespaced map keyword shorthand syntax and
-  ;; tagged literals, a k a, data readers. Let's start
+  ;; tagged literals, aka, data readers. Let's start
   ;; with the former:
   (= #:foo {:bar 'bar
             :baz 'baz}
@@ -720,7 +720,7 @@ to the compiler") "This is not ignored"
     "One time out of six you get a six"
     "Five times out of six you get something else")
   ;; Since there are no statements in Clojure `if` is
-  ;; the equivalent to the ternary `if` expressiong you
+  ;; the equivalent to the ternary `if` expression you
   ;; find in C and many other languages:
   ;;   test ? true-expressiong : false-expression
   ;; Pseudo code for our dice:
@@ -837,6 +837,7 @@ to the compiler") "This is not ignored"
 
 ;; To be continued...
 
+;; comments
 ;; immmutabibility
 ;; destructuring
 ;; atoms
