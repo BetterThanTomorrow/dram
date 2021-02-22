@@ -1,0 +1,7 @@
+{
+    "editor.tokenColorCustomizations": {
+        "[GitHub Dark]": {
+            "comments": "#838d9b"
+        }
+    },
+}
