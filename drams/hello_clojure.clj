@@ -212,7 +212,7 @@ like this, if leading spaces are no-no."
   ;; We used the shorthand syntax for it then:
   '(1 2 3)
 
-  ;; Convince yourself they are the same witg the `=` function:
+  ;; Convince yourself they are the same with the `=` function:
   (= (quote (1 2 3))
      '(1 2 3))
   ;; Clojure has value semantics. Any data structures
@@ -264,7 +264,7 @@ like this, if leading spaces are no-no."
     'value-if-true
     'value-if-false)
   ;; Rumour has it that all conditional constructs (macros)
-  ;; are built using `if`. Try imagine a programming lnguage
+  ;; are built using `if`. Try to imagine a programming language
   ;; without conditionals!
 
   ;; We'll return to `if` and conditionals. Let's wrap
@@ -286,8 +286,8 @@ like this, if leading spaces are no-no."
   ;; re-assembled, figuring out what is a function,
   ;; a macro or special form.
 
-  ;; In doing this whitespace place a key role and there
-  ;; us also some extra syntax rules are in play.
+  ;; In doing this whitespace plays a key role and there
+  ;; are also some extra syntax rules are in play.
 
   ;; == WHITESPACE ==
   ;; Most things you would think counts as whitespace
