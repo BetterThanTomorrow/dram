@@ -867,7 +867,7 @@ to the compiler") "This is not ignored"
   (indexed? [1 2 3])
   (indexed? '(1 2 3))
   ;; What's a predicate? For the purpose of this guide
-  ;; A predicate is a function taking testing things for
+  ;; A predicate is a function testing things for
   ;; truthiness. Some take only one argument, and it is
   ;; convention that these functions end with `?`.
   
