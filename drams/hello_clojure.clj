@@ -33,9 +33,9 @@
 ;; encouraged to edit the examples, and add new code
 ;; and evaluate that. Evaluate this to warm up:
 
-(str "Learning"
-     " by "
-     "evaluating")
+(str "Evaluate"
+     " and "
+     "experiment")
 
 (comment
   ;; = EXPRESSIONS =
@@ -759,6 +759,18 @@ to the compiler") "This is not ignored"
   ;; Thus
   (if (true? 0) :true :false)
 
+  ;; == `when` ==
+  ;; As mentioned before, `when` is a one-branch
+  ;; `if`, only for the truthy branch, wich is
+  ;; wrapped in a `do` for you. Try this and then
+  ;; try it replacing the `when` with an `if`:
+  (when :truthy
+    (println "That sounds true to me")
+    :truthy-for-you)
+  ;; If the `when` condition is not truthy,
+  ;; `nil` will be returned.
+  (when nil :true-enough?)
+
   ;; == `cond` ==
   ;; Since deeply nested if/else structures can be
   ;; hard to write, read, and maintain, Clojure core
@@ -824,15 +836,67 @@ to the compiler") "This is not ignored"
       two   (str "That's not a literal 2")
       (str test-int ": Probably not expected")))
 
-  ;; The usual Clojuredocs tips:
   ;; https://clojuredocs.org/clojure.core/case
-
-  ;; To be continued... 
-  ;; mention filter etcetera
+  ;; Paste some `case` examples here and experiment
 
   ;; The Functional Design in Clojure podcast has a
   ;; fantastic episode about branching
   ;; https://clojuredesign.club/episode/089-branching-out/
+
+  ;; == Less branching is good, right? ==
+  ;; The core library is rich with functions that
+  ;; helps you avoid writing branching code. Instead
+  ;; you provide the condition as a predicate.
+  ;; An often used predicate function is `filter`
+  (filter even? [0 1 2 3 4 5 6 7 8 9 10 11 12])
+  ;; and its ”sibling” `remove`
+  (remove odd? [0 1 2 3 4 5 6 7 8 9 10 11 12])
+  ;; Filtering sequences of values is a common task
+  ;; and your programming time can instead be used
+  ;; to decide _how_ it should be filtered, by writing
+  ;; the predicate. Sometimes you don't even need to
+  ;; do that, Clojure core is rich with predicates
+  (even? 0)
+  (neg? 0)
+  (pos? 0)
+  (nat-int? 0)
+  (empty? "")
+  (empty? [])
+  (empty? (take 0 [1 2 3]))
+  (integer? 2/1)
+  (indexed? [1 2 3])
+  (indexed? '(1 2 3))
+  ;; What's a predicate? For the purpose of this guide
+  ;; A predicate is a function taking testing things for
+  ;; truthiness. Some take only one argument, and it is
+  ;; convention that these functions end with `?`.
+  
+  ;; A handy predicate is `some?` which tests for
+  ;; "somethingness”, if it is not `nil` it is
+  ;; something
+  (some? nil)
+  (some? false)
+  (some? '())
+  ;; You can use it to test for if something is `nil`
+  ;; by wrapping it in a call to the `not` function
+  (not (some? nil))
+  (not (some? false))
+  ;; You get the urge to define a function named `nil?`,
+  ;; right? You don't have to
+  (nil? nil)
+
+  ;; There are also predicates that take a predicate
+  ;; plus a collection to apply it on.
+  ;; Such as `every?`
+  (every? nat-int? [0 1 2])
+  (every? nat-int? [-1 0 1 2])
+
+  ;; (This pattern with functions that take functions
+  ;; as argument is common in Clojure.)
+
+
+  ;; To be continued... 
+  ;; mention filter etcetera
   )
 
 ;; To be continued...
