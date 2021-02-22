@@ -567,8 +567,8 @@ to the compiler") "This is not ignored"
         :let [d' (- x y)
               d (Math/abs d')]]
     d)
-  ;; Filters and bindings can be used together can you
-  ;; Use both `:let` and `:when` to meak this
+  ;; Filters and bindings can be used together.
+  ;; Use both `:let` and `:when` to make this
   ;; comprehension return a list of all `[x y]` where
   ;; their sum is odd. The functions `+` and `odd?`
   ;; are your friends here.
@@ -584,9 +584,9 @@ to the compiler") "This is not ignored"
   ;; functions, they are not. The compiler would not
   ;; like it if you are passing undefined symbols to a
   ;; function. This is valid code:
-  (let [abc 1] 2)
+  (let [abc 1] abc)
   ;; This isn't.
-  (str [abc 1] 2)
+  (str [abc 1] abc)
   ;; We are mentioning this here so that you will know
   ;; why when you ask other Clojurians something like:
   ;;   ”Why is X not working, when Y is?” 
@@ -856,6 +856,7 @@ to the compiler") "This is not ignored"
   ;; to decide _how_ it should be filtered, by writing
   ;; the predicate. Sometimes you don't even need to
   ;; do that, Clojure core is rich with predicates
+  (zero? 0)
   (even? 0)
   (neg? 0)
   (pos? 0)
@@ -863,13 +864,13 @@ to the compiler") "This is not ignored"
   (empty? "")
   (empty? [])
   (empty? (take 0 [1 2 3]))
-  (integer? 2/1)
+  (integer? -2/1)
   (indexed? [1 2 3])
   (indexed? '(1 2 3))
   ;; What's a predicate? For the purpose of this guide
   ;; A predicate is a function testing things for
-  ;; truthiness. Some take only one argument, and it is
-  ;; convention that these functions end with `?`.
+  ;; truthiness. It is convention that these functions
+  ;; end with `?`. Many take only one argument.
   
   ;; A handy predicate is `some?` which tests for
   ;; "somethingness”, if it is not `nil` it is
@@ -885,28 +886,34 @@ to the compiler") "This is not ignored"
   ;; right? You don't have to
   (nil? nil)
 
-  ;; There are also predicates that take a predicate
-  ;; plus a collection to apply it on.
+  ;; Clojure core also contains predicates that take
+  ;; a predicate plus a collection to apply it on.
   ;; Such as `every?`
   (every? nat-int? [0 1 2])
   (every? nat-int? [-1 0 1 2])
 
-  ;; (This pattern with functions that take functions
-  ;; as argument is common in Clojure.)
+  ;; This pattern with functions that take functions
+  ;; as argument is common in Clojure. It spans beyond
+  ;; predicates. Functions that take functions as
+  ;; arguments are referred to as ”higher order
+  ;; functions”.
+  )
 
-
-  ;; To be continued... 
-  ;; mention filter etcetera
+(comment
+  ;; = Higher order functions =
+  
   )
 
 ;; To be continued...
 
+;; higher order functions
 ;; comments
 ;; immmutabibility
 ;; destructuring
 ;; atoms
 ;; nil, nil safety, nil punning
 ;; seqs
+;; map, reduce
 ;; lazyness
 ;; fizz-buzz
 
