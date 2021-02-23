@@ -793,7 +793,7 @@ to the compiler") "This is not ignored"
   ;; not-odd. Try it by placing two ignore markers
   ;; (`#_ #_`) in front of the `:else` keyword.
 
-  ;; Gotta love Clojure docs
+  ;; Gotta love ClojureDocs
   ;; https://clojuredocs.org/clojure.core/cond
   ;; Paste examples from there here and play around:
 
