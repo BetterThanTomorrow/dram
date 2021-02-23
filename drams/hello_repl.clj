@@ -75,8 +75,29 @@
 (comment
   (def tmp1 (dorun (range))))
 
-;; Pleas continue to hello_paredit.clj to learn the
+;; A note about editing Clojure in Calva:
+;; If you edit and experiment with the examples
+;; you will notice that Calva autoindents your
+;; code. You can also re-indent, and format, code
+;; at will, using the `tab` key.
+
+;; More about editing:
+;; Please continue to hello_paredit.clj to learn the
 ;; very basics of structural editing in Calva.
+;; Here's maybe the most important thing from that
+;; guide:
+;; Paredit strict mode is active by default. 
+;; It will help you to not delete brackets that
+;; would break the structure of the code.
+;; Use Alt+Backspace to override.
+(defn strict-greet
+  "Try to remove brackets and string quotes
+   using Backspace or Delete. Try the same
+   with the Alt key pressed."
+  [name]
+  (str "Strictly yours, " name "!"))
+;; (Restore with *Undo* if needed.)
+
 
 ;; Learn much more about Calva at https://calva.io 
 
