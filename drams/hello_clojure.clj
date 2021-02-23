@@ -4,7 +4,7 @@
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; THen Alt+Enter this:
+;; Then Alt+Enter this:
 "Hello World"
 ;; That's a concise Hello World.
 ;; And note that there are no parens. 😀
@@ -13,11 +13,11 @@
 ;; understanding of the Clojure language. Basic in
 ;; the sense that it is not extensive. Basic in the
 ;; sense that it is foundational. Building from first
-;; principles in order to make the Clujure journey
+;; principles in order to make the Clojure journey
 ;; you have ahead easier to comprehend.
 ;; With the foundations in place you'll have a good 
 ;; chance of having the right gut feeling for how to
-;; code something, to formmulating your questions,
+;; code something, to formulating your questions,
 ;; googling for information, make sense of code you
 ;; stumble across, and so on.
 
@@ -45,7 +45,7 @@
   ;; is always a return value (which is sometimes `nil`).
 
   ;; An important aspect of this is that the result
-  ;; of an expession is always the last form/expression
+  ;; of an expression is always the last form/expression
   ;; evaluated. E.g. if you have a function defined
   ;; like so:
   (defn last-eval-wins []
@@ -54,10 +54,10 @@
     (println 'side-effect-2)
     2)
   ;; (Just, evaluate it. This defines a function named
-  ;; `last-eval-wins`, taking no argumentsm, with four
+  ;; `last-eval-wins`, taking no arguments, with four
   ;; expressions in its function body. We'll return to
   ;; defining functions.)
-  ;; Calling the function (Just ealuate it.)
+  ;; Calling the function (Just evaluate it.)
   (last-eval-wins)
   ;; will cause all four expressions in the function
   ;; body to be evaluated. The result of the call will
@@ -66,7 +66,7 @@
   ;; In the output window you will also see the
   ;; `println` calls happening. They are also
   ;; expressions, evaluating `nil`.
-  (println 'prints-this-evalautes-to-nil)
+  (println 'prints-this-evaluates-to-nil)
 
   ;; Expressions are composed from literals (evaluating
   ;; to themselves) and/or calls to either
@@ -120,7 +120,7 @@
   ;; talk more about).
   ;; Strings are enclosed by double quotes. 
   "A string can be
-   multiline, but will contain any leading spaces."
+   multi-line, but will contain any leading spaces."
   "Write strings
 like this, if leading spaces are no-no."
   ;; (The single quote is used for something else.
@@ -170,7 +170,7 @@ like this, if leading spaces are no-no."
   ;; handed to the function as arguments
 
   ;; Note: We refer to literals, symbols and literal
-  ;; collections, collectivelly as forms, sometimes,
+  ;; collections, collectively as forms, sometimes,
   ;; sexprs: https://en.wikipedia.org/wiki/S-expression
 
   ;; You define new functions and bind them to names
@@ -198,7 +198,7 @@ like this, if leading spaces are no-no."
 
 (comment
   ;; = SPECIAL FORMS =
-  ;; The core libarary is composed from the functions and macros
+  ;; The core library is composed from the functions and macros
   ;; in the library itself. Bootstrapping the library is
   ;; a few (15-ish) built-in primitive forms,
   ;; aka ”special forms”.
@@ -222,7 +222,7 @@ like this, if leading spaces are no-no."
      [1 [1 #{1 {:a (- 3 2) :b (quote (:foo bar))}}]])
 
   ;; ... but that was a detour, back to special forms.
-  ;; Offical docs:
+  ;; Official docs:
   ;; https://clojure.org/reference/special_forms#_other_special_forms
 
   ;; A very important special form is `fn` (which is
@@ -249,7 +249,7 @@ like this, if leading spaces are no-no."
   ;; You will most often see the var-quote shorthand
   #'foo
 
-  ;; With these two special foms we can define functions
+  ;; With these two special forms we can define functions
   (def add2-2 (fn [arg] (+ arg 2)))
   (add2-2 3)
 
@@ -270,7 +270,7 @@ like this, if leading spaces are no-no."
   ;; We'll return to `if` and conditionals. Let's wrap
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
-  ;; the special forms make up the Clojure langugage
+  ;; the special forms make up the Clojure language
   ;; itself. The next level och building blocks are
   ;; macros. But let's investigate this with how code
   ;; is read first...
@@ -309,7 +309,7 @@ like this, if leading spaces are no-no."
   ;; a semicolon. This is unstructured comments in
   ;; that if you start a form
   (range 1 ; 10)
-  ;; and then place a line commment so that the closing
+  ;; and then place a line comment so that the closing
   ;; bracket of that form gets commented out, the
   ;; structure breaks.
          )
@@ -323,10 +323,10 @@ like this, if leading spaces are no-no."
   ;; It's common to use two semicolons to start a full
   ;; line comment. 
 
-  ;; == EXRA SYNTAX ===
+  ;; == EXTRA SYNTAX ===
   ;; We've already seen the single quote
   'something
-  ;; Which is, as we have seen, transfromed to
+  ;; Which is, as we have seen, transformed to
   (quote something)
   ;; There are some more quoting, and even splicing
   ;; symbols, which we won't cover in this guide.
@@ -445,14 +445,14 @@ to the compiler") "This is not ignored"
   ;; Clojure has powerful data transformation
   ;; capabilities. We'll touch on that a bit later.
   ;; Here we want to highlight that this power can
-  ;; be weilded for extending the language. 
+  ;; be wielded for extending the language. 
   ;; Since Clojure code is structured and code is
   ;; data, Clojure can be used to produce Clojure
   ;; code from Clojure code. It is similar to the
-  ;; preprocessor fascilites that some languages
+  ;; preprocessor facilitates that some languages
   ;; offer, like C's `#pragma`, but it is much more
   ;; convenient and powerful. A lot of you will learn
-  ;; to love and recognize Clojure is actually
+  ;; to love and recognize as Clojure is actually
   ;; created with Clojure, as macros.
 
   ;; This guide is mostly concerned with letting you
@@ -532,7 +532,7 @@ to the compiler") "This is not ignored"
 
   ;; The bindings are provided as the first ”argument”,
   ;; in a vector. This is a pattern that is used by
-  ;; other macrors that let you define bindings.
+  ;; other macros that let you define bindings.
   ;; It is similar to the lexical scope of other
   ;; programming lannguages (even if this rather is
   ;; structural). Sibling and parent forms do not
@@ -649,7 +649,7 @@ to the compiler") "This is not ignored"
   (apply - '(13 21))
   ;; Which applies the `-` function over the list
   ;; => `-8`
-  ;; Then this is treaded to `Math/abs`
+  ;; Then this is threaded to `Math/abs`
   (Math/abs -8)
   ;; 🎉
 
@@ -677,7 +677,7 @@ to the compiler") "This is not ignored"
   ;; https://clojuredocs.org/clojure.core/cond-%3E
 
   ;; Please feel encouraged to copy the examples
-  ;; from clojuredocs here and play with them.
+  ;; from ClojureDocs here and play with them.
   ;; Here's one:
   (cond-> 1        ; we start with 1
     true inc       ; the condition is true so (inc 1) => 2
@@ -685,7 +685,7 @@ to the compiler") "This is not ignored"
     (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
 
   ;; See ”Threading with Style” by Stuart Sierra
-  ;; for idioamtic use of the threading facilities.
+  ;; for idiomatic use of the threading facilities.
   ;; https://stuartsierra.com/2018/07/06/threading-with-style
   )
 
@@ -722,7 +722,7 @@ to the compiler") "This is not ignored"
   ;; Since there are no statements in Clojure `if` is
   ;; the equivalent to the ternary `if` expression you
   ;; find in C and many other languages:
-  ;;   test ? true-expressiong : false-expression
+  ;;   test ? true-expression : false-expression
   ;; Pseudo code for our dice:
   ;;   int(rand() * 6) + 1 == 6 ?
   ;;     "One time out of six you get a six" :
@@ -761,7 +761,7 @@ to the compiler") "This is not ignored"
 
   ;; == `when` ==
   ;; As mentioned before, `when` is a one-branch
-  ;; `if`, only for the truthy branch, wich is
+  ;; `if`, only for the truthy branch, which is
   ;; wrapped in a `do` for you. Try this and then
   ;; try it replacing the `when` with an `if`:
   (when :truthy
@@ -778,7 +778,7 @@ to the compiler") "This is not ignored"
   ;; one very common such is the `cond` macro. It
   ;; takes pairs of condition/result forms, tests
   ;; each condition, if it is true, then the result
-  ;; form is evaluated and ”returned”, short-cicuiting
+  ;; form is evaluated and ”returned”, short-circuiting
   ;; so that no more condition is tested.
   (let [dice-roll (inc (rand-int 6))]
     (cond
@@ -793,7 +793,7 @@ to the compiler") "This is not ignored"
   ;; not-odd. Try it by placing two ignore markers
   ;; (`#_ #_`) in front of the `:else` keyword.
 
-  ;; Gotta love Clojuredocs
+  ;; Gotta love Clojure docs
   ;; https://clojuredocs.org/clojure.core/cond
   ;; Paste examples from there here and play around:
 
@@ -908,7 +908,7 @@ to the compiler") "This is not ignored"
 
 ;; higher order functions
 ;; comments
-;; immmutabibility
+;; immutability
 ;; destructuring
 ;; atoms
 ;; nil, nil safety, nil punning
@@ -918,7 +918,7 @@ to the compiler") "This is not ignored"
 ;; fizz-buzz
 
 ;; Learn much more Clojure at https://clojure.org/
-;; There is also ClojureSript, the same wondeful language,
+;; There is also ClojureSript, the same wonderful language,
 ;; for JavaScript VMs: https://clojurescript.org
 
 ;; There is so much about Clojure not mentioned in this
