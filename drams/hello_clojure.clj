@@ -406,7 +406,7 @@ to the compiler") "This is not ignored"
      {:foo/bar 'bar
       :foo/baz 'baz})
   ;; Unrelated to the #: There is another shorthand for
-  ;; speecifying namespaced keywords. Double colon
+  ;; specifying namespaced keywords. Double colon
   ;; keywords get namespaced with the current namespace
   ::foo
   (= ::foo :hello-clojure/foo)
@@ -451,21 +451,21 @@ to the compiler") "This is not ignored"
   ;; code from Clojure code. It is similar to the
   ;; preprocessor fascilites that some languages
   ;; offer, like C's `#pragma`, but it is much more
-  ;; convenient and pwerful. A lot of you will learn
-  ;; to love and recognize as Clojure is actually
+  ;; convenient and powerful. A lot of you will learn
+  ;; to love and recognize Clojure is actually
   ;; created with Clojure, as macros.
 
   ;; This guide is mostly concerned with letting you
   ;; know that macros are a thing, to help you to
-  ;; quicklyrealize when you are using a macro rather 
-  ;; thana function. So we will not go into the
-  ;; subject of hpw to creating macros.
+  ;; quickly realize when you are using a macro rather 
+  ;; than a function. So we will not go into the
+  ;; subject of how to create macros.
 
   ;; == `when` ==
   ;; Let's just briefly examine the macro`when`.
-  ;; This macrohelps with writing more readable code.
-  ;; How?Let's say you want to conditionally evaluate
-  ;; something. Above you learnt about that there is
+  ;; This macro helps with writing more readable code.
+  ;; How? Let's say you want to conditionally evaluate
+  ;; something. Above you learnt that there is
   ;; a special form named `if` that can be used for
   ;; this. Like so:
   (if 'this-is-true
@@ -534,7 +534,7 @@ to the compiler") "This is not ignored"
   ;; in a vector. This is a pattern that is used by
   ;; other macrors that let you define bindings.
   ;; It is similar to the lexical scope of other
-  ;; programming lannguages ()even if this rather is
+  ;; programming lannguages (even if this rather is
   ;; structural). Sibling and parent forms do not
   ;; ”see” these bindings.
   (do
@@ -549,7 +549,7 @@ to the compiler") "This is not ignored"
   ;; == `for` ==
   ;; The `for` macro really demonstrates how Clojure
   ;; can be extended using Clojure. `for` gives us
-  ;; list comprehensions (if you have Pyhton experience,
+  ;; list comprehensions (if you have Python experience,
   ;; yes, that kind of list comprehensions).
   ;; Here's how to produce the cartesian product of two
   ;; vectors, `x` and `y`:
@@ -685,7 +685,7 @@ to the compiler") "This is not ignored"
     (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
 
   ;; See ”Threading with Style” by Stuart Sierra
-  ;; for idoamtic use of the threading facilities.
+  ;; for idioamtic use of the threading facilities.
   ;; https://stuartsierra.com/2018/07/06/threading-with-style
   )
 
@@ -775,7 +775,7 @@ to the compiler") "This is not ignored"
   ;; Since deeply nested if/else structures can be
   ;; hard to write, read, and maintain, Clojure core
   ;; offers several more constructs for flow control,
-  ;; one very commone such is the `cond` macro. It
+  ;; one very common such is the `cond` macro. It
   ;; takes pairs of condition/result forms, tests
   ;; each condition, if it is true, then the result
   ;; form is evaluated and ”returned”, short-cicuiting
@@ -802,7 +802,7 @@ to the compiler") "This is not ignored"
   ;; == `case` ==
   ;; A bit similar to `switch/case` constructs in
   ;; other languages, Clojure core has the `case`
-  ;; macro whcih takes a test expression, followed by
+  ;; macro which takes a test expression, followed by
   ;; zero or more clauses (pairs) of test constant/expr,
   ;; followed by an optional expr. (However, the body
   ;; after the test expression may not be empty.)
