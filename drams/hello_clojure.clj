@@ -677,7 +677,7 @@ to the compiler") "This is not ignored"
   ;; https://clojuredocs.org/clojure.core/cond-%3E
 
   ;; Please feel encouraged to copy the examples
-  ;; from clojure docs here and play with them.
+  ;; from ClojureDocs here and play with them.
   ;; Here's one:
   (cond-> 1        ; we start with 1
     true inc       ; the condition is true so (inc 1) => 2
