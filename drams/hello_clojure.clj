@@ -459,13 +459,13 @@ to the compiler") "This is not ignored"
   ;; know that macros are a thing, to help you to
   ;; quickly realize when you are using a macro rather 
   ;; than a function. So we will not go into the
-  ;; subject of how to creating macros.
+  ;; subject of how to create macros.
 
   ;; == `when` ==
   ;; Let's just briefly examine the macro`when`.
   ;; This macro helps with writing more readable code.
-  ;; How?Let's say you want to conditionally evaluate
-  ;; something. Above you learned about that there is
+  ;; How? Let's say you want to conditionally evaluate
+  ;; something. Above you learnt that there is
   ;; a special form named `if` that can be used for
   ;; this. Like so:
   (if 'this-is-true
@@ -534,7 +534,7 @@ to the compiler") "This is not ignored"
   ;; in a vector. This is a pattern that is used by
   ;; other macros that let you define bindings.
   ;; It is similar to the lexical scope of other
-  ;; programming languages ()even if this rather is
+  ;; programming lannguages (even if this rather is
   ;; structural). Sibling and parent forms do not
   ;; ”see” these bindings.
   (do
