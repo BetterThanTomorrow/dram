@@ -548,15 +548,17 @@ to the compiler") "This is not ignored"
 
   ;; == `for` ==
   ;; The `for` macro really demonstrates how Clojure
-  ;; can be extended using Clojure. `for` gives us
-  ;; list comprehensions (if you have Python experience,
+  ;; can be extended using Clojure. You might think
+  ;; it provides looping like, but in Clojure there
+  ;; are no for loops. Instead `for` is about list
+  ;; comprehensions (if you have Python experience,
   ;; yes, that kind of list comprehensions).
   ;; Here's how to produce the cartesian product of two
   ;; vectors, `x` and `y`:
   (for [x [1 2 3]
         y [1 2 3 4]]
     [x y])
-  ;; `for` also lets you filter the results
+  ;; `for` lets you filter the results
   (for [x [1 2 3]
         y [1 2 3 4]
         :when (not= x y)]
@@ -583,18 +585,16 @@ to the compiler") "This is not ignored"
   ;; Note that even though `let` and `for` look like
   ;; functions, they are not. The compiler would not
   ;; like it if you are passing undefined symbols to a
-  ;; function. This is valid code:
-  (let [abc 1] abc)
+  ;; function. This is legal code:
+  (let [abc 1]
+    2)
   ;; This isn't.
-  (str [abc 1] abc)
-  ;; We are mentioning this here so that you will know
-  ;; why when you ask other Clojurians something like:
-  ;;   ”Why is X not working, when Y is?” 
-  ;; you sometimes get the answer
-  ;;   ”It's because Y is a macro”
+  (str [abc 1]
+       1)
+  ;; (Notice that the clj-kondo linter is marking the
+  ;; first with a warning, and the second as an error)
   ;; Macros extend the Clojure compiler.
-  ;; We suggest bookmarking this page:
-  ;;   https://clojure.org/reference/macros
+  ;; https://clojure.org/reference/macros
 
   ;; == Threading macros ==
   ;; Macros can totally rearrange your code. The
@@ -897,16 +897,115 @@ to the compiler") "This is not ignored"
   ;; predicates. Functions that take functions as
   ;; arguments are referred to as ”higher order
   ;; functions”.
+  ;; https://en.wikipedia.org/wiki/Higher-order_function
   )
 
 (comment
   ;; = Higher order functions =
-  
+  ;; A big contrbution to what makes Clojure such a
+  ;; powerful langauge is that functions are
+  ;; ”first-class”
+  ;; https://en.wikipedia.org/wiki/First-class_function
+  ;; They can be values in collections (also keys
+  ;; in maps) and can be passed as arguments to other
+  ;; functions, and ”returned ”as results from
+  ;; evaluations. You might be familiar with the
+  ;; concept from languages like JavaScript.
+
+  ;; Let's look at some higher order functions in
+  ;; Clojure core. `some` calls the function on the
+  ;; elementrs of its colllection, one-by-one, and
+  ;; returns the first truthy result, and will return
+  ;; `nil` if the list is exhausted before some element
+  ;; results in something truthy.
+  (some even? [1 1 2 3 5 8 13 21])
+  ;; Not to be confused with `some?`, which is not
+  ;; a higher order function.
+  (some some? [nil false])
+  (some some? [nil nil])
+  ;; A common idiom in Clojure is to look for things
+  ;; in collection using a `set` as the predicate.
+  ;; Yes, sets are functions. Used as functions they
+  ;; will look up the argument given to them in
+  ;; themselves.
+  (#{"foo" "bar"} "bar")
+  ;; Thus
+  (some #{"foo"} ["foo" "bar" "baz"])
+  (some #{"fubar"} ["foo" "bar" "baz"])
+
+  ;; `apply` takes a function and a collection and
+  ;; ”applies” the function on the collection. Say you
+  ;; have a collection of numbers and want to add them.
+  ;; This won't work:
+  (+ [1 1 2 3 5 8 13 21])
+  ;; `apply` to the rescue
+  (apply + [1 1 2 3 5 8 13 21])
+  ;; Concatenate the numbers as a string:
+  (apply str [1 1 2 3 5 8 13 21])
+  ;; Contrast with
+  (str [1 1 2 3 5 8 13 21])
+
+  ;; Among the higher order functions you might have
+  ;; used in other languages with first class
+  ;; functions are `map` and `reduce`. They are worth
+  ;; studying and practicing in much detail, check out
+  ;; https://purelyfunctional.tv/courses/3-functional-tools/
+  ;; for a good starter with them. But let's also check 
+  ;; them out briefly here.
+  ;; `map` calls a function on the elements of a one or
+  ;; more collection from start to end and returns a
+  ;; (lazy, more on that later) sequence of the results
+  ;; in the same order. Let's say we want to decrement
+  ;; each element in a list of numbers by one
+  (map dec '(1 1 2 3 5 8 13 21))
+  ;; Let's say we then want to dec them again
+  (->> '(1 1 2 3 5 8 13 21)
+       (map dec)
+       (map dec))
+  ;; Hmmm, better to subtract by two, maybe?
+  (map (fn [n] (- n 2)) '(1 1 2 3 5 8 13 21))
+  ;; If you give `map` more collections to work on
+  ;; it will repeatedly:
+  ;; 1. pick the next item from each collection
+  ;; 2. give them to the functions as arguments
+  ;; 3. add the result to its return sequence
+  ;; Until the shortest collection is exhausted
+  (map + [1 2 3] '(0 2 4 6 8))
+  (map (fn [n1 s n2] (str n1 ": " s "-" n2))
+       (range)
+       ["foo" "bar" "baz"]
+       (range 2 -1 -1))
+  ;; (We haven't talked much about `range`, it is a
+  ;; function producing sequences of numbers. Given no
+  ;; arguments it produces an infinite (watch out 😀)
+  ;; sequence of integers
+  ;; 0, 0+1, 0+2, 0+3, 0+4, 0+5, 0.6 ...
+  ;; Good thing the other sequences got exhausted!)
+
+  ;; A lot of the tasks you migth solve with `for`
+  ;; loops in other languages, are solved with `map`
+  ;; in Clojure. With other such for loopy tasks you will
+  ;; be weilding `reduce`.
+  ;; Unlike `map` it is not limited to producing
+  ;; results of the same length as the input
+  ;; collection. Instead it accumulates a result
+  (reduce + [1 1 2 3 5 8 13 21])
+  ;; You might have noticed that the `+` function
+  ;; takes more (and less) than 2 arguments. It will
+  ;; take the first argument and add it to ”the current”
+  ;; value (which is zero), then the next argument and
+  ;; add that to the new current value.
+
+  (range 1.2 3.2)
+  ;; result to the  
+  (group-by even? [1 1 2 3 5 8 13 21])
+  ;; 
   )
 
 ;; To be continued...
 
 ;; higher order functions
+;; partial, comp
 ;; comments
 ;; immutability
 ;; destructuring
@@ -915,6 +1014,7 @@ to the compiler") "This is not ignored"
 ;; seqs
 ;; map, reduce
 ;; lazyness
+;; loop, recur
 ;; fizz-buzz
 
 ;; Learn much more Clojure at https://clojure.org/
