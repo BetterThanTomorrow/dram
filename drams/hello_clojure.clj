@@ -1,5 +1,7 @@
 (ns hello_clojure
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [clojure.repl :refer [source apropos dir pst doc find-doc]]
+            [clojure.java.javadoc :refer [javadoc]]))
 
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
@@ -901,6 +903,12 @@ to the compiler") "This is not ignored"
   )
 
 (comment
+  ;; = Functions =
+  ;; Before diving into higher order functions, let's
+  ;; look at functions.
+  )
+
+(comment
   ;; = Higher order functions =
   ;; A big contrbution to what makes Clojure such a
   ;; powerful langauge is that functions are
@@ -923,6 +931,7 @@ to the compiler") "This is not ignored"
   ;; a higher order function.
   (some some? [nil false])
   (some some? [nil nil])
+
   ;; A common idiom in Clojure is to look for things
   ;; in collection using a `set` as the predicate.
   ;; Yes, sets are functions. Used as functions they
@@ -943,15 +952,19 @@ to the compiler") "This is not ignored"
   ;; Concatenate the numbers as a string:
   (apply str [1 1 2 3 5 8 13 21])
   ;; Contrast with
-  (str [1 1 2 3 5 8 13 21])
+  (str [1 1 2 3 5 8 13 21]))
 
+(comment
+  ;; = `map` and `reduce` =
   ;; Among the higher order functions you might have
   ;; used in other languages with first class
   ;; functions are `map` and `reduce`. They are worth
-  ;; studying and practicing in much detail, check out
+  ;; studying and practicing in much detail, here's
+  ;; a super nice teaser:
   ;; https://purelyfunctional.tv/courses/3-functional-tools/
-  ;; for a good starter with them. But let's also check 
-  ;; them out briefly here.
+
+
+  ;; Let's also check them out briefly here.
   ;; `map` calls a function on the elements of a one or
   ;; more collection from start to end and returns a
   ;; (lazy, more on that later) sequence of the results
@@ -964,6 +977,7 @@ to the compiler") "This is not ignored"
        (map dec))
   ;; Hmmm, better to subtract by two, maybe?
   (map (fn [n] (- n 2)) '(1 1 2 3 5 8 13 21))
+
   ;; If you give `map` more collections to work on
   ;; it will repeatedly:
   ;; 1. pick the next item from each collection
@@ -977,29 +991,97 @@ to the compiler") "This is not ignored"
        (range 2 -1 -1))
   ;; (We haven't talked much about `range`, it is a
   ;; function producing sequences of numbers. Given no
-  ;; arguments it produces an infinite (watch out 😀)
+  ;; arguments it produces an infinite, watch out 😀,
   ;; sequence of integers
   ;; 0, 0+1, 0+2, 0+3, 0+4, 0+5, 0.6 ...
   ;; Good thing the other sequences got exhausted!)
 
   ;; A lot of the tasks you migth solve with `for`
   ;; loops in other languages, are solved with `map`
-  ;; in Clojure. With other such for loopy tasks you will
-  ;; be weilding `reduce`.
-  ;; Unlike `map` it is not limited to producing
-  ;; results of the same length as the input
-  ;; collection. Instead it accumulates a result
+  ;; in Clojure.
+
+  ;; With other such ”for loopy” tasks you will
+  ;; be weilding `reduce`. Unlike `map` it is not 
+  ;; limited to producing results of the same length
+  ;; as the input collection. Instead it accumulates
+  ;; a result of any shape. For instance, it can
+  ;; create a number from a collection of numbers
   (reduce + [1 1 2 3 5 8 13 21])
+
   ;; You might have noticed that the `+` function
   ;; takes more (and less) than 2 arguments. It will
   ;; take the first argument and add it to ”the current”
   ;; value (which is zero), then the next argument and
-  ;; add that to the new current value.
+  ;; add that to the new current value, and so on,
+  ;; and so forth, until there is a result. This
+  ;; process sounds like we just described a reduce,
+  ;; right? In fact it is.
 
-  (range 1.2 3.2)
-  ;; result to the  
-  (group-by even? [1 1 2 3 5 8 13 21])
-  ;; 
+  ;; If we were to implement the `+` function, how
+  ;; could we do it? We could start by implementing
+  ;; something that adds to numbers together, then
+  ;; use it as part of the reducing function with
+  ;; `reduce`. Of course, now we have the task of
+  ;; adding two numbers together, without using the
+  ;; existing `+` function...
+  ;; Hmmm... dodging the bootstrapping problem,
+  ;; here's a totally insane way to do it:
+  ;; We can use JavaScript to evaluate two numbers
+  ;; joined by the string `"+"` 😜
+  ;; Let's create a JS `ScriptEngine`
+  (import javax.script.ScriptEngineManager)
+  (def js-engine (.getEngineByName (ScriptEngineManager.) "js"))
+  (.eval js-engine "1+1")
+  ;; Awesome, with this we can create an `add-two`
+  ;; function
+  (defn add-two [x y]
+    (.eval js-engine (str x "+" y)))
+  (add-two 1 1)
+  ;; Unlike `+`, this one is not fully composable
+  ;; with a higher ;; order function like apply
+  (apply add-two [])
+  (apply add-two [1])
+  (apply add-two [1 1])
+  (apply add-two [1 1 2])
+  (apply add-two [1 1 2 3 5 8 13 21])
+  ;; We need `add-many`. With `reduce` and our
+  ;; `add-two` we can define `add-many` like so
+  (defn add-many [& numbers]
+    (reduce add-two numbers))
+  ;; That does it, right?
+  (apply add-many [1])
+  (apply add-many [1 1])
+  (apply add-many [1 1 2])
+  (apply add-many [1 1 2 3 5 8 13 21])
+;; This we can `apply` with many
+  (apply add-many [1 1 2 3])
+  ;; What about the zero-arity version of `+`, you
+  ;; ask? Correct, that will blow up
+  (add-many)
+  ;; The built-in `+` function has a default ”current”
+  ;; value of zero, remember? It turns out `reduce`
+  ;; has an arity where we can provide the initial
+  ;; value, our zero-or-more `add` could then be:
+  (defn add* [& numbers]
+    (reduce add-two 0 numbers))
+  (add*)
+  (add* 1)
+  ;; BOOM!
+  (apply add* [])
+  (apply add* [1])
+  (apply add* [1 1])
+  (apply add* [1 1 2])
+  (apply add* [1 1 2 3 5 8 13 21])
+  ;; Apart from the lunatic way we add two numbers
+  ;; this is very much like how `+` is implemented in
+  ;; Clojure core. Check it out (in the output window):
+  (source +)
+  ;; Hmmm, well, they seem to be using multi-arity
+  ;; function signatures instead, but anyway, that's
+  ;; what `reduce` does as well 😀
+  (source reduce)
+  
+  ;; WIP, need an example with an explicit accumulator
   )
 
 ;; To be continued...
