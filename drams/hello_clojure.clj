@@ -963,7 +963,6 @@ to the compiler") "This is not ignored"
   ;; a super nice teaser:
   ;; https://purelyfunctional.tv/courses/3-functional-tools/
 
-
   ;; Let's also check them out briefly here.
   ;; `map` calls a function on the elements of a one or
   ;; more collection from start to end and returns a
@@ -1042,7 +1041,6 @@ to the compiler") "This is not ignored"
   (apply add-two [])
   (apply add-two [1])
   (apply add-two [1 1])
-  (apply add-two [1 1 2])
   (apply add-two [1 1 2 3 5 8 13 21])
   ;; We need `add-many`. With `reduce` and our
   ;; `add-two` we can define `add-many` like so
@@ -1051,10 +1049,7 @@ to the compiler") "This is not ignored"
   ;; That does it, right?
   (apply add-many [1])
   (apply add-many [1 1])
-  (apply add-many [1 1 2])
   (apply add-many [1 1 2 3 5 8 13 21])
-;; This we can `apply` with many
-  (apply add-many [1 1 2 3])
   ;; What about the zero-arity version of `+`, you
   ;; ask? Correct, that will blow up
   (add-many)
@@ -1065,12 +1060,11 @@ to the compiler") "This is not ignored"
   (defn add* [& numbers]
     (reduce add-two 0 numbers))
   (add*)
-  (add* 1)
+  (add* 1 1 2 3)
   ;; BOOM!
   (apply add* [])
   (apply add* [1])
   (apply add* [1 1])
-  (apply add* [1 1 2])
   (apply add* [1 1 2 3 5 8 13 21])
   ;; Apart from the lunatic way we add two numbers
   ;; this is very much like how `+` is implemented in
@@ -1086,7 +1080,6 @@ to the compiler") "This is not ignored"
 
 ;; To be continued...
 
-;; higher order functions
 ;; partial, comp
 ;; comments
 ;; immutability
@@ -1094,7 +1087,6 @@ to the compiler") "This is not ignored"
 ;; atoms
 ;; nil, nil safety, nil punning
 ;; seqs
-;; map, reduce
 ;; lazyness
 ;; loop, recur
 ;; fizz-buzz
