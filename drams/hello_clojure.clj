@@ -952,7 +952,13 @@ to the compiler") "This is not ignored"
   ;; Concatenate the numbers as a string:
   (apply str [1 1 2 3 5 8 13 21])
   ;; Contrast with
-  (str [1 1 2 3 5 8 13 21]))
+  (str [1 1 2 3 5 8 13 21])
+  
+  ;; We've also seen `filter` and `remove` above, two
+  ;; very commonly used higher order functions. They
+  ;; play in the same league as `map`, and `reduce`.
+  ;; Read on. 😎
+  )
 
 (comment
   ;; = `map` and `reduce` =
@@ -964,7 +970,7 @@ to the compiler") "This is not ignored"
   ;; https://purelyfunctional.tv/courses/3-functional-tools/
 
   ;; Let's also check them out briefly here.
-  ;; `map` calls a function on the elements of a one or
+  ;; `map` calls a function on the elements of one or
   ;; more collection from start to end and returns a
   ;; (lazy, more on that later) sequence of the results
   ;; in the same order. Let's say we want to decrement
@@ -980,7 +986,7 @@ to the compiler") "This is not ignored"
   ;; If you give `map` more collections to work on
   ;; it will repeatedly:
   ;; 1. pick the next item from each collection
-  ;; 2. give them to the functions as arguments
+  ;; 2. give them to the mapping function as arguments
   ;; 3. add the result to its return sequence
   ;; Until the shortest collection is exhausted
   (map + [1 2 3] '(0 2 4 6 8))
@@ -995,39 +1001,66 @@ to the compiler") "This is not ignored"
   ;; 0, 0+1, 0+2, 0+3, 0+4, 0+5, 0.6 ...
   ;; Good thing the other sequences got exhausted!)
 
-  ;; A lot of the tasks you migth solve with `for`
+  ;; A lot of the tasks you might solve with `for`
   ;; loops in other languages, are solved with `map`
   ;; in Clojure.
 
   ;; With other such ”for loopy” tasks you will
-  ;; be weilding `reduce`. Unlike `map` it is not 
+  ;; be wielding `reduce`. Unlike `map` it is not 
   ;; limited to producing results of the same length
-  ;; as the input collection. Instead it accumulates
-  ;; a result of any shape. For instance, it can
-  ;; create a number from a collection of numbers
+  ;; or shape as the input collection. Instead it
+  ;; accumulates a result of any shape. For instance,
+  ;; it can create a string from a collection of
+  ;; numbers
+  (reduce (fn [acc n]
+            (str acc ":" n))
+          [1 1 2 3 5 8 13 21])
+  ;; `reduce` will call the function with two
+  ;;  arguments: the result of the last function
+  ;;  call and the next number from the list. The
+  ;;  start of the process is special, since then
+  ;;  there are no results yet. `reduce` has two
+  ;;  ways to deal with this, two arities to be
+  ;;  specific. Called with two arguments, it
+  ;;  uses the two first elements from the list
+  ;;  for the first function call.
+  ;;  Here's reducing the `+` function using the
+  ;;  two-arity version of `reduce` 
   (reduce + [1 1 2 3 5 8 13 21])
+  ;;  The process then starts with calling `+`
+  ;;  like so
+  (+ 1 1)
+  ;; Giving `reduce` three arguments makes it us 
+  ;; the second argument as the starting ”result”.
+  (reduce + 100 [1 1 2 3 5 8 13 21])
 
   ;; You might have noticed that the `+` function
-  ;; takes more (and less) than 2 arguments. It will
-  ;; take the first argument and add it to ”the current”
-  ;; value (which is zero), then the next argument and
-  ;; add that to the new current value, and so on,
-  ;; and so forth, until there is a result. This
-  ;; process sounds like we just described a reduce,
-  ;; right? In fact it is.
+  ;; takes more (and less) than 2 arguments.
+  (+)
+  (+ 1)
+  (+ 1 1)
+  (+ 1 1 2 3 5 8 13 21)
+  ;; `+` will take the first argument, if any, and
+  ;; add it to ”the current” value (which is zero),
+  ;; then the next argument and add that to the new
+  ;; current value, and so on, and so forth, until
+  ;; there is a result. This process sounds a bit
+  ;; like we just described a reduce, right?
+  ;; In fact it is.
 
   ;; If we were to implement the `+` function, how
   ;; could we do it? We could start by implementing
   ;; something that adds to numbers together, then
-  ;; use it as part of the reducing function with
-  ;; `reduce`. Of course, now we have the task of
-  ;; adding two numbers together, without using the
-  ;; existing `+` function...
-  ;; Hmmm... dodging the bootstrapping problem,
+  ;; use it as as the reducing function with
+  ;; `reduce`.
+  ;; Of course, now we have the task of adding two
+  ;; numbers together, without using the existing
+  ;; `+` function... 🤔
+  ;; Hmmm... Dodging the bootstrapping problem,
   ;; here's a totally insane way to do it:
   ;; We can use JavaScript to evaluate two numbers
   ;; joined by the string `"+"` 😜
-  ;; Let's create a JS `ScriptEngine`
+  ;; Let's create a JS `ScriptEngine`!
   (import javax.script.ScriptEngineManager)
   (def js-engine (.getEngineByName (ScriptEngineManager.) "js"))
   (.eval js-engine "1+1")
@@ -1037,7 +1070,7 @@ to the compiler") "This is not ignored"
     (.eval js-engine (str x "+" y)))
   (add-two 1 1)
   ;; Unlike `+`, this one is not fully composable
-  ;; with a higher ;; order function like apply
+  ;; with a higher order function like apply
   (apply add-two [])
   (apply add-two [1])
   (apply add-two [1 1])
@@ -1054,14 +1087,16 @@ to the compiler") "This is not ignored"
   ;; ask? Correct, that will blow up
   (add-many)
   ;; The built-in `+` function has a default ”current”
-  ;; value of zero, remember? It turns out `reduce`
-  ;; has an arity where we can provide the initial
-  ;; value, our zero-or-more `add` could then be:
+  ;; value of zero, remember? We can add that to
+  ;; `add-many` in two ways: Either add a zero-arity
+  ;; signature, or use the three-arity `reduce`. Let's
+  ;; go for the latter option, since we are learning
+  ;; about reduce here:
   (defn add* [& numbers]
     (reduce add-two 0 numbers))
   (add*)
   (add* 1 1 2 3)
-  ;; BOOM!
+  ;; BOOM.
   (apply add* [])
   (apply add* [1])
   (apply add* [1 1])
@@ -1074,13 +1109,71 @@ to the compiler") "This is not ignored"
   ;; function signatures instead, but anyway, that's
   ;; what `reduce` does as well 😀
   (source reduce)
+
+  ;; There's one more thing with `reduce` we want to
+  ;; mention. When writing reducing functions you can
+  ;; stop the process before the input sequence is
+  ;; exhausted, using the `reduced` function. Say we
+  ;; want the input sequence as a string separated by 
+  ;; `:`, as above, but stop when we see a `nil` item.
+  ;; Here's the last version for comparison:
+  (reduce (fn [acc n]
+            (str acc ":" n))
+          [1 1 2 3 5 8 nil 13 21])
+  ;; We can short circuit the process by calling
+  ;; `reduced` with the accumulated value when we
+  ;; encounter a `nil` item
+  (reduce (fn [acc n]
+            (if (nil? n)
+              (reduced acc)
+              (str acc ":" n)))
+          [1 1 2 3 5 8 nil 13 21])
+  ;; Here is what is going on
+  (doc reduced)
+
+  ;; Reducing is a mighty important concept in Clojure
+  ;; since it is a ”functional first” language. Or as
+  ;; it is worded in this Functional Design episode
+  ;; https://clojuredesign.club/episode/058-reducing-it-down/
+  ;; ”Reducing functions are a backbone of functional
+  ;; programming, because we don’t have mutation.”
   
-  ;; WIP, need an example with an explicit accumulator
+  ;; In fact in Clojure reducing is so important that
+  ;; Rich Hickey has added a whole library with reducers
+  ;; packing even more punch
+  ;; https://clojure.org/reference/reducers
+  ;; The Functional Design duo, Nate Jones, and
+  ;; Christoph Neumann have examined this library
+  ;; a bit as well:
+  ;; https://clojuredesign.club/episode/060-reduce-done-quick/
+  ;; Amazing quote from that episode:
+  ;;   “The seq abstraction, it’s rather lazy.”
+  
+  ;; We are not going down the rabbit hole of the
+  ;; `reducers` library, though... 
+  )
+
+;; ... Instead we are noting that Nate and Christoph
+;; mention three super important concepts in those two
+;; above quotes that we haven't looked at yet.
+;; * immutability
+;; * the `seq` abstraction
+;; * laziness
+;; They are related, and maybe it is best to start with
+;; immutability...
+
+(comment
+  ;; = Immutability =
+  ;; It is rather crazy that we have been talking about
+  ;; Clojure for this long without discussing how
+  ;; it encourages us to avoid mutating our data as
+  ;; it is being processed.
   )
 
 ;; To be continued...
 
 ;; partial, comp
+;; meta-data
 ;; comments
 ;; immutability
 ;; destructuring
