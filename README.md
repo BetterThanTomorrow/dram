@@ -4,8 +4,15 @@ The first sips of [Calva](https://calva.io), [Clojure](https://clojure.org), [Pa
 
 ![Fire up a Calva REPL](vscode-calva-command-palette.png)
 
-This is a repository for **Getting Started** files for Calva. (And `hello_clojure.clj` should work in any REPL connected editor.)
+## Made for Calva's Getting Started REPL
 
+This is a repository for **Getting Started** files for Calva. 
+
+*NB: This feature is not yet released.* Check out [this pull request](https://github.com/BetterThanTomorrow/calva/pull/1041) to build a version of Calva with the feature included. (Or pick up the VSIX from Circle CI.)
+
+That said `hello_clojure.clj` should be usable from in any REPL connected editor.
+
+![Hello Clojure](hello_clojure.png)
 
 ## How to Contrbute
 
