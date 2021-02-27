@@ -354,7 +354,7 @@ like this, if leading spaces are no-no."
   ;; written like strings, but with a hash sign in front
   #"reg(?:ular )?exp(?:ression)?"
   ;; Regexps are handled by the host platform, so they
-  ;; are Java regexes in this tutorial.
+  ;; are Java regexps in this tutorial.
   (re-seq *1 "regexp regular expression")
   ;; *1 is a special symbol for a variable holding the
   ;; value of the last evaluation result.
@@ -873,7 +873,7 @@ to the compiler") "This is not ignored"
   ;; A predicate is a function testing things for
   ;; truthiness. It is convention that these functions
   ;; end with `?`. Many take only one argument.
-  
+
   ;; A handy predicate is `some?` which tests for
   ;; "somethingness”, if it is not `nil` it is
   ;; something
@@ -887,12 +887,17 @@ to the compiler") "This is not ignored"
   ;; You get the urge to define a function named `nil?`,
   ;; right? You don't have to
   (nil? nil)
+  (nil? false)
 
   ;; Clojure core also contains predicates that take
   ;; a predicate plus a collection to apply it on.
   ;; Such as `every?`
   (every? nat-int? [0 1 2])
   (every? nat-int? [-1 0 1 2])
+  ;; Check the docs for `nat-int? and come up
+  ;; with some more lists to test, like
+  (every? nat-int? [0 1 2N]) ; 2N is not fixed precision
+  (doc nat-int?)
 
   ;; This pattern with functions that take functions
   ;; as argument is common in Clojure. It spans beyond
@@ -906,12 +911,13 @@ to the compiler") "This is not ignored"
   ;; = Functions =
   ;; Before diving into higher order functions, let's
   ;; look at functions.
+  ;; TODO de lux
   )
 
 (comment
   ;; = Higher order functions =
-  ;; A big contrbution to what makes Clojure such a
-  ;; powerful langauge is that functions are
+  ;; A big contribution to what makes Clojure such a
+  ;; powerful language is that functions are
   ;; ”first-class”
   ;; https://en.wikipedia.org/wiki/First-class_function
   ;; They can be values in collections (also keys
@@ -922,7 +928,7 @@ to the compiler") "This is not ignored"
 
   ;; Let's look at some higher order functions in
   ;; Clojure core. `some` calls the function on the
-  ;; elementrs of its colllection, one-by-one, and
+  ;; elements of its collection, one-by-one, and
   ;; returns the first truthy result, and will return
   ;; `nil` if the list is exhausted before some element
   ;; results in something truthy.
@@ -1153,9 +1159,9 @@ to the compiler") "This is not ignored"
   ;; `reducers` library, though... 
   )
 
-;; ... Instead we are noting that Nate and Christoph
-;; mention three super important concepts in those two
-;; above quotes that we haven't looked at yet.
+;; ... Instead we are picking up that Nate and
+;; Christoph mention three super important concepts
+;; in those two above quotes.
 ;; * immutability
 ;; * the `seq` abstraction
 ;; * laziness
@@ -1180,12 +1186,12 @@ to the compiler") "This is not ignored"
 ;; atoms
 ;; nil, nil safety, nil punning
 ;; seqs
-;; lazyness
+;; laziness
 ;; loop, recur
-;; fizz-buzz
+;; fizz-buzz? interview questions
 
 ;; Learn much more Clojure at https://clojure.org/
-;; There is also ClojureSript, the same wonderful language,
+;; There is also ClojureScript, the same wonderful language,
 ;; for JavaScript VMs: https://clojurescript.org
 
 ;; There is so much about Clojure not mentioned in this
