@@ -1,7 +1,7 @@
 (ns hello_clojure
-  (:require [clojure.string :as string]
+  (:require [clojure.java.javadoc :refer [javadoc]]
             [clojure.repl :refer [source apropos dir pst doc find-doc]]
-            [clojure.java.javadoc :refer [javadoc]]))
+            [clojure.string :as string]))
 
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
