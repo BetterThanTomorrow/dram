@@ -63,9 +63,9 @@
 
   ;; (Just, evaluate it. This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
-  ;; expressions in its function body. We'll return to
+  ;; expressions in its function body. I'll return to
   ;; defining functions.)
-  ;; Calling the function (Just evaluate it.)
+  ;; Calling the function (Just evaluate it 😄)
 
   (last-eval-wins)
 
@@ -129,7 +129,7 @@
   ;; == STRINGS ==
   ;; Somewhere in between the atomic literals and
   ;; the collections we have strings. They are sometimes
-  ;; treated as sequences (a cool abstraction we'll
+  ;; treated as sequences (a cool abstraction I'll
   ;; talk more about).
   ;; Strings are enclosed by double quotes. 
 
@@ -190,9 +190,10 @@ like this, if leading spaces are no-no."
   ;; Everything after the first position is
   ;; handed to the function as arguments
 
-  ;; Note: We refer to literals, symbols and literal
-  ;; collections, collectively as forms, sometimes,
-  ;; sexprs: https://en.wikipedia.org/wiki/S-expression
+  ;; Note: I'll be referring to literals, symbols and
+  ;; literal collections, collectively as forms,
+  ;; sometimes, sexprs:
+  ;; https://en.wikipedia.org/wiki/S-expression
 
   ;; You define new functions and bind them to names
   ;; in the current namespace using the macro `defn`.
@@ -235,7 +236,7 @@ like this, if leading spaces are no-no."
   ;; it is a special form.
 
   ;; Wondering where you met this special form before?
-  ;; We used the shorthand syntax for it then:
+  ;; I used the shorthand syntax for it then:
 
   '(1 2 3)
 
@@ -380,7 +381,7 @@ like this, if leading spaces are no-no."
   (quote something)
 
   ;; There are some more quoting, and even splicing
-  ;; symbols, which we won't cover in this guide.
+  ;; symbols, which I won't cover in this guide.
 
   ;; === Deref ===
   ;; Clojure also has reference types, we'll discuss
@@ -528,7 +529,7 @@ to the compiler") "This is not ignored"
   ;; = MACROS =
   ;; Clojure has powerful data transformation
   ;; capabilities. We'll touch on that a bit later.
-  ;; Here we want to highlight that this power can
+  ;; Here I want to highlight that this power can
   ;; be wielded for extending the language. 
   ;; Since Clojure code is structured and code is
   ;; data, Clojure can be used to produce Clojure
@@ -542,7 +543,7 @@ to the compiler") "This is not ignored"
   ;; This guide is mostly concerned with letting you
   ;; know that macros are a thing, to help you to
   ;; quickly realize when you are using a macro rather 
-  ;; than a function. So we will not go into the
+  ;; than a function. I.e. I will not go into the
   ;; subject of how to create macros.
 
   ;; == `when` ==
@@ -1572,7 +1573,7 @@ to the compiler") "This is not ignored"
   ;; then the next argument and add that to the new
   ;; current value, and so on, and so forth, until
   ;; there is a result. This process sounds a bit
-  ;; like we just described a reduce, right?
+  ;; like I just described a reduce, right?
   ;; In fact it is.
 
   ;; If we were to implement the `+` function, how
