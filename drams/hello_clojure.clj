@@ -1079,7 +1079,8 @@ to the compiler") "This is not ignored"
   ;; Before diving into higher order functions, let's
   ;; look at functions.Functions are first class
   ;; Clojure citizens and the main building blocks for
-  ;; solving you business problems. 
+  ;; solving your business problems. 
+  
   ;; We have seen a few ways you can create functions.
   ;; Here's an anonymous function that returns the
   ;; integer given to it, unless it is divisible by
@@ -1107,6 +1108,7 @@ to the compiler") "This is not ignored"
     (if (zero? (mod n 15))
       "fizz buzz"
       n))
+  
   (fizz-buzz-2 4)
 
   ;; `defn` lets us provide documentation for the
@@ -1119,6 +1121,7 @@ to the compiler") "This is not ignored"
     (if (zero? (mod n 15))
       "fizz buzz"
       n))
+  
   (doc fizz-buzz-3) ; (or hover `fizz-buzz-3`)
 
   ;; It is easy to place the doc string wrong,
