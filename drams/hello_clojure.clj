@@ -473,7 +473,7 @@ to the compiler") "This is not ignored"
   ;; here and press Ctrl+Enter
 
   ;#_(#(+ % (#(- % 2) 3))) "foo"
-  
+
   ;; Two more common #-variants you will see, and use,
   ;; are namespaced map keyword shorthand syntax and
   ;; tagged literals, aka, data readers. Let's start
@@ -1080,7 +1080,7 @@ to the compiler") "This is not ignored"
   ;; look at functions.Functions are first class
   ;; Clojure citizens and the main building blocks for
   ;; solving your business problems. 
-  
+
   ;; We have seen a few ways you can create functions.
   ;; Here's an anonymous function that returns the
   ;; integer given to it, unless it is divisible by
@@ -1108,7 +1108,7 @@ to the compiler") "This is not ignored"
     (if (zero? (mod n 15))
       "fizz buzz"
       n))
-  
+
   (fizz-buzz-2 4)
 
   ;; `defn` lets us provide documentation for the
@@ -1121,7 +1121,7 @@ to the compiler") "This is not ignored"
     (if (zero? (mod n 15))
       "fizz buzz"
       n))
-  
+
   (doc fizz-buzz-3) ; (or hover `fizz-buzz-3`)
 
   ;; It is easy to place the doc string wrong,
@@ -1371,22 +1371,21 @@ to the compiler") "This is not ignored"
              (is (= "fizz-buzz" (fizz-buzz-5 15)))
              (is (= 3 (fizz-buzz-5 3))))}
     [n]
-    (if (pos? (mod n 15))
+    (if (pos? (rem 15 n))
       "fizz-buzz"
       n))
 
   (clojure.test/test-var #'fizz-buzz-5)
   ;; Oops! You'll need to fix the bugs. 😀
 
-  ;; In fact maybe it is time you prepare for
-  ;; your next Clojure job interview by implementing
-  ;; a more complete Fizz Buzz?
+  ;; How about implementing the complete Fizz Buzz?
   ;; https://en.wikipedia.org/wiki/Fizz_buzz
 
   (defn fizz-buzz
     "My Fizz Buzz solution"
     {:test (fn []
-             (are [arg expected] (= expected (fizz-buzz arg))
+             (are [arg expected]
+                  (= expected (fizz-buzz arg))
                1  1
                3  "Fizz"
                4  4
@@ -1465,7 +1464,7 @@ to the compiler") "This is not ignored"
   ;; Contrast with
 
   (str [1 1 2 3 5 8 13 21])
-  
+
   ;; We've also seen `filter` and `remove` above, two
   ;; very commonly used higher order functions. They
   ;; play in the same league as `map`, and `reduce`.
@@ -1688,18 +1687,18 @@ to the compiler") "This is not ignored"
   ;; https://clojuredesign.club/episode/058-reducing-it-down/
   ;; ”Reducing functions are a backbone of functional
   ;; programming, because we don’t have mutation.”
-  
+
   ;; In fact in Clojure reducing is so important that
   ;; Rich Hickey has added a whole library with reducers
   ;; packing even more punch
   ;; https://clojure.org/reference/reducers
-  ;; The Functional Design duo, Nate Jones, and
+  ;; Again, the Functional Design duo, Nate Jones, and
   ;; Christoph Neumann have examined this library
-  ;; a bit as well:
+  ;; a bit:
   ;; https://clojuredesign.club/episode/060-reduce-done-quick/
   ;; Amazing quote from that episode:
   ;;   “The seq abstraction, it’s rather lazy.”
-  
+
   ;; We are not going down the rabbit hole of the
   ;; `reducers` library, though... 
   )
@@ -1718,7 +1717,146 @@ to the compiler") "This is not ignored"
   ;; It is rather crazy that we have been talking about
   ;; Clojure for this long without discussing how
   ;; it encourages us to avoid mutating our data as
-  ;; it is being processed.
+  ;; it is being processed. Clojurists never shut up
+  ;; about immutability, right?
+
+  ;; This is to some extent true, as Clojurists we 
+  ;; often try to stay in a data transformation mode
+  ;; for the duration of an operation and only deal
+  ;; with the impure world, at the ”boundaries”. at
+  ;; the start we might be reading some input, and
+  ;; at the end we might be updating a database,
+  ;; printing the results to a file (or to the
+  ;; screen), or mutating the DOM of a web page.
+
+  ;; Clojure encourages us to walk the immutable
+  ;; path in many ways, two of which I am going
+  ;; to mention a bit here:
+  ;; * Persistent Data Structures
+  ;; * Pure Functions
+
+  ;; == Persistent Data Structures ==
+  ;; Clojure helps us to stay in immutable land by
+  ;; providing us with immutable data structures.
+  ;; The implementation of these is called Persistent
+  ;; Data Structure:
+  ;; https://en.wikipedia.org/wiki/Persistent_data_structure
+  ;; In effect it means that the data structures are
+  ;; never changed, The functions we use to transform
+  ;; them actually create copies. (In a very smart
+  ;; way, so don't start worrying now.)
+
+  ;; Say we define a a vector of some digits
+
+  (def eighteen [1 0 0 1 0])
+  eighteen
+
+  ;; Now we want to change that last `0` to a `1`
+  ;; We can use the `assoc` function. When used on
+  ;; a vector, takes an index and the new value
+
+  (def nineteen (assoc eighteen 4 1))
+  nineteen
+
+  ;; Examining `eighteen` again ...
+
+  eighteen
+
+  ;; ... we see that it is still true to its name.
+  ;; Associng a `1` at index 4 of it created a
+  ;; copy, which was then defined as `nineteen`
+
+  ;; Perhaps obvious, this stands true in local
+  ;; bindings as well.
+
+  (let [origin {:x 0
+                :y 0}
+        x-travel (assoc origin :x 100)]
+    [origin x-travel])
+
+  ;; This provides for a very deterministic program
+  ;; flow. Data does not willy-nilly change under our
+  ;; feet. And, transformation processes that do not
+  ;; mutate state are much easier to parallelize,
+  ;; other threads can't change the data you are
+  ;; transforming.
+
+  ;; Another benefit we get from immutability is
+  ;; that Clojure can efficiently offer us value
+  ;; equality. Even the deepest data structures can
+  ;; be compared in less than a jiffy.
+
+  ;; Let's show this with a not so deep structure,
+  ;; except in the name
+
+  (def universa {:one {"Alice" {:x 100
+                                :y 100
+                                :z 100}
+                       "Bob" {:x 100
+                              :y 100
+                              :z 100}}
+                 :two {"Alice" {:x 100
+                                :y 100
+                                :z 100}
+                       "Bob" {:x 100
+                              :y 100
+                              :z 99}}})
+
+  (= (:one universa)
+     (:two universa))
+
+  ;; `update-in` is a higher order function for
+  ;;  transforming data structures given an
+  ;;  ”address” and a function. We can use it
+  ;;  to make two-Bob find two-Alice, just like
+  ;;  one-Bob and one-Alice have found each other
+
+  (def unified-universa
+    (update-in universa [:two "Bob" :z] inc))
+  unified-universa
+
+  (= (:one unified-universa)
+     (:two unified-universa))
+
+  (= universa unified-universa)
+
+  ;; It also makes our programs different than they
+  ;; are when you can change the value of a variable
+  ;; at will. It can take a while to get used to this.
+  ;; (I am still at the point where I have an easier
+  ;; time to see mutating solutions to many problems.
+  ;; It is less and less so, but anyway. Probably you
+  ;; will grok it quicker than I am doing.)
+
+  ;; It is totally worth it to insist on getting it.
+  ;; The payoff is huge. If you are only going to
+  ;; check out one of the resources I am recommending 
+  ;; in this guide, I suggest it be this one about
+  ;; solving problems the Clojure way, by Rafal
+  ;; Dittwald:
+  ;; https://www.youtube.com/watch?v=vK1DazRK_a0
+  ;; Spoiler: He is not using Clojure in the video
+
+  ;; Of course, in the talk, Rafal is not only
+  ;; pretending data is immutable. He is also
+  ;; employing function purity.
+
+  ;; == Pure functions
+  ;; variables in the tail
+  ;;     push mutation of things to the boundaries of an
+  ;; operation, when it starts (maybe read some input)and when it ends
+
+
+  ;; Clojure is a ”functional first”
+  ;; programming language. It doesn't force purity on
+  ;; you, like Haskell, but it makes it easy to get
+  ;; into the habit of writing pure functions and
+  ;; push side effects towards the ”edges” of your
+  ;; program. 
+  )
+
+(comment
+  ;; = Transforming Data Structures =
   )
 
 ;; To be continued...
