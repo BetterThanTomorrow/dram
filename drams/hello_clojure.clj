@@ -1718,10 +1718,13 @@ to the compiler") "This is not ignored"
   ;; It is rather crazy that we have been talking about
   ;; Clojure for this long without discussing how
   ;; it encourages us to avoid mutating our data as
-  ;; it is being processed. Clojurists never shut up
-  ;; about immutability, right?
+  ;; it is being processed. Clojurians never shut up
+  ;; about immutability, right? We can almost sound
+  ;; like Rothbardians in defining ourselves as
+  ;; Enemies of the State 😄
+  ;; https://www.youtube.com/watch?v=qe60zwUAOqE
 
-  ;; This is to some extent true, as Clojurists we 
+  ;; This is to some extent true, as Clojurians we 
   ;; often try to stay in a data transformation mode
   ;; for the duration of an operation and only deal
   ;; with the impure world, at the ”boundaries”. at
@@ -1745,7 +1748,7 @@ to the compiler") "This is not ignored"
   ;; In effect it means that the data structures are
   ;; never changed, The functions we use to transform
   ;; them actually create copies. (In a very smart
-  ;; way, so don't start worrying now.)
+  ;; way, so don't you start worrying now.)
 
   ;; Say we define a a vector of some digits
 
@@ -1780,15 +1783,17 @@ to the compiler") "This is not ignored"
   ;; feet. And, transformation processes that do not
   ;; mutate state are much easier to parallelize,
   ;; other threads can't change the data you are
-  ;; transforming.
+  ;; transforming. A whole category of bugs never get
+  ;; the chance to hatch!
 
   ;; Another benefit we get from immutability is
   ;; that Clojure can efficiently offer us value
-  ;; equality. Even the deepest data structures can
+  ;; equality. Values are immutable, by definition.
+  ;; In Clojure, even the deepest data structures can
   ;; be compared in less than a jiffy.
 
-  ;; Let's show this with a not so deep structure,
-  ;; except in the name
+  ;; Let's show this with a not so deep structure
+  ;; (except in the name)
 
   (def universa {:one {"Alice" {:x 100
                                 :y 100
@@ -1821,13 +1826,17 @@ to the compiler") "This is not ignored"
 
   (= universa unified-universa)
 
-  ;; It also makes our programs different than they
-  ;; are when you can change the value of a variable
-  ;; at will. It can take a while to get used to this.
-  ;; (I am still at the point where I have an easier
-  ;; time to see mutating solutions to many problems.
-  ;; It is less and less so, but anyway. Probably you
-  ;; will grok it quicker than I am doing.)
+  ;; You'll never have to write an `equals()`
+  ;; method again! 😄  
+
+  ;; Immutability also makes our programs different
+  ;; than they are when you can change the value of
+  ;; a variable at will. It can take a while to get
+  ;; used to this. (I am still at the point where I
+  ;; have an easier time to see mutating solutions
+  ;; to many problems. It is less and less so, but
+  ;; anyway. Probably you will grok it quicker than
+  ;; I am doing.)
 
   ;; It is totally worth it to insist on getting it.
   ;; The payoff is huge. If you are only going to
@@ -1855,6 +1864,10 @@ to the compiler") "This is not ignored"
   ;; push side effects towards the ”edges” of your
   ;; program. 
   )
+
+;; Before examining the `seq` abstraction, let's divert
+;; a bit into some common Clojure core functions for
+;; transforming data structures.
 
 (comment
   ;; = Transforming Data Structures =
