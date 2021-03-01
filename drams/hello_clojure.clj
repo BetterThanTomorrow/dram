@@ -1852,17 +1852,25 @@ to the compiler") "This is not ignored"
   ;; employing function purity.
 
   ;; == Pure functions
-  ;; variables in the tail
-  ;;     push mutation of things to the boundaries of an
-  ;; operation, when it starts (maybe read some input)and when it ends
+  ;; Clojure doesn't force purity on you, like
+  ;; some languages do (looking at you Haskell), but
+  ;; it makes it easy to fall into the habit of
+  ;; writing pure functions and thus push side effects
+  ;; towards the ”edges” of your program. 
 
-
-  ;; Clojure is a ”functional first”
-  ;; programming language. It doesn't force purity on
-  ;; you, like Haskell, but it makes it easy to get
-  ;; into the habit of writing pure functions and
-  ;; push side effects towards the ”edges” of your
-  ;; program. 
+  ;; A function is considered pure if it abides to
+  ;; these rules:
+  ;; 1. Always return the same value for the same input
+  ;; 2. Does not effect anything in its environment.
+  ;;    So, not mutating anything, including not printing
+  ;;    anything anywhere, or hitting mutating API
+  ;;    endpoints.
+  
+  ;; A pure function is deterministic and you can
+  ;; safely call it without worrying that it will update
+  ;; application state or do anything else than
+  ;; compute its return value based on the input you
+  ;; hand it, and nothing but the input you hand it.
   )
 
 ;; Before examining the `seq` abstraction, let's divert
@@ -1871,6 +1879,249 @@ to the compiler") "This is not ignored"
 
 (comment
   ;; = Transforming Data Structures =
+  ;; Clojure has a core library that makes it easy,
+  ;; fun, and readable to ”reach in” to a data
+  ;; data structure and manipulate it, creating a
+  ;; copy with holding the result.
+
+  ;; We have seen `assoc`, which creates a copy of
+  ;; the data structure with a new value at the index
+  ;; (in case of a `vector`) or key (in case of a map)
+
+  (def colt-express
+    {:name "Colt Express"
+     :categories ["Family"
+                  "Strategy"]
+     :play-time 40
+     :ratings {:pez 5
+               :kat 5
+               :wiv 5
+               :vig 3
+               :rex 5
+               :lun 4}})
+
+  (def exit-haunted
+    {:name "EXIT: The Haunted Roller Coaster"
+     :categories ["Family"
+                  "Coop"
+                  "Puzzle"
+                  "Cards"]
+     :ratings {:pez 5
+               :kat 5
+               :wiv 5
+               :vig 4
+               :rex 5}})
+
+  ;; `assoc` can add a new key to a map
+
+  (def colt-express-w-age
+    (assoc colt-express :age-from 10))
+
+  ;; With a vector you can only add a new item right
+  ;; behind the last item, not beyond
+
+  (def board-games-empty
+    [])
+
+  (def board-games-w-c-e
+    (assoc board-games-empty 0 colt-express))
+
+  ;; board-games-empty is still empty. Thus
+
+  (def board-games-w-c-e-and-exit-fail
+    (assoc board-games-empty 1 exit-haunted))
+
+  (def board-games-w-c-e-and-exit
+    (assoc board-games-w-c-e 1 exit-haunted))
+
+  ;; Not that it is very common to add things
+  ;; to a vector using `assoc`. For this `conj`
+  ;; often makes more sense
+
+  (conj board-games-empty colt-express exit-haunted)
+
+  ;; `assoc` on maps can replace existing values
+  ;; (in the copy)
+
+  (def colt-express-w-age-and-adjusted-playtime
+    (assoc colt-express-w-age :play-time 45))
+
+  ;; `assoc` on vectors can do this too
+
+  (def board-games-w-adjusted-c-e
+    (assoc board-games-w-c-e
+           0
+           colt-express-w-age-and-adjusted-playtime))
+
+  ;; You can `assoc` multiple things in one call
+
+  (assoc colt-express
+         :play-time 50
+         :age-from 10)
+
+  (assoc board-games-empty
+         0 colt-express
+         1 exit-haunted)
+
+  ;; (Again, there is `conj` for this.)
+
+  ;; With maps there is also `merge`, letting you
+  ;; merge two or more maps together
+
+  (merge colt-express
+         {:play-time 45
+          :age-from 10})
+
+  ;; NB: it is a ”shallow” merge, so adding a family
+  ;; member rating like this won't work.
+
+  (merge exit-haunted
+         {:play-time 90
+          :ratings {:lun 5}
+          :age-from 10})
+
+  ;; `assoc` does the same
+
+  (assoc exit-haunted :ratings {:lun 5})
+
+  ;; There is no deep-merge in Clojure core, but
+  ;; there is `assoc-in` for reaching in deeper
+  ;; Instead of an key (or index) it takes a ”path”
+
+  (assoc-in exit-haunted [:ratings :lun] 5)
+
+  (assoc-in colt-express [:categories 2] "Planning")
+  ;; (But... don't, see below under `update` for
+  ;; how to `conj` the category instead.) 
+
+  ;; Unlike with `assoc`, you can only add one thing
+  ;; at a time with `assoc-in`
+
+  ;; Removing things from a map is done with 
+  ;; `dissoc`
+
+  (dissoc colt-express :play-time :ratings :categories)
+
+  ;; You will probably use `dissoc` often with
+  ;; the REPL (like you do in this file) to
+  ;; examine some data structures that might
+  ;; have some large data structures in them,
+  ;; like a log or something
+
+  (dissoc colt-express :log)
+  ;; (This data structure didn't have any log,
+  ;; so it was left unchanged, but anyway.)
+
+  ;; There is no `dissoc-in` in Clojure core, but
+  ;; let's return to that after we have visited
+  ;; `update` and `update-in`. They are similar to
+  ;; their `assoc` counterparts, but instead of a
+  ;; value, they take a function which is used to
+  ;; manipulate the value.
+
+  (update exit-haunted :name string/upper-case)
+
+  ;; An exercise for you: Update the `:play-time`
+  ;; of the `colt-express` entry with 5 or so
+
+
+
+
+  ;; Arguments that you add after the function
+  ;; get passed to the function
+
+  (update colt-express :categories conj "Planning")
+
+  ;; Exercise: Remove the `:pez` and `:wiv` entries
+  ;; from the `:ratings` of `exit-haunted`
+
+
+
+
+  ;; `update-in` is to `assoc-in` what `update` is
+  ;; to `assoc`.
+
+  (update-in colt-express [:ratings :lun] inc)
+
+  ;; Exercise: There is no `dissoc-in`, but it does
+  ;; look like you can use update-in for this,
+  ;; right?
+
+
+
+
+  ;; The reward is one less visit to StackOverflow
+  ;; for you when lacking `dissoc-in` 😄
+  ;; https://stackoverflow.com/a/21942548/44639
+
+  ;; We have been using keywords as map lookup
+  ;; functions earlier. That's fine, but you might
+  ;; sometimes prefer the `get` function
+
+  (get colt-express :ratings)
+
+  (= (:ratings colt-express)
+     (get colt-express :ratings))
+
+  ;; `get` takes a third argument that will be used
+  ;;  as the default, should the entry be missing
+
+  (get exit-haunted :play-time 0)
+
+  ;; keywords as lookup functions also supports
+  ;; this
+
+  (:play-time exit-haunted 0)
+
+  ;; Without the default, `nil` will be returned.
+  ;; Which might blow up, depending on what you
+  ;; use the value for
+
+  (* (get colt-express :play-time) 2)
+  (* (get exit-haunted :play-time) 2)
+
+  ;; Better safe than sorry, in cases like this
+
+  (* (get colt-express :play-time 0) 2)
+  (* (get exit-haunted :play-time 0) 2)
+
+  ;; Yes, there is `get-in` as well
+  ;; Exercise: Use `get-in` to grab my rating
+  ;; on these two wonderful family games
+
+
+  ;; You might have noticed that all the
+  ;; functions in this section take the collection
+  ;; as their first argument. That makes them
+  ;; easy to use with the Thread First, `->`,
+  ;; macro. This is by design and highly idiomatic
+  ;; Clojure.  
+
+  ;; It is common to see data transformation pipe-
+  ;; lines like this 
+
+  (-> exit-haunted
+      (assoc :play-time 90)
+      (update :categories conj "Scary")
+      (assoc-in [:ratings :lun] 5)
+      (update-in [:ratings :vig] + 1)
+      (dissoc :name)
+      (update :log vec)
+      (update :log conj "Name redacted")
+      (update :log conj "(Because scary)"))
+    
+  ;; (Although, perhaps more meaningful than that)
+  
+  ;; I can recommend ”See also”-browsing ClojureDocs
+  ;; some starting here:
+  ;; https://clojuredocs.org/clojure.core/update-in
+  ;; And pasting a lot of examples here to
+  ;; experiment with.
+
+
+
+  ;; TODO: Manipulating `sets`
+  ;;
   )
 
 ;; To be continued...
@@ -1878,7 +2129,6 @@ to the compiler") "This is not ignored"
 ;; partial, comp
 ;; meta-data
 ;; comments
-;; immutability
 ;; destructuring
 ;; atoms
 ;; nil, nil safety, nil punning
