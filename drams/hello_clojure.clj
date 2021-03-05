@@ -7,7 +7,7 @@
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; Then Alt+Enter this:
+;; Then evaluate this expression with Alt+Enter:
 
 "Hello World"
 
@@ -17,15 +17,15 @@
 ;; This guide will try to give you a basic
 ;; understanding of the Clojure language. Basic in
 ;; the sense that it is not extensive. Basic in the
-;; sense that it is foundational. Building from first
+;; sense that it is foundational, building from first
 ;; principles in order to make the Clojure journey
 ;; you have ahead easier to comprehend.
 
 ;; With the foundations in place you'll have a good 
 ;; chance of having the right gut feeling for how to
-;; code something, to formulating your questions,
-;; googling for information, make sense of code you
-;; stumble across, and so on.
+;; code something, how to formulate your questions,
+;; how to search effectively for information, how to make 
+;; sense of code you stumble across, and so on.
 
 ;; There will be links here and there, ctrl/cmd-click
 ;; those to open them in a browser. Here's the first
@@ -47,13 +47,12 @@
   ;; = EXPRESSIONS =
   ;; In Clojure everything is an expression.
   ;; (There are no statements.) Unless there is
-  ;; en error when evaluating the expressions there
+  ;; an error when evaluating an expression, there
   ;; is always a return value (which is sometimes `nil`).
 
   ;; An important aspect of this is that the result
   ;; of an expression is always the last form/expression
-  ;; evaluated. E.g. if you have a function defined
-  ;; like so:
+  ;; evaluated. Evaluate the function below:
 
   (defn last-eval-wins []
     (println 'side-effect-1)
@@ -61,10 +60,10 @@
     (println 'side-effect-2)
     2)
 
-  ;; (Just, evaluate it. This defines a function named
+  ;; This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
   ;; expressions in its function body. I'll return to
-  ;; defining functions.)
+  ;; defining functions later.
   ;; Calling the function (Just evaluate it 😄)
 
   (last-eval-wins)
@@ -75,12 +74,12 @@
 
   ;; In the output window you will also see the
   ;; `println` calls happening. They are also
-  ;; expressions, evaluating `nil`.
+  ;; expressions, evaluating to `nil`.
 
   (println 'prints-this-evaluates-to-nil)
 
   ;; Expressions are composed from literals (evaluating
-  ;; to themselves) and/or calls to either
+  ;; to themselves) and/or calls to either:
   ;; * special forms
   ;; * macros
   ;; * functions 
@@ -90,8 +89,9 @@
   (str 1 2 3)
 
   ;; Calls the function `str` with the arguments
-  ;; 1, 2, and 3. ”Hello World” above is a literal
-  ;; string (thus it evaluates to itself).
+  ;; 1, 2, and 3. ”Hello World” at the beginning
+  ;; of this guide is a literal
+  ;; string (thus, it evaluates to itself).
   ;; More about literals coming up next!
   )
 
@@ -121,7 +121,7 @@
   map             ; symbol
   +               ; symbol - most punctuation allowed
   clojure.core/+  ; namespaced symbol
-  nil             ; null value
+  nil             ; nil value
   true false      ; booleans
   :alpha          ; keyword
   :release/alpha  ; keyword with namespace
@@ -139,7 +139,7 @@
 like this, if leading spaces are no-no."
 
   ;; (The single quote is used for something else.
-  ;; You'll see to what a bit later.)
+  ;; You'll see for what a bit later.)
   )
 
 (comment
