@@ -2014,7 +2014,9 @@ to the compiler") "This is not ignored"
 
   ;; There is no `dissoc-in` in Clojure core, but
   ;; let's return to that after we have visited
-  ;; `update` and `update-in`. They are similar to
+  ;; `update` and `update-in`.
+
+  ;; `update` and `update-in` are similar to
   ;; their `assoc` counterparts, but instead of a
   ;; value, they take a function which is used to
   ;; manipulate the value.
@@ -2032,8 +2034,15 @@ to the compiler") "This is not ignored"
 
   (update colt-express :categories conj "Planning")
 
+  ;; Exercise: Make your update of the :play-time
+  ;; take the `5` (or so) as an argument.
+
+
+
+
   ;; Exercise: Remove the `:pez` and `:wiv` entries
   ;; from the `:ratings` of `exit-haunted`
+
 
 
 
@@ -2043,12 +2052,16 @@ to the compiler") "This is not ignored"
 
   (update-in colt-express [:ratings :lun] inc)
 
+  (update-in colt-express [:ratings :lun] + 9000)
+  ;; https://www.youtube.com/watch?v=PCHxU7witPA
+
   ;; Exercise: There is no `dissoc-in`, but it does
-  ;; look like you can use update-in for this,
-  ;; right?
+  ;; look like you can use `update-in` for this,
+  ;; in'it?
 
 
 
+  
 
   ;; The reward is one less visit to StackOverflow
   ;; for you when lacking `dissoc-in` 😄
@@ -2109,20 +2122,27 @@ to the compiler") "This is not ignored"
       (update :log vec)
       (update :log conj "Name redacted")
       (update :log conj "(Because scary)"))
-    
+
   ;; (Although, perhaps more meaningful than that)
-  
+
   ;; I can recommend ”See also”-browsing ClojureDocs
   ;; some starting here:
   ;; https://clojuredocs.org/clojure.core/update-in
   ;; And pasting a lot of examples here to
   ;; experiment with.
-
-
-
-  ;; TODO: Manipulating `sets`
-  ;;
   )
+
+(comment
+  ;; == Manipulating `sets` ==
+  ;; Maps, vectors and sets are the bread and
+  ;; butter for most Clojure programs. With the
+  ;; amazing literal syntax for these the code gets
+  ;; gets easy to read and reason about. And
+  ;; manipulating them is easy and intuitive.
+  
+  ;; `sets` are `seqs` (more on that later)
+)
+
 
 ;; To be continued...
 
