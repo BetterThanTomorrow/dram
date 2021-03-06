@@ -1,4 +1,4 @@
-(ns hello_clojure
+(ns hello-clojure
   (:require [clojure.java.javadoc :refer [javadoc]]
             [clojure.repl :refer [source apropos dir pst doc find-doc]]
             [clojure.string :as string]
@@ -173,7 +173,7 @@ like this, if leading spaces are no-no."
   ;; in ”function position”. A Clojure program is data. 
   ;; In fancier words, Clojure is homoiconic:
   ;; https://wiki.c2.com/?HomoiconicLanguages
-  ;; This gives great macro power, more about that below
+  ;; This gives great macro power, more about that below.
 
   ;; Here are some lists with proper functions at
   ;; position 1:
@@ -190,8 +190,8 @@ like this, if leading spaces are no-no."
   ;; Everything after the first position is
   ;; handed to the function as arguments
 
-  ;; Note: I'll be referring to literals, symbols and
-  ;; literal collections, collectively as forms,
+  ;; Note: I'll be referring to literals, symbols, and
+  ;; literal collections collectively as forms,
   ;; sometimes, sexprs:
   ;; https://en.wikipedia.org/wiki/S-expression
 
@@ -217,8 +217,8 @@ like this, if leading spaces are no-no."
   (add2 3)
 
   ;; Clojure has an extensive core library of functions
-  ;; and macros. See: https://clojuredocs.org for a community
-  ;; driven Clojure core (and more) search engine.
+  ;; and macros. See: https://clojuredocs.org for a 
+  ;; community-driven Clojure core (and more) search engine.
   )
 
 (comment
@@ -275,8 +275,8 @@ like this, if leading spaces are no-no."
 
   ;; ”Defining a thing” means that a var is created,
   ;; holding the value, and that a symbol is bound
-  ;; to the var. Evaluating the symbol, picks up the
-  ;; value from the var it is bound to
+  ;; to the var. Evaluating the symbol picks up the
+  ;; value from the var it is bound to.
 
   foo
 
@@ -315,8 +315,8 @@ like this, if leading spaces are no-no."
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
   ;; the special forms make up the Clojure language
-  ;; itself. The next level och building blocks are
-  ;; macros. But let's investigate this with how code
+  ;; itself. The next level of building blocks are
+  ;; macros. But let's investigate how code
   ;; is read first...
   )
 
