@@ -1,4 +1,4 @@
-# dram - Interactive Clojure REPL Guides
+# dram - An Interactive Clojure Beginner's Guide
 
 The first sips of [Calva](https://calva.io), [Clojure](https://clojure.org), [Paredit](https://calva.io/paredit), or anything Clojure-ish, really.
 
@@ -14,7 +14,7 @@ That said `hello_clojure.clj` should be usable from in any REPL connected editor
 
 ![Hello Clojure](hello_clojure.png)
 
-## How to Contrbute
+## How to Contribute
 
 Fork the repo, jack-in, fix stuff while you test it interactively. Send PRs.
 
@@ -28,7 +28,7 @@ See the *drams* directory for the files.
 
 ## License
 
-The original author [Peter Strömberg aka PEZ](https://github.com/PEZ) claims No Ccpyright: 
+The original author [Peter Strömberg aka PEZ](https://github.com/PEZ) claims No Copyright: 
 * https://creativecommons.org/publicdomain/zero/1.0/
 
 (Don't hesitate to credit me if you use the material, I do enjoy that.)
