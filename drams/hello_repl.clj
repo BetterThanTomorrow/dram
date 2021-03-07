@@ -71,10 +71,11 @@
 ;; Then eval current form inside the string above
 ;; Calva sends to the REPL whatever you ask it send.
 
+;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
 ;; `(comment ...)` are also considered top level
-;; Alt+Enter at different places below to get a
-;; feel for it.
+;; by Calva. Alt+Enter at different places below
+;; to get a feel for it.
 
 (comment
   "I ♥️ Clojure"
@@ -98,6 +99,7 @@
 ;; Google Rich Comments, if you are new
 ;; to this style of coding.
 
+;; == You Control what is Evaluated ==
 ;; Please note that Calva never evaluates your code
 ;; unless you explicitly ask for it. So, except for
 ;; this file, you will have to load files you open
@@ -110,6 +112,7 @@
 ;; update it. Calva will not automatically evaluate
 ;; the new code, or code depending on it.
 
+;; == The Calva Debugger ==
 ;; As powerful as the REPL is, Calva actually also
 ;; has a debugger. The easiest way to use it is to
 ;; Evaluate the function you want to debug with the
@@ -124,8 +127,8 @@
         (> n 20) (- (first n) 20)
         :else 0))
 
-(bar 2)
-(bar 24)
+(bar 2)  ; works
+(bar 24) ; throws, what's going on?
 
 ;; That's a strange error message (maybe you say,
 ;; depending on how familiar you are with Clojure).
@@ -148,9 +151,10 @@
 (comment
   (def tmp1 (dorun (range))))
 
+;; == Editing Code ==
 ;; A note about editing Clojure in Calva:
 ;; If you edit and experiment with the examples
-;; you will notice that Calva autoindents your
+;; you will notice that Calva auto-indents your
 ;; code. You can also re-indent, and format, code
 ;; at will, using the `tab` key.
 
