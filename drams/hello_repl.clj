@@ -121,14 +121,17 @@
 ;; This function has a bug. Evaluate it the usual
 ;; way (`Alt+Enter`) first and run it.
 
-(defn bar
-  [n]
-  (cond (> n 40) (+ n 20)
-        (> n 20) (- (first n) 20)
-        :else 0))
+(comment
+  (defn bar
+    [n]
+    (cond (> n 40) (+ n 20)
+          (> n 20) (- (first n) 20)
+          :else 0))
 
-(bar 2)  ; works
-(bar 24) ; throws, what's going on?
+  (bar 2)  ; works
+  (bar 24) ; throws, what's going on?
+  ;; 
+  )
 
 ;; That's a strange error message (maybe you say,
 ;; depending on how familiar you are with Clojure).
