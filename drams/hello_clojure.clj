@@ -41,6 +41,13 @@
 ;; to edit the examples, and add new code
 ;; and evaluate that. Evaluate this to warm up:
 
+;; NB: This is work in progress...
+;; When you fire up the Getting Started REPL the next
+;; time, you will be presented with the option to
+;; download new files or continue with the files you
+;; have. You can also always find the latest version here:
+;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/hello_clojure.clj
+
 (str "Evaluate"
      " and "
      "experiment")
