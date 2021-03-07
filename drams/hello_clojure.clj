@@ -122,7 +122,7 @@
   map             ; symbol
   +               ; symbol - most punctuation allowed
   clojure.core/+  ; namespaced symbol
-  nil             ; nil value
+  nil             ; null/nil value (named in the LISP tradition)
   true false      ; booleans
   :alpha          ; keyword
   :release/alpha  ; keyword with namespace
