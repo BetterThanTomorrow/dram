@@ -8,7 +8,7 @@
 ;; Alt+Enter is the Calva default keyboard shortcut
 ;; to evaluate the current ”top level” forms. Top
 ;; level meaning the outermost ”container” of forms, 
-;; whichis the file. Place the cursor anywhere
+;; which is the file. Place the cursor anywhere
 ;; inside this function to give it a try.
 (defn greet
   "I'll greet you"
@@ -20,7 +20,7 @@
   (greet "World"))
 ;; You should see "Hello World!" displayed inline,
 ;; and also printed to the `output.calva-repl` editor,
-;; aka ”The Outout Window”, aka ”The REPL Window”.
+;; aka ”The Output Window”, aka ”The REPL Window”.
 ;; To clear inline results display, press ESC.
 
 ;; Anything printed to stdout is not shown inline
@@ -65,6 +65,19 @@
   (range 10))
 ;; Google Rich Comments, if you are new
 ;; to this style of coding.
+
+;; Please note that Calva never evaluates your code
+;; unless you explicitly ask for it. So, except for
+;; this file, you will have to load files you open
+;; yourself. Make it a habit to do this, because
+;; sometimes things don't work in peculiar ways when
+;; your file is not loaded.
+;; Try with this file: `Ctrl+Alt+C Enter`.
+
+;; Also, once you have evaluated a form and then
+;; update it. Calva will not automatically evaluate
+;; the new code, or code depending on it.
+
 
 ;; Since evaluating Clojure expressions is so
 ;; easy and fun. Some times you happen to evaluate

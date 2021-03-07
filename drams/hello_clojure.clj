@@ -63,11 +63,12 @@
 
   ;; This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
-  ;; expressions in its function body. I'll return to
-  ;; defining functions later.
-  ;; Calling the function (Just evaluate it 😄)
+  ;; expressions in its function body. We'll return to
+  ;; defining functions later.)
+  
+  ;; Calling the function
 
-  (last-eval-wins)
+  (last-eval-wins) ; (Just evaluate <-that 😄)
 
   ;; will cause all four expressions in the function
   ;; body to be evaluated. The result of the call will
@@ -125,7 +126,39 @@
   nil             ; null/nil value (named in the LISP tradition)
   true false      ; booleans
   :alpha          ; keyword
-  :release/alpha  ; keyword with namespace
+  :release/alpha  ; namespaced keyword
+  ::alpha         ; namespaced keyword, current
+                  ; current namespace
+
+  ;; == KEYWORDS ==
+  ;; Keywords are start with a `:`. They are a thing
+  ;; in themselves, often used as identifiers and as
+  ;; keys in maps (more on maps later). Keywords are
+  ;; very memory and speed efficient. 
+
+  ;; The same keyword is of course equal to itself
+
+  (= :foo :foo)
+
+  ;; It is, however, also identical to itself
+
+  (identical? :foo :foo)
+
+  ;; This means it is the same thing, occupying the
+  ;; same (very tiny) place in memory.
+  ;; Even if you construct a non-literal keyword
+  ;; it remains identical to it's literal form
+
+  (identical? (keyword "foo") :foo)
+
+  ;; This holds true for your whole Clojure program.
+  ;; Keywords are global. There is namespace syntax
+  ;; for them, so that you can have control of this.
+
+  ;; Keywords are also functions, actually. But more
+  ;; on that later. For now let it suffice to say
+  ;; that keywords have a very special and important
+  ;; role in most Clojure programs.
 
   ;; == STRINGS ==
   ;; Somewhere in between the atomic literals and
@@ -295,10 +328,19 @@ like this, if leading spaces are no-no."
   (def add2-2 (fn [arg] (+ arg 2)))
   (add2-2 3)
 
-  ;; This is what the macro `defn` does.
-  ;; We can use the function `macroexpand` to see this:
+  ;; This is what the macro `defn` does. You will most
+  ;; often be defining functions like what we saw
+  ;; earlier, (when discussing the function position of
+  ;; a form):
+  
+  (defn add2-3
+    [arg]
+    (+ arg 2))
+  
+  ;; We can use the function `macroexpand` to see that
+  ;; what the macro produces:
 
-  (macroexpand '(defn add2
+  (macroexpand '(defn add2-3
                   [arg]
                   (+ arg 2)))
 
@@ -309,15 +351,15 @@ like this, if leading spaces are no-no."
     'value-if-false)
 
   ;; Rumour has it that all conditional constructs (macros)
-  ;; are built using `if`. Try to imagine a programming language
-  ;; without conditionals!
+  ;; are built using `if`. Try to imagine a programming
+  ;; language without conditionals!
 
   ;; We'll return to `if` and conditionals. Let's wrap
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
   ;; the special forms make up the Clojure language
- ;; itself. The next level och building blocks are macros.
- ;;.But let us investigate this thing with how code```
+  ;; itself. The next level och building blocks are macros.
+  ;; But let us investigate this thing with how code
   ;; is read first...
   )
 
@@ -408,27 +450,38 @@ like this, if leading spaces are no-no."
   (first @an-atom)
 
   ;; === THE DISPATCHER (HASH SIGN) ===
+  ;; That hash sign shows up now and then. It has a
+  ;; special role. It is aka Dispatch. Depending on
+  ;; what character is following it, different cool
+  ;; things happen. Here follows some common ones:
+
   ;; Regular expressions have literal syntax, they are
   ;; written like strings, but with a hash sign in front
 
   #"reg(?:ular )?exp(?:ression)?"
 
   ;; Regexps are handled by the host platform, so they
-  ;; are Java regexps in this tutorial.
+  ;; are Java regexps in this tutorial. If you
+  ;; evaluated the above regexp, we can test it. 
 
   (re-seq *1 "regexp regular expression")
 
-  ;; *1 is a special symbol for a variable holding the
-  ;; value of the last evaluation result.
+  ;; `*1` is a special symbol for a variable holding
+  ;; the value of the last evaluation result. It might
+  ;; be easier to get a regexp right by using it
+  ;; directly:
 
-  ;; That hash sign shows up now and then, for instance
+  (re-seq #"fooo*" "fo foo fooo")
+  (re-find #"fooo*" "fo foo fooo")
 
+  ;; If the hash sign is followed by a `(`, the Reader
+  ;; will start expecting a function body.
+  
   #(+ % 2)
 
-  ;; Which is special syntax for ”function literals”, a
-  ;; way to specify a function.
-  ;; The example above is equivalent to this anonymous
-  ;; function.
+  ;; This is special syntax for ”function literals”, a
+  ;; way to specify a function. The example above is
+  ;; equivalent to this anonymous function.
 
   (fn [arg] (+ arg 2))
 
@@ -438,13 +491,12 @@ like this, if leading spaces are no-no."
 
   ;; (thankfully)
 
-  ;; The hash sign has a special role. It is aka
-  ;; Dispatch. Depending on what character is following
-  ;; it, different cool things happen.
   ;; In addition to sets, regexps and function literals
   ;; we have seen var-quotes in this guide
 
   #'add2
+
+  ;; 
 
   ;; There is a very useful hash-dispatcher which
   ;; is used to make the Reader ignore the next form
@@ -636,7 +688,7 @@ to the compiler") "This is not ignored"
   ;; in a vector. This is a pattern that is used by
   ;; other macros that let you define bindings.
   ;; It is similar to the lexical scope of other
-  ;; programming lannguages (even if this rather is
+  ;; programming languages (even if this rather is
   ;; structural). Sibling and parent forms do not
   ;; ”see” these bindings.
 
@@ -2015,7 +2067,9 @@ to the compiler") "This is not ignored"
 
   ;; There is no `dissoc-in` in Clojure core, but
   ;; let's return to that after we have visited
-  ;; `update` and `update-in`. They are similar to
+  ;; `update` and `update-in`.
+
+  ;; `update` and `update-in` are similar to
   ;; their `assoc` counterparts, but instead of a
   ;; value, they take a function which is used to
   ;; manipulate the value.
@@ -2033,8 +2087,15 @@ to the compiler") "This is not ignored"
 
   (update colt-express :categories conj "Planning")
 
+  ;; Exercise: Make your update of the :play-time
+  ;; take the `5` (or so) as an argument.
+
+
+
+
   ;; Exercise: Remove the `:pez` and `:wiv` entries
   ;; from the `:ratings` of `exit-haunted`
+
 
 
 
@@ -2044,12 +2105,16 @@ to the compiler") "This is not ignored"
 
   (update-in colt-express [:ratings :lun] inc)
 
+  (update-in colt-express [:ratings :lun] + 9000)
+  ;; https://www.youtube.com/watch?v=PCHxU7witPA
+
   ;; Exercise: There is no `dissoc-in`, but it does
-  ;; look like you can use update-in for this,
-  ;; right?
+  ;; look like you can use `update-in` for this,
+  ;; in'it?
 
 
 
+  
 
   ;; The reward is one less visit to StackOverflow
   ;; for you when lacking `dissoc-in` 😄
@@ -2110,20 +2175,27 @@ to the compiler") "This is not ignored"
       (update :log vec)
       (update :log conj "Name redacted")
       (update :log conj "(Because scary)"))
-    
+
   ;; (Although, perhaps more meaningful than that)
-  
+
   ;; I can recommend ”See also”-browsing ClojureDocs
   ;; some starting here:
   ;; https://clojuredocs.org/clojure.core/update-in
   ;; And pasting a lot of examples here to
   ;; experiment with.
-
-
-
-  ;; TODO: Manipulating `sets`
-  ;;
   )
+
+(comment
+  ;; == Manipulating `sets` ==
+  ;; Maps, vectors and sets are the bread and
+  ;; butter for most Clojure programs. With the
+  ;; amazing literal syntax for these the code gets
+  ;; gets easy to read and reason about. And
+  ;; manipulating them is easy and intuitive.
+  
+  ;; `sets` are `seqs` (more on that later)
+)
+
 
 ;; To be continued...
 
