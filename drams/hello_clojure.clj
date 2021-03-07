@@ -1044,11 +1044,34 @@ to the compiler") "This is not ignored"
   ;; threaded thing and place it wherever you
   ;; fancy in each function call.
 
+  (as-> 15 foo
+    (range 1 foo 3)
+    (interpose ":" foo))
+
+  ;; https://clojuredocs.org/clojure.core/as-%3E
+
+  ;; It's common to utilize the fact that most characters
+  ;; are available when naming Clojure symbols. I often
+  ;; use `$` for this threading macro:
+
   (as-> 15 $
     (range 1 $ 3)
     (interpose ":" $))
+  
+  ;; Other use other names 😄
 
-  ;; https://clojuredocs.org/clojure.core/as-%3E
+  (as-> 15 <>
+    (range 1 <> 3)
+    (interpose ":" <>))
+  
+  ;; I think emojies should be avoided, the offical
+  ;; docs only mention alfanumerics plus:
+  ;; `*`, `+`, `!`, `-`, `_`, `'`, `?`, `<`, `>`, and `=`
+  ;; (so not even `$`) but here goes:
+
+  (as-> 15 ❤️
+    (range 1 ❤️ 3)
+    (interpose ":" ❤️))
 
   ;; Other core threading macros are:
   ;; `cond->`, `cond->>`, `some->`, and `some->>`
