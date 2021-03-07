@@ -466,15 +466,6 @@ like this, if leading spaces are no-no."
   ;; We'll return to `if` and conditionals.
 
   ;; == `let` ==
-  ;; In Clojure `core.clj` we find the macro `let`
-  ;; defined. You can easily find it by ctrl/cmd-clicking
-  ;; the `let` symbol in the code snippet below. However,
-  ;; it is actually referred to as a special form here
-  ;; https://clojure.org/reference/special_forms#let  
-  ;; As you see in `core.clj`, the actual macro `let` is
-  ;; simple enough, but is relying internally on the
-  ;; fully special form `let*`.
-
   ;; `let` is a form that lets you bind values to variables
   ;; that will be used in the body of the form.
 
@@ -503,6 +494,14 @@ like this, if leading spaces are no-no."
   ;; As noted before in this guide, the `def` special
   ;; form defines things ”globally”, though namespaced.
   
+  ;; If you have followed the instructions to examine
+  ;; things mentioned here, for instance by
+  ;; ctrl/cmd-clicking the `let` symbol in the code
+  ;; snippets, you'll find that in  `core.clj`, `let`
+  ;; is defined as a macro. Never mind that. It is
+  ;; actually referred to as a special form here
+  ;; https://clojure.org/reference/special_forms#let  
+
   ;; Let's (pun unintended) wrap he special forms section
   ;; up with noting that together with _how_ Clojure
   ;; reads and evaluates code, the special forms make up
@@ -723,7 +722,9 @@ to the compiler") "This is not ignored"
   ;; define your own. Here let it suffice with mentioning
   ;; the two build in ones.
 
-  ;; #inst will convert the string it tags to an instance
+  ;; #inst will convert the string it tags to an instance.
+  ;; (I.e. an instance in time, not an instance in the
+  ;; Object Orientation sense of the word.)
 
   #inst "2018-03-28T10:48:00.000"
   (type *1)
@@ -798,7 +799,7 @@ to the compiler") "This is not ignored"
 
   (if 'this-is-true
     'evaluate-this)
-  
+
   ;; Which is fine, but you will have to scan the
   ;; code a bit extra to see that there is no else
   ;; branch. Easy with this short example, but can
@@ -908,6 +909,11 @@ to the compiler") "This is not ignored"
   ;; Debatable what is more readable in this particular
   ;; case... ¯\_(ツ)_/¯
 
+  ;; A note about the variable name `d'` above:
+  ;; `d'` is just a symbol name like any other. The
+  ;; single-quote has no special meaning unless it is
+  ;; the first character
+
   ;; Filters and bindings can be used together.
   ;; Use both `:let` and `:when` to make this
   ;; comprehension return a list of all `[x y]` where
@@ -917,7 +923,7 @@ to the compiler") "This is not ignored"
   (for [x [1 2 3]
         y [1 2 3 4]]
     [x y])
-  
+
   ;; (Yes, it can be solved without `:let` or `:when`.
   ;; Humour me. 😎)
 
