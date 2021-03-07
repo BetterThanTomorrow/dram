@@ -3,7 +3,7 @@
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; Search the VS Code command palltte for
+;; Search the VS Code command pallette for
 ;; Paredit to see all its commands. Pay
 ;; close attention to the shortcuts it displays
 ;; for the commands you use often. 😀
@@ -20,25 +20,31 @@
 ;; advantage of this structure.
 
 ;; Alt+Enter this one
+
 (->> ["I" "💖" "Paredit"]
      (interpose " ~ ")
      (apply str))
+
 ;; (To get into a good mood. 😍)
 
 ;; Paredit strict mode is active by default. 
 ;; It will help you to not delete brackets that
 ;; would break the structure of the code.
 ;; Use Alt+Backspace to override.
+
 (defn strict-greet
   "Try to remove brackets and string quotes
    using Backspace or Delete. Try the same
    with the Alt key pressed."
   [name]
   (str "Strictly yours, " name "!"))
+
 ;; (Restore with *Undo* if needed.)
 
-;; Select a form with *Paredit Expand Selection*
+;; Place the cursor in a form, say `select-me`,
+;; And then use *Paredit Expand Selection*
 ;; Repeat the command to expand one level more
+
 (comment
   (-> 4
       (repeat (let [select-me 'bar]
@@ -46,22 +52,29 @@
       (->>
        (repeat 3))
       (vec)))
+
 ;; There is also *Paredit Shrink Selection*
 
 ;; Move form-by-form using *Paredt Sexp Forward*
 ;; and *Paredit Sexp Backward*
+
 (def move
   [{:zero 0}
    1 2 3
    "four"
    #:five {:bar 'baz}])
+
 ;; Also try *Paredit Select Forward/Backward*
 ;; All *Paredit Select ...* commands work together with
 ;; *Paredit Expand/Shrink Selection*
 
 ;; A structural delete a day keeps the doctor away
+;; Search the Command Palette for *Paredit Kill*
+
 (defn delete
-  "Search the Command Palette for *Paredit Kill*"
+  "Strings are treated a bit like lists, try
+   *Kill/Delete Sexp Backwards* and others in this
+   documentation string"
   [kill-forward kill-backward]
   [{:zero 0}
    1 2 3
@@ -74,11 +87,13 @@
 ;; *Paredit Slurp* and *Paredit Barf* are handy
 ;; commands to move forms in and out of the current
 ;; list/vector/map/string
+
 (def slurp-barf [{:barf-me "barf-me-too"}
                  'slurp-me-then-barf-me])
 
 ;; *Paredit Raise Sexp* replaces the enclosing
 ;; form with the ”current” form
+
 (comment
   (def raise-me
     #:or-raise-me {:or-me [1 2 3 4]
@@ -90,7 +105,7 @@
 ;; with `hello_clojure.clj` and evaluate your way
 ;; to some basic Clojure knowledge.
 
-"Hello Calva Paredit"
+"Hello Calva Paredit λ 💖 🚀"
 
 ;; This guide downloaded from:
 ;; https://github.com/BetterThanTomorrow/dram
