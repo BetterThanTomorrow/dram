@@ -466,8 +466,8 @@ like this, if leading spaces are no-no."
   ;; We'll return to `if` and conditionals.
 
   ;; == `let` ==
-  ;; `let` is a form that lets you bind values to variables
-  ;; that will be used in the body of the form.
+  ;; `let` is a special form that lets you bind values to
+  ;; variables that will be used in the body of the form.
 
   (let [x 1
         y 2]
@@ -502,7 +502,7 @@ like this, if leading spaces are no-no."
   ;; actually referred to as a special form here
   ;; https://clojure.org/reference/special_forms#let  
 
-  ;; Let's (pun unintended) wrap he special forms section
+  ;; Let's (pun unintended) wrap the special forms section
   ;; up with noting that together with _how_ Clojure
   ;; reads and evaluates code, the special forms make up
   ;; the Clojure language itself. The next level och
