@@ -63,11 +63,12 @@
 
   ;; (Just, evaluate it. This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
-  ;; expressions in its function body. I'll return to
+  ;; expressions in its function body. We'll return to
   ;; defining functions.)
-  ;; Calling the function (Just evaluate it 😄)
+  
+  ;; Calling the function
 
-  (last-eval-wins)
+  (last-eval-wins) ; (Just evaluate <-that 😄)
 
   ;; will cause all four expressions in the function
   ;; body to be evaluated. The result of the call will
@@ -124,7 +125,39 @@
   nil             ; null value
   true false      ; booleans
   :alpha          ; keyword
-  :release/alpha  ; keyword with namespace
+  :release/alpha  ; namespaced keyword
+  ::alpha         ; namespaced keyword, current
+                  ; current namespace
+
+  ;; == KEYWORDS ==
+  ;; Keywords are start with a `:`. They are a thing
+  ;; in themselves, often used as identifiers and as
+  ;; keys in maps (more on maps later). Keywords are
+  ;; very memory and speed efficient. 
+
+  ;; The same keyword is of course equal to itself
+
+  (= :foo :foo)
+
+  ;; It is, however, also identical to itself
+
+  (identical? :foo :foo)
+
+  ;; This means it is the same thing, occupying the
+  ;; same (very tiny) place in memory.
+  ;; Even if you construct a non-literal keyword
+  ;; it remains identical to it's literal form
+
+  (identical? (keyword "foo") :foo)
+
+  ;; This holds true for your whole Clojure program.
+  ;; Keywords are global. There is namespace syntax
+  ;; for them, so that you can have control of this.
+
+  ;; Keywords are also functions, actually. But more
+  ;; on that later. For now let it suffice to say
+  ;; that keywords have a very special and important
+  ;; role in most Clojure programs.
 
   ;; == STRINGS ==
   ;; Somewhere in between the atomic literals and
@@ -294,10 +327,19 @@ like this, if leading spaces are no-no."
   (def add2-2 (fn [arg] (+ arg 2)))
   (add2-2 3)
 
-  ;; This is what the macro `defn` does.
-  ;; We can use the function `macroexpand` to see this:
+  ;; This is what the macro `defn` does. You will most
+  ;; often be defining functions like what we saw
+  ;; earlier, (when discussing the function position of
+  ;; a form):
+  
+  (defn add2-3
+    [arg]
+    (+ arg 2))
+  
+  ;; We can use the function `macroexpand` to see that
+  ;; what the macro produces:
 
-  (macroexpand '(defn add2
+  (macroexpand '(defn add2-3
                   [arg]
                   (+ arg 2)))
 
@@ -308,14 +350,14 @@ like this, if leading spaces are no-no."
     'value-if-false)
 
   ;; Rumour has it that all conditional constructs (macros)
-  ;; are built using `if`. Try to imagine a programming language
-  ;; without conditionals!
+  ;; are built using `if`. Try to imagine a programming
+  ;; language without conditionals!
 
   ;; We'll return to `if` and conditionals. Let's wrap
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
   ;; the special forms make up the Clojure language
-  ;; itself. The next level och building blocks are
+  ;; itself. The next level of building blocks are
   ;; macros. But let's investigate this with how code
   ;; is read first...
   )
@@ -407,27 +449,38 @@ like this, if leading spaces are no-no."
   (first @an-atom)
 
   ;; === THE DISPATCHER (HASH SIGN) ===
+  ;; That hash sign shows up now and then. It has a
+  ;; special role. It is aka Dispatch. Depending on
+  ;; what character is following it, different cool
+  ;; things happen. Here follows some common ones:
+
   ;; Regular expressions have literal syntax, they are
   ;; written like strings, but with a hash sign in front
 
   #"reg(?:ular )?exp(?:ression)?"
 
   ;; Regexps are handled by the host platform, so they
-  ;; are Java regexps in this tutorial.
+  ;; are Java regexps in this tutorial. If you
+  ;; evaluated the above regexp, we can test it. 
 
   (re-seq *1 "regexp regular expression")
 
-  ;; *1 is a special symbol for a variable holding the
-  ;; value of the last evaluation result.
+  ;; `*1` is a special symbol for a variable holding
+  ;; the value of the last evaluation result. It might
+  ;; be easier to get a regexp right by using it
+  ;; directly:
 
-  ;; That hash sign shows up now and then, for instance
+  (re-seq #"fooo*" "fo foo fooo")
+  (re-find #"fooo*" "fo foo fooo")
 
+  ;; If the hash sign is followed by a `(`, the Reader
+  ;; will start expecting a function body.
+  
   #(+ % 2)
 
-  ;; Which is special syntax for ”function literals”, a
-  ;; way to specify a function.
-  ;; The example above is equivalent to this anonymous
-  ;; function.
+  ;; This is special syntax for ”function literals”, a
+  ;; way to specify a function. The example above is
+  ;; equivalent to this anonymous function.
 
   (fn [arg] (+ arg 2))
 
@@ -437,13 +490,12 @@ like this, if leading spaces are no-no."
 
   ;; (thankfully)
 
-  ;; The hash sign has a special role. It is aka
-  ;; Dispatch. Depending on what character is following
-  ;; it, different cool things happen.
   ;; In addition to sets, regexps and function literals
   ;; we have seen var-quotes in this guide
 
   #'add2
+
+  ;; 
 
   ;; There is a very useful hash-dispatcher which
   ;; is used to make the Reader ignore the next form
@@ -635,7 +687,7 @@ to the compiler") "This is not ignored"
   ;; in a vector. This is a pattern that is used by
   ;; other macros that let you define bindings.
   ;; It is similar to the lexical scope of other
-  ;; programming lannguages (even if this rather is
+  ;; programming languages (even if this rather is
   ;; structural). Sibling and parent forms do not
   ;; ”see” these bindings.
 
