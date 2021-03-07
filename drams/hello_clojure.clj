@@ -1058,14 +1058,14 @@ to the compiler") "This is not ignored"
     (range 1 $ 3)
     (interpose ":" $))
   
-  ;; Other use other names 😄
+  ;; Others use other names 😄
 
   (as-> 15 <>
     (range 1 <> 3)
     (interpose ":" <>))
   
-  ;; I think emojies should be avoided, the offical
-  ;; docs only mention alfanumerics plus:
+  ;; I think emojis should be avoided, the official
+  ;; docs only mention alphanumerics plus:
   ;; `*`, `+`, `!`, `-`, `_`, `'`, `?`, `<`, `>`, and `=`
   ;; (so not even `$`) but here goes:
 
