@@ -11,7 +11,7 @@
 
 "Hello World"
 
-;; That's a concise Hello World.
+;; That's a concise Hello World for any language.
 ;; And note that there are no parens. 😀
 
 ;; This guide will try to give you a basic
@@ -35,13 +35,18 @@
 ;; mentioned in this guide.
 
 ;; The way to use the guide is to read about the
-;; concepts and evaluate the examples. Please feel
-;; encouraged to edit the examples, and add new code
+;; concepts and evaluate the examples. Sometimes there
+;; will be exercises in the text. Don't limit your
+;; exercising to those, though. Please feel encouraged
+;; to edit the examples, and add new code
 ;; and evaluate that. Evaluate this to warm up:
 
 (str "Evaluate"
      " and "
      "experiment")
+
+;; Then see what happens if you throw in some numbers
+;; and evaluate that.
 
 (comment
   ;; = EXPRESSIONS =
@@ -65,7 +70,7 @@
   ;; `last-eval-wins`, taking no arguments, with four
   ;; expressions in its function body. We'll return to
   ;; defining functions later.)
-  
+
   ;; Calling the function
 
   (last-eval-wins) ; (Just evaluate <-that 😄)
@@ -84,17 +89,27 @@
   ;; to themselves) and/or calls to either:
   ;; * special forms
   ;; * macros
-  ;; * functions 
+  ;; * functions
+
+  ;; ”Hello World” at the beginning of this guide is a
+  ;; literal string (thus, it evaluates to itself).
+  ;; More about literals in the next section.
+
   ;; Calls are written as lists with the called thing
   ;; as the first element.
 
-  (str 1 2 3)
+  (def foo "foo") ; Calls the special form `def`,
+                  ; evaluates to the var it creates
+                  ; (More on this later)
 
-  ;; Calls the function `str` with the arguments
-  ;; 1, 2, and 3. ”Hello World” at the beginning
-  ;; of this guide is a literal
-  ;; string (thus, it evaluates to itself).
-  ;; More about literals coming up next!
+  (let [foo "foo"] ; Calls the macro
+    foo)
+
+  (str 1 2 3) ; Calls the function `str` with the
+              ; arguments 1, 2, and 3.
+
+
+  ;; 
   )
 
 (comment
@@ -127,8 +142,8 @@
   true false      ; booleans
   :alpha          ; keyword
   :release/alpha  ; namespaced keyword
-  ::alpha         ; namespaced keyword, current
-                  ; current namespace
+  ::alpha         ; namespaced keyword,
+                  ; in current namespace
 
   ;; == KEYWORDS ==
   ;; Keywords are start with a `:`. They are a thing
@@ -177,6 +192,99 @@ like this, if leading spaces are no-no."
   )
 
 (comment
+  ;; = NAMESPACES =
+  ;; Important as namespaces are, we won't dwell on
+  ;; the subject very much in this guide. The official
+  ;; docs make them the best justice:
+  ;; https://clojure.org/reference/namespaces
+  ;;   
+  ;; There are some things we really need to know
+  ;; though...
+  ;; Clojure symbols are defined in namespaces (With
+  ;; the `def `special form) where they are reachable
+  ;; from any other namespace.
+
+  (def foo-2 "foo")
+
+  ;; Also know that there is such a thing as the
+  ;; current namespace. (A bit like the current working
+  ;; directory in the shell.) When you evaluated the
+  ;; `def` form above, you'll saw where `foo-2` geot
+  ;; defined.
+
+  ;; When evaluating a symbol from any namespace it
+  ;; must have been defined, or the compiler will
+  ;; complain, and throw
+
+  foo-3
+
+  ;; The namespace also needs to have been created
+
+  some-namespace/foo
+
+  ;; If you have loaded the `hello_repl.clj` file
+  ;; the `hello-repl` namespace is created and its
+  ;; top level symbols are defined (not the ones
+  ;; hidden in `(comment ...)` forms, because the
+  ;; `comment` macro ignores the body and just
+  ;; evaluates to/returns `nil`)
+
+  hello-repl/greet
+
+  (hello-repl/greet "from the hello-clojure namespace")
+
+  ;; If those throw, you need to first load
+  ;; `hello_repl.clj`, or at least evaluate its `ns`
+  ;; form and the `greet` form.
+
+  ;; It is not to recommend that you rely on some
+  ;; namespace existing like this though. That makes
+  ;; your code brittle. It is better to `require`
+  ;; the namespace. If you haven't loaded it, you
+  ;; can do that in the same go:
+  
+  (require 'hello-paredit :reload)
+  
+  hello-paredit/strict-greet
+  (hello-paredit/strict-greet "World")
+
+  ;; For most Clojure code you write you will arrange
+  ;; it into separate files with one namespace each,
+  ;; and use the `ns` form (that starts most Clojure
+  ;; files) to `:require` the needed namespaces, aliasing
+  ;; them to something convenient and sometimes `:refer`
+  ;; in some of their symbols so that you can use
+  ;; them without the namespace prefix (which is the
+  ;; text before the `/`, btw, in case that wasn't
+  ;; obvious enough). Examine the `ns` form of this
+  ;; file to see why these forms compile without
+  ;; complaints:
+  
+  (doc require) ; Check the output window
+  (string/split "foo:bar:baz" #":")
+
+  ;; See also:
+  ;; https://clojuredocs.org/clojure.core/ns
+
+  ;; Keywords can also be namespaced, but they are
+  ;; not really registered in a namespace, like
+  ;; symbols are, so you can just use them, regardless
+  
+  :foo-whatever
+  :whatever-namespace/foo
+  
+  ;; The notion about the current namespace exists
+  ;; for keywords in that the double-colon prefix
+  ;; expands to `:<current-namespace>/foo`:
+  
+  ::foo
+  
+  ;; This is important to know about. `:foo` will
+  ;; refer to the same keyword regardless of from which
+  ;; namespace it is used. `::foo` will not.
+  )
+
+(comment
   ;; = COLLECTIONS =
   ;; Clojure has literal syntax for four collection types
   ;; They evaluate to themselves.
@@ -199,7 +307,8 @@ like this, if leading spaces are no-no."
   (1 2 3)
 
   ;; But if you evaluate that, you'll get an error:
-  ;; => class java.lang.Long cannot be cast to class clojure.lang.IFn
+  ;; => class java.lang.Long cannot be cast to class
+  ;;    clojure.lang.IFn
   ;; (Of course, the linter already warned you.)
   ;; This is because the Clojure will try to call
   ;; `1` as a function. When evaluating unquoted lists
@@ -332,11 +441,11 @@ like this, if leading spaces are no-no."
   ;; often be defining functions like what we saw
   ;; earlier, (when discussing the function position of
   ;; a form):
-  
+
   (defn add2-3
     [arg]
     (+ arg 2))
-  
+
   ;; We can use the function `macroexpand` to see that
   ;; what the macro produces:
 
@@ -354,11 +463,52 @@ like this, if leading spaces are no-no."
   ;; are built using `if`. Try to imagine a programming
   ;; language without conditionals!
 
-  ;; We'll return to `if` and conditionals. Let's wrap
-  ;; the special forms section up with just noting that
-  ;; together with _how_ Clojure reads and evaluates code,
-  ;; the special forms make up the Clojure language
-  ;; itself. The next level och building blocks are macros.
+  ;; We'll return to `if` and conditionals.
+
+  ;; == `let` ==
+  ;; In Clojure `core.clj` we find the macro `let`
+  ;; defined. You can easily find it by ctrl/cmd-clicking
+  ;; the `let` symbol in the code snippet below. However,
+  ;; it is actually referred to as a special form here
+  ;; https://clojure.org/reference/special_forms#let  
+  ;; As you see in `core.clj`, the actual macro `let` is
+  ;; simple enough, but is relying internally on the
+  ;; fully special form `let*`.
+
+  ;; `let` is a form that lets you bind values to variables
+  ;; that will be used in the body of the form.
+
+  (let [x 1
+        y 2]
+    (str x y))
+
+  ;; The bindings are provided as the first ”argument”,
+  ;; in a vector. This is a pattern that is used by
+  ;; other special forms and macros that let you define
+  ;; bindings. It is similar to the lexical scope of other
+  ;; programming languages (even if this rather is
+  ;; structural). Sibling and parent forms do not
+  ;; ”see” these bindings (they have no way they could
+  ;; possibly reach it). Here's an example:
+
+  (do
+    (def x :namespace-x)
+    (println "`x` in `do` _before_ `let`: " x)
+    (let [x :let-x]
+      (println "`x` from `let`: " x))
+    (println "`x` in `do`, _after_ `let`: " x))
+
+  (println "`x` _outside_ `do`: " x)
+  
+  ;; As noted before in this guide, the `def` special
+  ;; form defines things ”globally”, though namespaced.
+  
+  ;; Let's (pun unintended) wrap he special forms section
+  ;; up with noting that together with _how_ Clojure
+  ;; reads and evaluates code, the special forms make up
+  ;; the Clojure language itself. The next level och
+  ;; building blocks are macros.
+
   ;; But let us investigate this thing with how code
   ;; is read first...
   )
@@ -423,6 +573,18 @@ like this, if leading spaces are no-no."
 
   (quote something)
 
+  ;; `quote` is needed to stop the Reader from treating
+  ;; things as something that should be evaluated.
+  ;; See what happens if you evaluate `something`
+  ;; without the quoting:
+
+  something
+
+  ;; as well as the difference between evaluating these:
+
+  (1 2 3 4)
+  '(1 2 3 4)
+
   ;; There are some more quoting, and even splicing
   ;; symbols, which I won't cover in this guide.
 
@@ -438,7 +600,13 @@ like this, if leading spaces are no-no."
   (deref an-atom)
   (type (deref an-atom))
 
-  ;; This is so common that there is shorthand syntax
+  ;; Again, `deref` is used for dereferencing a lot
+  ;; different reference types, including futures,
+  ;; https://clojure.org/reference/refs
+  ;; https://clojure.org/about/concurrent_programming
+
+  ;; Anyway, `deref` is so common that there is
+  ;; shorthand syntax for it
 
   @an-atom
   (= (deref an-atom)
@@ -476,7 +644,7 @@ like this, if leading spaces are no-no."
 
   ;; If the hash sign is followed by a `(`, the Reader
   ;; will start expecting a function body.
-  
+
   #(+ % 2)
 
   ;; This is special syntax for ”function literals”, a
@@ -492,11 +660,14 @@ like this, if leading spaces are no-no."
   ;; (thankfully)
 
   ;; In addition to sets, regexps and function literals
-  ;; we have seen var-quotes in this guide
+  ;; we have seen var-quotes earlier in this guide
 
   #'add2
 
-  ;; 
+  ;; There was also a brief discussion about `vars`.
+  ;; You might want to revisit it and also read more
+  ;; about it, because it is a very important concept.
+  ;; https://clojure.org/reference/vars
 
   ;; There is a very useful hash-dispatcher which
   ;; is used to make the Reader ignore the next form
@@ -522,7 +693,7 @@ to the compiler") "This is not ignored"
 
   ;; Note that the Reader _will_ read the ignored form.
   ;; If there are syntactic errors in there, the
-  ;; Reader will get sad, complain, and stop Reading.
+  ;; Reader will get sad, complain, and stop reading.
   ;; Select from the marker up to and including the string
   ;; here and press Ctrl+Enter
 
@@ -575,7 +746,11 @@ to the compiler") "This is not ignored"
 
   ;; This invokes the method `before` on the date
   ;; object for year 2018 giving it the date from
-  ;; year 2021 as argument.
+  ;; year 2021 as argument. You'll see some little
+  ;; more Java interop in this guide and probably
+  ;; notice how available the host platform is when
+  ;; coding Clojure. The same goes for
+  ;; ClojureScript and for Clojure CLR.
   )
 
 (comment
@@ -583,21 +758,28 @@ to the compiler") "This is not ignored"
   ;; Clojure has powerful data transformation
   ;; capabilities. We'll touch on that a bit later.
   ;; Here I want to highlight that this power can
-  ;; be wielded for extending the language. 
+  ;; be wielded for extending the language itself. 
   ;; Since Clojure code is structured and code is
   ;; data, Clojure can be used to produce Clojure
   ;; code from Clojure code. It is similar to the
   ;; preprocessor facilitates that some languages
   ;; offer, like C's `#pragma`, but it is much more
-  ;; convenient and powerful. A lot of you will learn
-  ;; to love and recognize as Clojure is actually
-  ;; created with Clojure, as macros.
+  ;; convenient and powerful. A lot of what you
+  ;; will learn to love and recognize as Clojure
+  ;; is actually created with Clojure, as macros.
 
   ;; This guide is mostly concerned with letting you
   ;; know that macros are a thing, to help you to
   ;; quickly realize when you are using a macro rather 
   ;; than a function. I.e. I will not go into the
   ;; subject of how to create macros.
+
+  ;; The distinction is important, because even if
+  ;; macro calls look a lot like function calls,
+  ;; macros are not first class. They can't be
+  ;; passed as arguments, or returned as results.
+  ;; More about ”first class” in the section about
+  ;; functions, later.
 
   ;; == `when` ==
   ;; Let's just briefly examine the macro`when`.
@@ -616,9 +798,12 @@ to the compiler") "This is not ignored"
 
   (if 'this-is-true
     'evaluate-this)
+  
   ;; Which is fine, but you will have to scan the
   ;; code a bit extra to see that there is no else
-  ;; branch. To address this, you could write:
+  ;; branch. Easy with this short example, but can
+  ;; get pretty hairy in real code. To address this,
+  ;; you could write:
 
   (if 'this-is-true
     'evaluate-this
@@ -626,14 +811,14 @@ to the compiler") "This is not ignored"
 
   ;; But that is a bit silly, what if there was a
   ;; way to tell the human reading the code that
-  ;; there is no else? There is!
+  ;; there is no else branch? There is!
 
   (when 'this-is-true
     'evaluate-this)
 
   ;; Let's look at how `when` is defined, you can
   ;; ctrl/cmd-click `when` to navigate to where
-  ;; it is defined in Clojure core.
+  ;; it is defined in Clojure `core.clj`.
   ;; You can also use the function `macroexpand`
 
   (macroexpand '(when 'this-is-true
@@ -645,10 +830,10 @@ to the compiler") "This is not ignored"
   ;; results of the last one.
   ;; https://clojuredocs.org/clojure.core/do
   ;; `do` is handy when you want to have some side-
-  ;; effect going in addition to evaluating something.
+  ;; effect going, in addition to evaluating something.
   ;; In development this often happens when you 
-  ;; want to `println` something before result of the
-  ;; expression is evaluated.
+  ;; want to `println` something before the result
+  ;; of the expression is evaluated and returned.
 
   (do (println "The quick brown fox jumps over the lazy dog")
       (+ 2 2))
@@ -675,49 +860,29 @@ to the compiler") "This is not ignored"
   ;; `if` and `do`, it composes a form that helps us
   ;; write easy to write and easy to read code. 
 
-  ;; == `let` ==
-  ;; A less simple core library macro is `let`. It
-  ;; is a form that lets you bind values to variables
-  ;; that will be used in the body of the form.
-
-  (let [x 1
-        y 2]
-    (str x y))
-
-  ;; The bindings are provided as the first ”argument”,
-  ;; in a vector. This is a pattern that is used by
-  ;; other macros that let you define bindings.
-  ;; It is similar to the lexical scope of other
-  ;; programming languages (even if this rather is
-  ;; structural). Sibling and parent forms do not
-  ;; ”see” these bindings.
-
-  (do
-    (def x :namespace-x)
-    (println "`x` in `do` _before_ `let`: " x)
-    (let [x :let-x]
-      (println "`x` from `let`: " x))
-    (println "`x` in `do`, _after_ `let`: " x))
-
-  ;; The `def` special form defines things ”globally”
-
-  (println "`x` _outside_ `do`: " x)
-
   ;; == `for` ==
   ;; The `for` macro really demonstrates how Clojure
   ;; can be extended using Clojure. You might think
-  ;; it provides looping like, but in Clojure there
-  ;; are no for loops. Instead `for` is about list
-  ;; comprehensions (if you have Python experience,
-  ;; yes, that kind of list comprehensions).
-  ;; Here's how to produce the cartesian product of two
-  ;; vectors, `x` and `y`:
+  ;; it provides looping like the for loop in many
+  ;; other languages, but in Clojure there are no for
+  ;; loops. Instead `for` is about list comprehensions
+  ;; (if you have Python experience, yes, that kind of
+  ;; list comprehensions). Here's how to produce the
+  ;; cartesian product of two vectors, `x` and `y`:
 
   (for [x [1 2 3]
         y [1 2 3 4]]
     [x y])
 
-  ;; `for` lets you filter the results
+  ;; If you recall the `let` form above, and how it
+  ;; lets you bind variables to use in the body of the
+  ;; form, this is similar, only that `x` and `y` will
+  ;; get bound to each value in the sequences and the
+  ;; body will get evaluated for all combinations of
+  ;; `x` and `y`.
+
+  ;; All values? Well, `for` also lets you filter the
+  ;; results
 
   (for [x [1 2 3]
         y [1 2 3 4]
@@ -725,12 +890,23 @@ to the compiler") "This is not ignored"
     [x y])
 
   ;; You can bind variable names in the comprehension
+  ;; to store intermediate calculations and generally
+  ;; make code more readable
 
   (for [x [1 2 3]
         y [1 2 3 4]
         :let [d' (- x y)
               d (Math/abs d')]]
     d)
+
+  ;; Is the same as:
+
+  (for [x [1 2 3]
+        y [1 2 3 4]]
+    (Math/abs (- x y)))
+
+  ;; Debatable what is more readable in this particular
+  ;; case... ¯\_(ツ)_/¯
 
   ;; Filters and bindings can be used together.
   ;; Use both `:let` and `:when` to make this
@@ -741,6 +917,9 @@ to the compiler") "This is not ignored"
   (for [x [1 2 3]
         y [1 2 3 4]]
     [x y])
+  
+  ;; (Yes, it can be solved without `:let` or `:when`.
+  ;; Humour me. 😎)
 
   ;; See https://www.youtube.com/watch?v=5lvV9ICwaMo for
   ;; a great primer on Clojure list comprehensions
