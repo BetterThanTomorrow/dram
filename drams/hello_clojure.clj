@@ -52,7 +52,8 @@
 
   ;; An important aspect of this is that the result
   ;; of an expression is always the last form/expression
-  ;; evaluated. Evaluate the function below:
+  ;; evaluated. E.g. if you have a function defined
+  ;; like so:
 
   (defn last-eval-wins []
     (println 'side-effect-1)
