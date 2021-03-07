@@ -31,7 +31,7 @@
   [name]
   (str "Hello " name "!"))
 
-;; Forms inside `(comment ...)` are also top level
+;; Forms inside `(comment ...)` are also top level.
 
 (comment
   (greet "World"))
@@ -39,9 +39,9 @@
 ;; You should see "Hello World!" displayed inline,
 ;; and also printed to the `output.calva-repl` editor,
 ;; aka ”The Output Window”, aka ”The REPL Window”.
-;; To clear inline results display, press ESC.
+;; To clear inline results display, press `ESC`.
 
-;; Anything printed to stdout is not shown inline
+;; Anything printed to stdout is not shown inline.
 
 (comment
   (println (greet "World")))
@@ -118,10 +118,11 @@
 ;; Evaluate the function you want to debug with the
 ;; command:
 ;; *Instrument Current Top Level Form for Debugging*
-;; This function has a bug. Evaluate it the usual
-;; way (`Alt+Enter`) first and run it.
 
 (comment
+  ;; This function has a bug. Evaluate it the usual
+  ;; way (`Alt+Enter`) first and run it.
+  
   (defn bar
     [n]
     (cond (> n 40) (+ n 20)
@@ -130,22 +131,23 @@
 
   (bar 2)  ; works
   (bar 24) ; throws, what's going on?
-  ;; 
+
+  ;; That's a strange error message (maybe you say,
+  ;; depending on how familiar you are with Clojure).
+  ;; Now use the *Instrument* command to evaluate the
+  ;; function definition. Calva will indicate code
+  ;; that is instrumented for debugging. Now evaluate
+  ;; the problematic function call. The debugger might
+  ;; not work exactly as other debuggers you have used
+  ;; but it should be easy enough to figure out how to
+  ;; use it, right? Visit calva.io for more info about
+  ;; the debugger: https://calva.io/debugger/
   )
 
-;; That's a strange error message (maybe you say,
-;; depending on how familiar you are with Clojure).
-;; Now use the *Instrument* command to evaluate the
-;; function definition. Calva will indicate that
-;; code is instrumented for debugging. Now evaluate
-;; the problematic function call. The debugger might
-;; not work exactly as other debuggers you have used
-;; but it should be easy enough to figure out how to
-;; use it, right? Visit calva.io for more info about
-;; the debugger: https://calva.io/debugger/
 
+;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
-;; easy and fun. Some times you happen to evaluate
+;; easy and fun. Sometimes you happen to evaluate
 ;; something that never finishes, or takes to long
 ;; to finish. For this, Calva has a command named
 ;; *Interrupt Running Evaluations*. You will need
