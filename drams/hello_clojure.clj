@@ -316,8 +316,8 @@ like this, if leading spaces are no-no."
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
   ;; the special forms make up the Clojure language
-  ;; itself. The next level of building blocks are
-  ;; macros. But let's investigate how code
+ ;; itself. The next level och building blocks are macros.
+ ;;.But let us investigate this thing with how code```
   ;; is read first...
   )
 
