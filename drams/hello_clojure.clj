@@ -1,4 +1,4 @@
-(ns hello_clojure
+(ns hello-clojure
   (:require [clojure.java.javadoc :refer [javadoc]]
             [clojure.repl :refer [source apropos dir pst doc find-doc]]
             [clojure.string :as string]
@@ -7,7 +7,7 @@
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; Then Alt+Enter this:
+;; Then evaluate this expression with Alt+Enter:
 
 "Hello World"
 
@@ -17,15 +17,15 @@
 ;; This guide will try to give you a basic
 ;; understanding of the Clojure language. Basic in
 ;; the sense that it is not extensive. Basic in the
-;; sense that it is foundational. Building from first
+;; sense that it is foundational, building from first
 ;; principles in order to make the Clojure journey
 ;; you have ahead easier to comprehend.
 
 ;; With the foundations in place you'll have a good 
 ;; chance of having the right gut feeling for how to
-;; code something, to formulating your questions,
-;; googling for information, make sense of code you
-;; stumble across, and so on.
+;; code something, how to formulate your questions,
+;; how to search effectively for information, how to make 
+;; sense of code you stumble across, and so on.
 
 ;; There will be links here and there, ctrl/cmd-click
 ;; those to open them in a browser. Here's the first
@@ -47,7 +47,7 @@
   ;; = EXPRESSIONS =
   ;; In Clojure everything is an expression.
   ;; (There are no statements.) Unless there is
-  ;; en error when evaluating the expressions there
+  ;; an error when evaluating an expression, there
   ;; is always a return value (which is sometimes `nil`).
 
   ;; An important aspect of this is that the result
@@ -61,10 +61,10 @@
     (println 'side-effect-2)
     2)
 
-  ;; (Just, evaluate it. This defines a function named
+  ;; This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
   ;; expressions in its function body. We'll return to
-  ;; defining functions.)
+  ;; defining functions later.)
   
   ;; Calling the function
 
@@ -76,12 +76,12 @@
 
   ;; In the output window you will also see the
   ;; `println` calls happening. They are also
-  ;; expressions, evaluating `nil`.
+  ;; expressions, evaluating to `nil`.
 
   (println 'prints-this-evaluates-to-nil)
 
   ;; Expressions are composed from literals (evaluating
-  ;; to themselves) and/or calls to either
+  ;; to themselves) and/or calls to either:
   ;; * special forms
   ;; * macros
   ;; * functions 
@@ -91,8 +91,9 @@
   (str 1 2 3)
 
   ;; Calls the function `str` with the arguments
-  ;; 1, 2, and 3. ”Hello World” above is a literal
-  ;; string (thus it evaluates to itself).
+  ;; 1, 2, and 3. ”Hello World” at the beginning
+  ;; of this guide is a literal
+  ;; string (thus, it evaluates to itself).
   ;; More about literals coming up next!
   )
 
@@ -122,7 +123,7 @@
   map             ; symbol
   +               ; symbol - most punctuation allowed
   clojure.core/+  ; namespaced symbol
-  nil             ; null value
+  nil             ; null/nil value (named in the LISP tradition)
   true false      ; booleans
   :alpha          ; keyword
   :release/alpha  ; namespaced keyword
@@ -172,7 +173,7 @@
 like this, if leading spaces are no-no."
 
   ;; (The single quote is used for something else.
-  ;; You'll see to what a bit later.)
+  ;; You'll see for what a bit later.)
   )
 
 (comment
@@ -206,7 +207,7 @@ like this, if leading spaces are no-no."
   ;; in ”function position”. A Clojure program is data. 
   ;; In fancier words, Clojure is homoiconic:
   ;; https://wiki.c2.com/?HomoiconicLanguages
-  ;; This gives great macro power, more about that below
+  ;; This gives great macro power, more about that below.
 
   ;; Here are some lists with proper functions at
   ;; position 1:
@@ -223,8 +224,8 @@ like this, if leading spaces are no-no."
   ;; Everything after the first position is
   ;; handed to the function as arguments
 
-  ;; Note: I'll be referring to literals, symbols and
-  ;; literal collections, collectively as forms,
+  ;; Note: I'll be referring to literals, symbols, and
+  ;; literal collections collectively as forms,
   ;; sometimes, sexprs:
   ;; https://en.wikipedia.org/wiki/S-expression
 
@@ -250,8 +251,8 @@ like this, if leading spaces are no-no."
   (add2 3)
 
   ;; Clojure has an extensive core library of functions
-  ;; and macros. See: https://clojuredocs.org for a community
-  ;; driven Clojure core (and more) search engine.
+  ;; and macros. See: https://clojuredocs.org for a 
+  ;; community-driven Clojure core (and more) search engine.
   )
 
 (comment
@@ -308,8 +309,8 @@ like this, if leading spaces are no-no."
 
   ;; ”Defining a thing” means that a var is created,
   ;; holding the value, and that a symbol is bound
-  ;; to the var. Evaluating the symbol, picks up the
-  ;; value from the var it is bound to
+  ;; to the var. Evaluating the symbol picks up the
+  ;; value from the var it is bound to.
 
   foo
 
@@ -357,8 +358,8 @@ like this, if leading spaces are no-no."
   ;; the special forms section up with just noting that
   ;; together with _how_ Clojure reads and evaluates code,
   ;; the special forms make up the Clojure language
-  ;; itself. The next level of building blocks are
-  ;; macros. But let's investigate this with how code
+  ;; itself. The next level och building blocks are macros.
+  ;; But let us investigate this thing with how code
   ;; is read first...
   )
 
