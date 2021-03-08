@@ -3,13 +3,6 @@
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
 
-;; Search the VS Code command pallette for
-;; Paredit to see all its commands. Pay
-;; close attention to the shortcuts it displays
-;; for the commands you use often. 😀
-;; See https://calva.io/paredit for much
-;; more than we show here.
-
 ;; Clojure is a LISP and therefore the code
 ;; is structural. Everything is organized in
 ;; ”forms”, aka S-expressions (sexprs).
@@ -19,6 +12,14 @@
 ;; lists) of literals. Paredit helps you take
 ;; advantage of this structure.
 
+;; == There are Many Paredit Commands ==
+;; Search the VS Code command pallette for
+;; Paredit to see all its commands. Pay
+;; close attention to the shortcuts it displays
+;; for the commands you use often.
+;; See https://calva.io/paredit for much
+;; more than we show here.
+
 ;; Alt+Enter this one
 
 (->> ["I" "💖" "Paredit"]
@@ -27,6 +28,7 @@
 
 ;; (To get into a good mood. 😍)
 
+;; == Strict Mode Protection ==
 ;; Paredit strict mode is active by default. 
 ;; It will help you to not delete brackets that
 ;; would break the structure of the code.
@@ -41,6 +43,7 @@
 
 ;; (Restore with *Undo* if needed.)
 
+;; == Select with Ease ==
 ;; Place the cursor in a form, say `select-me`,
 ;; And then use *Paredit Expand Selection*
 ;; Repeat the command to expand one level more
@@ -55,6 +58,7 @@
 
 ;; There is also *Paredit Shrink Selection*
 
+;; == Navigate the Structure ==
 ;; Move form-by-form using *Paredt Sexp Forward*
 ;; and *Paredit Sexp Backward*
 
@@ -68,6 +72,7 @@
 ;; All *Paredit Select ...* commands work together with
 ;; *Paredit Expand/Shrink Selection*
 
+;; == Edit the Structure ==
 ;; A structural delete a day keeps the doctor away
 ;; Search the Command Palette for *Paredit Kill*
 
@@ -84,15 +89,19 @@
   "To delete and copy, use *Paredit Select ...*
    then *Cut*")
 
+;; === Move those Brackets ===
 ;; *Paredit Slurp* and *Paredit Barf* are handy
 ;; commands to move forms in and out of the current
-;; list/vector/map/string
+;; list/vector/map/string (or move brackets, depending
+;; on your perspective.)
 
 (def slurp-barf [{:barf-me "barf-me-too"}
                  'slurp-me-then-barf-me])
 
+;; === Raise ===
 ;; *Paredit Raise Sexp* replaces the enclosing
 ;; form with the ”current” form
+;; Raise and Undo a bit in this snippet:
 
 (comment
   (def raise-me
@@ -101,6 +110,7 @@
 
 ;; Learn much more Paredit: https://calva.io/paredit
 
+;; == Insert Coin to Continue ==
 ;; If you are new to Clojure, please continue
 ;; with `hello_clojure.clj` and evaluate your way
 ;; to some basic Clojure knowledge.
