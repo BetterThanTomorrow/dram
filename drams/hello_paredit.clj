@@ -59,7 +59,7 @@
 ;; There is also *Paredit Shrink Selection*
 
 ;; == Navigate the Structure ==
-;; Move form-by-form using *Paredt Sexp Forward*
+;; Move form-by-form using *Paredit Sexp Forward*
 ;; and *Paredit Sexp Backward*
 
 (def move
