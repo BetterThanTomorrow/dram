@@ -109,8 +109,9 @@
                   ; evaluates to the var it creates
                   ; (More on this later)
 
-  (let [foo "foo"] ; Calls the macro
-    foo)
+  (for [x '(1 2 3)
+        y '(:a :b)] ; Calls the macro `for`
+    [x y])
 
   (str 1 2 3) ; Calls the function `str` with the
               ; arguments 1, 2, and 3.
@@ -2423,6 +2424,8 @@ to the compiler") "This is not ignored"
 ;; seqs
 ;; laziness
 ;; loop, recur
+;; debugging
+;; some wrapping up exercises here and there
 
 ;; Learn much more Clojure at https://clojure.org/
 ;; There is also ClojureScript, the same wonderful language,
