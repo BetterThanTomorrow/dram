@@ -28,8 +28,8 @@
 
 (defn greet
   "I'll greet you"
-  [name]
-  (str "Hello " name "!"))
+  [s]
+  (str "Hello " s "!"))
 
 ;; Forms inside `(comment ...)` are also top level.
 
