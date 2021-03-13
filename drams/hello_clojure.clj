@@ -306,7 +306,12 @@ like this, if leading spaces are no-no."
 
   {:foo [1 2]
    :bar #{1 2}}
+  
+  ;; In Clojure we do most things with just these
+  ;; collections. Literal collections and functions.
+  )
 
+(comment
   ;; = FUNCTIONS =
   ;; So far you have been able to evaluate all examples.
   ;; It's because we quoted that list.
