@@ -5,7 +5,9 @@
 ;; 1. hello_repl.clj (this file)
 ;; 2. hello_paredit.clj
 ;; 3. hello_clojure.clj (a Beginner's Clojure Guide)
-;; 
+
+;; The first two files are for everyone new to Calva.
+
 ;; If you are new to Clojure, then all files are
 ;; for you. Please don't worry if you don't understand
 ;; the code in the first two files. They are short and
@@ -113,16 +115,22 @@
 ;; update it. Calva will not automatically evaluate
 ;; the new code, or code depending on it.
 
-;; == The Calva Debugger ==
-;; As powerful as the REPL is, Calva actually also
-;; has a debugger. The easiest way to use it is to
-;; Evaluate the function you want to debug with the
-;; command:
-;; *Instrument Current Top Level Form for Debugging*
 
 (comment
-  ;; This function has a bug. Evaluate it the usual
-  ;; way (`Alt+Enter`) first and run it.
+  ;; == The Calva Debugger ==
+  ;; As powerful as the REPL is, Calva actually also
+  ;; has a debugger. The easiest way to use it is to
+  ;; instrument a function for debugging. You do that
+  ;; by having the cursor in the function and then 
+  ;; use the command:
+  ;; *Instrument Current Top Level Form for Debugging*
+  ;; Then you call the function. This will cause the
+  ;; debugger to stop at the first breakable point in
+  ;; the instrumented function
+
+  ;; Let's try it without instrumentation first. This
+  ;; function has a bug. Evaluate it the usual way
+  ;; (`Alt+Enter`) first and then call it.
   
   (defn bar
     [n]
@@ -135,14 +143,13 @@
 
   ;; That's a strange error message (maybe you say,
   ;; depending on how familiar you are with Clojure).
-  ;; Now use the *Instrument* command to evaluate the
-  ;; function definition. Calva will indicate code
-  ;; that is instrumented for debugging. Now evaluate
-  ;; the problematic function call. The debugger might
-  ;; not work exactly as other debuggers you have used
-  ;; but it should be easy enough to figure out how to
-  ;; use it, right? Visit calva.io for more info about
-  ;; the debugger: https://calva.io/debugger/
+  ;; Now instrument the function as described above.
+  ;; Calva will indicate code that is instrumented for
+  ;; debugging. Now evaluate the problematic function
+  ;; call. The debugger will start and wait for you
+  ;; to step through the function. To un-instrument
+  ;; the function, just evaluate it the normal way.
+  ;; Debugger docs here: https://calva.io/debugger/
   )
 
 
