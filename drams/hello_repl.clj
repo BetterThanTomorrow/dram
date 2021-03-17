@@ -55,8 +55,9 @@
 ;; Try with the cursor at different places in this
 ;; code snippet:
 
-(def foo
-  [1 2 "three four"])
+(comment
+  (def foo
+    [1 2 "three four"]))
 
 ;; You might discover that Calva regards words in
 ;; strings as forms. Don't panic if `three` causes
@@ -182,6 +183,14 @@
 
 ;; (Restore with *Undo* if needed.)
 
+;; Done? Awesome. Please consider to familiarize
+;; yourself more with Paredit using the interactive
+;; guide. If you are new to Clojure, please
+;; continue with `hello_clojure.clj`, which is an
+;; interactive guide to the Clojure language.
+
+;; Have a Clojure project you want to get hook
+;; Calva up to? See: https://calva.io/connect/
 
 ;; Learn much more about Calva at https://calva.io 
 

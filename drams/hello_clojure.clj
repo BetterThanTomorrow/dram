@@ -2420,7 +2420,12 @@ to the compiler") "This is not ignored"
 
 ;; To be continued...
 
-;; partial, comp
+;; Until there's more material to read here, maybe
+;; it's time you check how to connect Calva to
+;; your Clojure/ClojureScript projects:
+;; https://calva.io/connect/
+
+;; Things on the to-write-about list:
 ;; meta-data
 ;; comments
 ;; destructuring
