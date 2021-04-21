@@ -2177,7 +2177,7 @@ to the compiler") "This is not ignored"
   (def exit-haunted
     {:name "EXIT: The Haunted Roller Coaster"
      :categories ["Family"
-                  "Coop"
+                  "Co-op"
                   "Puzzle"
                   "Cards"]
      :ratings {:pez 5

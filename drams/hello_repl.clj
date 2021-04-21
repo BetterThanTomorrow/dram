@@ -74,6 +74,41 @@
 ;; Then eval current form inside the string above
 ;; Calva sends to the REPL whatever you ask it send.
 
+;; == Evaluating in Threaded Expressions
+;; Ctrl+Alt+Enter will evaluate the current enclosing
+;; form up to the cursor. Useful in threaded
+;; expressions. Say you want to calculate the average
+;; ratings for the data below:
+
+(comment
+  ;; First you need to top-level evaluate this
+  (def colt-express
+    {:name "Colt Express"
+     :categories ["Family"
+                  "Strategy"]
+     :play-time 40
+     :ratings {:pez 5.0
+               :kat 5.0
+               :wiv 5.0
+               :vig 3.0
+               :rex 5.0
+               :lun 4.0}})
+
+  ;; And this
+  (defn average [coll]
+    (/ (apply + coll) (count coll)))
+
+  ;; This too, if you like
+  (->> colt-express
+       :ratings
+       vals
+       average)
+  ;; To see the result at each step in the thread
+  ;; You can also Ctrl+Alt+Enter after each form.
+  ;; Place the cursor after `(->> colt-express` and
+  ;; try it. Then after `:ratings`, and after `vals`.
+  )
+
 ;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
 ;; `(comment ...)` are also considered top level
@@ -131,7 +166,7 @@
   ;; Let's try it without instrumentation first. This
   ;; function has a bug. Evaluate it the usual way
   ;; (`Alt+Enter`) first and then call it.
-  
+
   (defn bar
     [n]
     (cond (> n 40) (+ n 20)
@@ -152,7 +187,6 @@
   ;; Debugger docs here: https://calva.io/debugger/
   )
 
-
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
 ;; easy and fun. Sometimes you happen to evaluate
@@ -168,25 +202,42 @@
 ;; A note about editing Clojure in Calva:
 ;; If you edit and experiment with the examples
 ;; you will notice that Calva auto-indents your
-;; code. You can also re-indent, and format, code
-;; at will, using the `tab` key.
+;; code. You can re-indent, and format, code at
+;; will, using the `Tab` key.
 
-;; More about editing:
-;; Please continue to hello_paredit.clj to learn the
-;; very basics of structural editing in Calva.
+;; There is also some help with writing blocks of
+;; line comments (like this one).
+;; Alt+Enter with the cursor in a line comment
+;; will ”continure” the comment on next line.
+;; Try it, why don't ya! 😎
+;; 
+;; There is some extra help given when Calva thinks
+;; you are typing a bulleted or numbered list.
+;; 
+;; * foo
+;; * bar
+;; 
+;; 1. CIDER 
+;; 2. Cursive
+
+;; === More about editing ===
+;; Please continue to `hello_paredit.clj` to learn
+;; the very basics of structural editing in Calva.
 ;; Here's maybe the most important thing from that
-;; guide:
-;; Paredit strict mode is active by default. 
+;; guide: _Paredit strict mode is active by default_ 
 ;; It will help you to not delete brackets that
 ;; would break the structure of the code.
 ;; Use Alt+Backspace to override.
 
-(defn strict-greet
-  "Try to remove brackets and string quotes
+(comment
+  (defn strict-greet
+    "Try to remove brackets and string quotes
    using Backspace or Delete. Try the same
    with the Alt key pressed."
-  [name]
-  (str "Strictly yours, " name "!"))
+    [name]
+    (str "Strictly yours, " name "!"))
+  
+  (strict-greet "dear Paredit fan"))
 
 ;; (Restore with *Undo* if needed.)
 
