@@ -765,6 +765,12 @@ to the compiler") "This is not ignored"
   ;; notice how available the host platform is when
   ;; coding Clojure. The same goes for
   ;; ClojureScript and for Clojure CLR.
+  
+  ;; Repeating this important resource on the Reader:
+  ;; https://clojure.org/reference/reader
+  ;; And in addition to that, read about All Those
+  ;; Weird Characters here:
+  ;; https://clojure.org/guides/weird_characters
   )
 
 (comment
