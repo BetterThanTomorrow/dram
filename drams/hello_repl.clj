@@ -1,23 +1,22 @@
 (ns hello-repl)
 
 ;; Welcome to the Getting Started REPL!
-;; There are three files for you to explore:
+;; There are three files for you to explore. For
+;; everyone new to Calva:
 ;; 1. hello_repl.clj (this file)
-;; 2. hello_paredit.clj
-;; 3. hello_clojure.clj (a Beginner's Clojure Guide)
+;; 2. hello_paredit.clj (intro to structural editing)
+;; If you are new to Clojure:
+;; 3. welcome_to_clojure.clj (a Beginner's Clojure Guide)
 
-;; The first two files are for everyone new to Calva.
-
-;; If you are new to Clojure, then all files are
-;; for you. Please don't worry if you don't understand
-;; the code in the first two files. They are short and
-;; made so that you can just follow along without the
-;; actual code making sense yet. Things will clear up
-;; once you have dug into the Clojure Guide.
+;; Please don't worry if you don't understand the code 
+;; in the first two files. They are short and made so 
+;; that you can just follow along without the actual
+;; code making sense yet. Things will clear up once 
+;; you have dug into the Clojure Guide.
 
 ;; About commands and shortcuts:
 ;; When we refer to commands by their name, use
-;; the VS Code Command palette to search for them
+;; the VS Code Command Palette to search for them
 ;; if you don't know the keyboard shortcut.
 ;; All Calva commands are prefixed with ”Calva”.
 
