@@ -1,10 +1,11 @@
-(ns hello-clojure
-  (:require [clojure.java.javadoc :refer [javadoc]]
-            [clojure.repl :refer [source apropos dir pst doc find-doc]]
+(ns welcome-to-clojure
+  (:require [clojure.repl :refer [source apropos dir pst doc find-doc]]
             [clojure.string :as string]
             [clojure.test :refer [is are]]))
 
-;; Start with loading this file
+;; Welcome to Clojure! ♥️
+
+;; Start with loading this file.
 ;; Ctrl+Alt+C Enter
 
 ;; Then evaluate this expression with Alt+Enter:
@@ -41,19 +42,22 @@
 ;; to edit the examples, and add new code
 ;; and evaluate that. Evaluate this to warm up:
 
+(comment
+  (str "Welcome"
+       " to "
+       "Clojure!"
+       " "
+       "♥️"))
+
+;; Then see what happens if you throw in some numbers
+;; here and there and evaluate again.
+
 ;; NB: This is work in progress...
 ;; When you fire up the Getting Started REPL the next
 ;; time, you will be presented with the option to
 ;; download new files or continue with the files you
 ;; have. You can also always find the latest version here:
-;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/hello_clojure.clj
-
-(str "Evaluate"
-     " and "
-     "experiment")
-
-;; Then see what happens if you throw in some numbers
-;; and evaluate that.
+;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/welcome_to_clojure.clj
 
 (comment
   ;; = EXPRESSIONS =
@@ -75,12 +79,12 @@
 
   ;; This defines a function named
   ;; `last-eval-wins`, taking no arguments, with four
-  ;; expressions in its function body. We'll return to
+  ;; expressions in its function body. (We'll return to
   ;; defining functions later.)
 
   ;; Calling the function
 
-  (last-eval-wins) ; (Just evaluate <-that 😄)
+  (last-eval-wins) ; <- Evaluate that 😄
 
   ;; will cause all four expressions in the function
   ;; body to be evaluated. The result of the call will
@@ -109,15 +113,12 @@
                   ; evaluates to the var it creates
                   ; (More on this later)
 
-  (for [x '(1 2 3)
-        y '(:a :b)] ; Calls the macro `for`
+  (for [x '(1 2 3)  ; Calls the macro `for`
+        y '(:a :b)] ; (List comprehension)
     [x y])
 
   (str 1 2 3) ; Calls the function `str` with the
               ; arguments 1, 2, and 3.
-
-
-  ;; 
   )
 
 (comment
@@ -239,7 +240,7 @@ like this, if leading spaces are no-no."
 
   hello-repl/greet
 
-  (hello-repl/greet "from the hello-clojure namespace")
+  (hello-repl/greet "from the welcome-to-clojure namespace")
 
   ;; If those throw, you need to first load
   ;; `hello_repl.clj`, or at least evaluate its `ns`
@@ -542,9 +543,8 @@ like this, if leading spaces are no-no."
   ;; Most things you would think counts as whitespace
   ;; is whitespace, and then there is also that Clojure,
   ;; being a LISP, does not need commas to separate
-  ;; list items, since whitespace is enough. However,
-  ;; Commas can be used for this, since:
-  ;; commas are whitespace!
+  ;; list items. However, commas can be used for this
+  ;; anyway, since commas are whitespace.
 
   (= '(1 2 3)
      '(1,2,3)
@@ -726,7 +726,7 @@ to the compiler") "This is not ignored"
   ;; keywords get namespaced with the current namespace
 
   ::foo
-  (= ::foo :hello-clojure/foo)
+  (= ::foo :welcome-to-clojure/foo)
 
   ;; Tagged literals, then. It's a way to invoke functions
   ;; bound to the tags on the form following it.
@@ -2463,7 +2463,7 @@ to the compiler") "This is not ignored"
 ;; https://clojuredocs.org
 ;; https://clojure.org/api/cheatsheet
 
-"File loaded. The REPL is ready to greet the world"
+"File loaded. Welcome to Clojure! ♥️"
 
 ;; This guide is downloaded from:
 ;; https://github.com/BetterThanTomorrow/dram
