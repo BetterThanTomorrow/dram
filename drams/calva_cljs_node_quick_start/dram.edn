@@ -2,4 +2,6 @@
  :files [{:path "src/hello_world/core.cljs"
           :open? true}
          {:path "deps.edn"
+          :open? false}
+         {:path ".gitignore"
           :open? false}]}
