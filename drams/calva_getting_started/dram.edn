@@ -1,5 +1,4 @@
 {:name "Getting Started REPL"
- :repl :clj
  :files [{:path "hello_repl.clj"
           :open? true}
          {:path "hello_paredit.clj"

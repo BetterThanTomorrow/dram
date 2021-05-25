@@ -1,5 +1,4 @@
 {:name "ClojureScript Quick Start"
- :repl :cljs
  :files [{:path "src/hello_world/core.cljs"
           :open? true}
          {:path "deps.edn"
