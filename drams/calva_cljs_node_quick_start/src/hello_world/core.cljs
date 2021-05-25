@@ -5,8 +5,6 @@
 (comment
   ;; Evaluate these forms by placing the cursor in them
   ;; and press Alt+Enter.
-
-  (js/alert "Hello from the REPL!")
   
   (inc 1)
   
