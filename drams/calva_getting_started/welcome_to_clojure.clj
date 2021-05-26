@@ -1858,27 +1858,23 @@ to the compiler") "This is not ignored"
 
   ;; If we were to implement the `+` function, how
   ;; could we do it? We could start by implementing
-  ;; something that adds to numbers together, then
+  ;; something that adds two numbers together, then
   ;; use it as as the reducing function with
   ;; `reduce`.
   ;; Of course, now we have the task of adding two
   ;; numbers together, without using the existing
   ;; `+` function... 🤔
-  ;; Hmmm... Dodging the bootstrapping problem,
-  ;; here's a totally insane way to do it:
-  ;; We can use JavaScript to evaluate two numbers
-  ;; joined by the string `"+"` 😜
-  ;; Let's create a JS `ScriptEngine`!
+  ;; Hmmm... Let's keep it simple and only do
+  ;; integer math. Then we can use the Java's
+  ;; `Integer.sum(x, y)` method.
 
-  (import javax.script.ScriptEngineManager)
-  (def js-engine (.getEngineByName (ScriptEngineManager.) "js"))
-  (.eval js-engine "1+1")
+  (Integer/sum 1 1)
 
   ;; Awesome, with this we can create an `add-two`
   ;; function
 
   (defn add-two [x y]
-    (.eval js-engine (str x "+" y)))
+    (Integer/sum x y))
   (add-two 1 1)
 
   ;; Unlike `+`, this one is not fully composable
@@ -1915,26 +1911,33 @@ to the compiler") "This is not ignored"
   (defn add* [& numbers]
     (reduce add-two 0 numbers))
   (add*)
+  (add* 1)
+  (add* 1 1)
   (add* 1 1 2 3)
 
   ;; BOOM.
 
+  ;; We can use it with `apply` as well:
   (apply add* [])
   (apply add* [1])
   (apply add* [1 1])
   (apply add* [1 1 2 3 5 8 13 21])
 
-  ;; Apart from the lunatic way we add two numbers
-  ;; this is very much like how `+` is implemented in
+  ;; Or `reduce`:
+  (reduce add* [])
+  (reduce add* [1])
+  (reduce add* [1 1])
+  (reduce add* [1 1 2 3 5 8 13 21])
+
+  ;; Apart from that we only handle integers, our `add*`
+  ;; is very much like how `+` is implemented in
   ;; Clojure core. Check it out (in the output window):
 
   (source +)
 
   ;; Hmmm, well, they seem to be using multi-arity
-  ;; function signatures instead, but anyway, that's
-  ;; what `reduce` does as well 😀
-
-  (source reduce)
+  ;; function signatures for the low-arity cases, probably
+  ;; because of the casting, but anyway, 😀
 
   ;; There's one more thing with `reduce` we want to
   ;; mention. When writing reducing functions you can
