@@ -18,7 +18,7 @@ That said `hello_clojure.clj` should be usable from in any REPL connected editor
 
 Fork the repo, jack-in, fix stuff while you test it interactively. Send PRs.
 
-See the *drams* directory for the files.
+See the *drams* directory for the files. Make sure to edit the files inside the appropriate subdirectories of `drams` and not the files at the top level of `drams`.
 
 ## Definitions
 <dl>
