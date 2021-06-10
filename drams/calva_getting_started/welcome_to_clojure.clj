@@ -1863,7 +1863,17 @@ to the compiler") "This is not ignored"
   ;; `reduce`.
   ;; Of course, now we have the task of adding two
   ;; numbers together, without using the existing
-  ;; `+` function... 🤔
+  ;; `+` function... 🤔 SICP has this one, using
+  ;; Piano Arithmetics
+  ;; https://youtu.be/V_7mmwpgJHU?t=814
+  ;; https://en.wikipedia.org/wiki/Peano_axioms#Addition
+
+  (defn plus [x y]
+    (if (zero? x)
+      y
+      (plus (dec x) (inc y))))
+  
+  ;; But there are too many cases not handled here...
   ;; Hmmm... Let's keep it simple and only do
   ;; integer math. Then we can use the Java's
   ;; `Integer.sum(x, y)` method.
