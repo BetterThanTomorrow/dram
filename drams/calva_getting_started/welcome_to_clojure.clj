@@ -1864,7 +1864,7 @@ to the compiler") "This is not ignored"
   ;; Of course, now we have the task of adding two
   ;; numbers together, without using the existing
   ;; `+` function... 🤔 SICP has this one, using
-  ;; Piano Arithmetics
+  ;; Peano Arithmetics
   ;; https://youtu.be/V_7mmwpgJHU?t=814
   ;; https://en.wikipedia.org/wiki/Peano_axioms#Addition
 
@@ -1875,7 +1875,7 @@ to the compiler") "This is not ignored"
   
   ;; But there are too many cases not handled here...
   ;; Hmmm... Let's keep it simple and only do
-  ;; integer math. Then we can use the Java's
+  ;; integer math. Then we can use Java's
   ;; `Integer.sum(x, y)` method.
 
   (Integer/sum 1 1)
