@@ -20,6 +20,10 @@
 ;; See https://calva.io/paredit for much
 ;; more than we show here.
 
+;; IMPORTANT: There is an open issue where the Command 
+;; Palette shows keyboard shortcuts for other OS (MacOS)
+;; https://github.com/BetterThanTomorrow/calva/issues/1161
+
 ;; Alt+Enter this one
 
 (->> ["I" "💖" "Paredit"]
