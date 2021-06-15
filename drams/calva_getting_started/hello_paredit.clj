@@ -20,10 +20,6 @@
 ;; See https://calva.io/paredit for much
 ;; more than we show here.
 
-;; IMPORTANT: There is an open issue where the Command 
-;; Palette shows keyboard shortcuts for other OS (MacOS)
-;; https://github.com/BetterThanTomorrow/calva/issues/1161
-
 ;; Alt+Enter this one
 
 (->> ["I" "💖" "Paredit"]
@@ -65,6 +61,9 @@
 ;; == Navigate the Structure ==
 ;; Move form-by-form using *Paredit Sexp Forward*
 ;; and *Paredit Sexp Backward*
+
+;; Note: For Mac it is alt+right/left and
+;; for Windows and Linux it is ctrl+ right/left
 
 (def move
   [{:zero 0}
