@@ -62,6 +62,10 @@
 ;; Move form-by-form using *Paredit Sexp Forward*
 ;; and *Paredit Sexp Backward*
 
+;; Note: Despite what the command palette is showing, the
+;; Keyboard shortcuts for For Mac are alt+right/left and
+;; for Windows and Linux they are ctrl+right/left
+;; See https://github.com/BetterThanTomorrow/calva/issues/1161
 (def move
   [{:zero 0}
    1 2 3

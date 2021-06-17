@@ -62,6 +62,9 @@
 ;; Move form-by-form using *Paredit Sexp Forward*
 ;; and *Paredit Sexp Backward*
 
+;; Note: For Mac it is alt+right/left and
+;; for Windows and Linux it is ctrl+ right/left
+
 (def move
   [{:zero 0}
    1 2 3
