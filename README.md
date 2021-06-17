@@ -8,17 +8,15 @@ The first sips of [Calva](https://calva.io), [Clojure](https://clojure.org), [Pa
 
 This is a repository for **Getting Started** files for Calva. 
 
-*NB: This feature is not yet released.* Check out [this pull request](https://github.com/BetterThanTomorrow/calva/pull/1041) to build a version of Calva with the feature included. (Or pick up the VSIX from Circle CI.)
+See: https://calva.io/getting-started/
 
-That said `hello_clojure.clj` should be usable from in any REPL connected editor.
-
-![Hello Clojure](hello_clojure.png)
+![Welcoe to Clojure](hello_clojure.png)
 
 ## How to Contribute
 
 Fork the repo, jack-in, fix stuff while you test it interactively. Send PRs.
 
-See the *drams* directory for the files.
+See the *drams* directory for the files. Make sure to edit the files inside the appropriate subdirectories of `drams` and not the files at the top level of `drams`.
 
 ## Definitions
 <dl>
