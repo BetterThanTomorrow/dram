@@ -88,7 +88,7 @@
      :play-time 40
      :ratings {:pez 5.0
                :kat 5.0
-               :wiv 5.0
+               :wiw 5.0
                :vig 3.0
                :rex 5.0
                :lun 4.0}})
@@ -149,42 +149,6 @@
 ;; update it. Calva will not automatically evaluate
 ;; the new code, or code depending on it.
 
-
-(comment
-  ;; == The Calva Debugger ==
-  ;; As powerful as the REPL is, Calva actually also
-  ;; has a debugger. The easiest way to use it is to
-  ;; instrument a function for debugging. You do that
-  ;; by having the cursor in the function and then 
-  ;; use the command:
-  ;; *Instrument Current Top Level Form for Debugging*
-  ;; Then you call the function. This will cause the
-  ;; debugger to stop at the first breakable point in
-  ;; the instrumented function
-
-  ;; Let's try it without instrumentation first. This
-  ;; function has a bug. Evaluate it the usual way
-  ;; (`Alt+Enter`) first and then call it.
-
-  (defn bar
-    [n]
-    (cond (> n 40) (+ n 20)
-          (> n 20) (- (first n) 20)
-          :else 0))
-
-  (bar 2)  ; works
-  (bar 24) ; throws, what's going on?
-
-  ;; That's a strange error message (maybe you say,
-  ;; depending on how familiar you are with Clojure).
-  ;; Now instrument the function as described above.
-  ;; Calva will indicate code that is instrumented for
-  ;; debugging. Now evaluate the problematic function
-  ;; call. The debugger will start and wait for you
-  ;; to step through the function. To un-instrument
-  ;; the function, just evaluate it the normal way.
-  ;; Debugger docs here: https://calva.io/debugger/
-  )
 
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
