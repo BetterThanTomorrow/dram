@@ -59,8 +59,8 @@
 ;; There is also *Paredit Shrink Selection*
 
 ;; == Navigate the Structure ==
-;; Move form-by-form using *Paredit Sexp Forward*
-;; and *Paredit Sexp Backward*
+;; Move form-by-form using *Paredit Forward Sexp*
+;; and *Paredit Backward Sexp*
 ;; Note: Despite what the command palette is showing, the
 ;; Keyboard shortcuts for For Mac are alt+right/left and
 ;; for Windows and Linux they are ctrl+right/left
