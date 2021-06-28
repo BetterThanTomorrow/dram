@@ -613,7 +613,7 @@ like this, if leading spaces are no-no."
   (type (deref an-atom))
 
   ;; Again, `deref` is used for dereferencing a lot
-  ;; different reference types, including futures,
+  ;; of different reference types, including futures,
   ;; https://clojure.org/reference/refs
   ;; https://clojure.org/about/concurrent_programming
 
