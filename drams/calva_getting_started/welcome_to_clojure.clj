@@ -1128,7 +1128,7 @@ to the compiler") "This is not ignored"
   ;;    to something true (truthy)
   ;; 3. The form to evaluate if the condition does not
   ;;    evaluate to something truthy (the ”else” branch)
-  ;; Roll this dice, some ten-twenty times, checking if
+  ;; Roll this die, some ten-twenty times, checking if
   ;; it is a six:
 
   (if (= 6 (inc (rand-int 6)))
