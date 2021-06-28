@@ -689,7 +689,7 @@ like this, if leading spaces are no-no."
 to the compiler") "This is not ignored"
 
   ;; To test this select the ignore marker together with
-  ;; the function call and the string, then use Ctrl+Enter,
+  ;; the function call and the string, then use Alt+Enter,
   ;; to make Calva send it all to the Reader, which will
   ;; read it, ignore the function call, and only evaluate
   ;; the string.
