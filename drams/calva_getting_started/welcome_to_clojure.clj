@@ -736,9 +736,8 @@ to the compiler") "This is not ignored"
   ;; define your own. Here let it suffice with mentioning
   ;; the two build in ones.
 
-  ;; #inst will convert the string it tags to an instance.
-  ;; (I.e. an instance in time, not an instance in the
-  ;; Object Orientation sense of the word.)
+  ;; #inst will convert the string it tags to an instant.
+  ;; (I.e. a moment in time)
 
   #inst "2018-03-28T10:48:00.000"
   (type *1)
