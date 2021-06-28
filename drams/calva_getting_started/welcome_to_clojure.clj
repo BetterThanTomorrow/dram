@@ -155,7 +155,7 @@
                   ; in current namespace
 
   ;; == KEYWORDS ==
-  ;; Keywords are start with a `:`. They are a thing
+  ;; Keywords start with a `:`. They are a thing
   ;; in themselves, often used as identifiers and as
   ;; keys in maps (more on maps later). Keywords are
   ;; very memory and speed efficient. 
