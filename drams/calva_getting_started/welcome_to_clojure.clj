@@ -202,7 +202,7 @@ like this, if leading spaces are no-no."
 
 (comment
   ;; = NAMESPACES =
-  ;; Important as namespaces are, we won't dwell on
+  ;; As important as namespaces are, we won't dwell on
   ;; the subject very much in this guide. The official
   ;; docs make them the best justice:
   ;; https://clojure.org/reference/namespaces
