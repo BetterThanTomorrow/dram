@@ -631,9 +631,10 @@ like this, if leading spaces are no-no."
 
   ;; === THE DISPATCHER (HASH SIGN) ===
   ;; That hash sign shows up now and then. It has a
-  ;; special role. It is aka Dispatch. Depending on
-  ;; what character is following it, different cool
-  ;; things happen. Here follows some common ones:
+  ;; special role. It is also known as Dispatch. 
+  ;; Depending on what character is following it, 
+  ;; different cool things happen. Some cool ones 
+  ;; follow here:
 
   ;; Regular expressions have literal syntax, they are
   ;; written like strings, but with a hash sign in front
