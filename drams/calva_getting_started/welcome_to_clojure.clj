@@ -218,7 +218,7 @@ like this, if leading spaces are no-no."
   ;; Also know that there is such a thing as the
   ;; current namespace. (A bit like the current working
   ;; directory in the shell.) When you evaluated the
-  ;; `def` form above, you'll saw where `foo-2` got
+  ;; `def` form above, you saw where `foo-2` got
   ;; defined.
 
   ;; When evaluating a symbol from any namespace it
