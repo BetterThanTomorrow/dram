@@ -113,7 +113,7 @@
   )
 
 ;; == Evaluating Top Level Form to Cursor
-;; Ctrl+Shift+Alt+Enter will evaluate all code from
+;; Shift+Alt+Enter will evaluate all code from
 ;; the start of the current top level form, up until
 ;; the cursor, with all open brackets closed.
 ;; Try it by repeating the above example, but start
@@ -121,20 +121,37 @@
 ;; `:wiw 5.0`, then evaluating top level to cursor.
 
 (comment
-  ;; Also try evaluating top level to cursor after
-  ;; each step in the thread below.
+  ;; The command is useful when evaluating a block of
+  ;; code up to a point. You might for instance wrap
+  ;; some code in a `(do ...)` and then use the
+  ;; *Evaluate From Start of Top Level Form to Cursor*
+  ;; command at different places to examine the code.
+  ;; Try it at the numbered line comment below.
+  (do
+    (def bar-express
+      {:name "Bar Express"
+       :categories ["Family"
+                    "Strategy"]
+       :play-time 40
+       :ratings {:pez 5.0
+                 :kat 5.0
+                 :wiw 5.0   ; 1, then eval `bar-express`
+                 :vig 3.0
+                 :rex 5.0
+                 :lun 4.0}})
 
-  (let [foo-express (assoc-in colt-express
-                              [:ratings :vig]
-                              5.0)]
-    (->> foo-express
-         :ratings
-         vals
-         (apply +)))
-  
-  ;; This technique makes Rich Comments exploration 
-  ;; extra convenient.
-  )
+    (defn average [coll]
+      (/ (apply + coll) (count coll)))
+
+    (let [foo-express (-> bar-express
+                          (assoc :name "Foo Express")
+                          (assoc-in [:ratings :lyr] 5.0)
+                          (update-in [:ratings :vig] inc))]
+      (->> foo-express   ; 2
+           :ratings      ; 3
+           vals          ; 4
+           average       ; 5
+           ))))
 
 ;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
