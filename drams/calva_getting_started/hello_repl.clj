@@ -173,19 +173,18 @@
 ;; update it. Calva will not automatically evaluate
 ;; the new code, or code depending on it.
 
+;; == The Calva Debugger ==
+;; As powerful as the REPL is, Calva actually also
+;; has a debugger. The easiest way to use it is to
+;; instrument a function for debugging. You do that
+;; by having the cursor in the function and then 
+;; use the command:
+;; *Instrument Current Top Level Form for Debugging*
+;; Then you call the function. This will cause the
+;; debugger to stop at the first breakable point in
+;; the instrumented function
 
 (comment
-  ;; == The Calva Debugger ==
-  ;; As powerful as the REPL is, Calva actually also
-  ;; has a debugger. The easiest way to use it is to
-  ;; instrument a function for debugging. You do that
-  ;; by having the cursor in the function and then 
-  ;; use the command:
-  ;; *Instrument Current Top Level Form for Debugging*
-  ;; Then you call the function. This will cause the
-  ;; debugger to stop at the first breakable point in
-  ;; the instrumented function
-
   ;; Let's try it without instrumentation first. This
   ;; function has a bug. Evaluate it the usual way
   ;; (`Alt+Enter`) first and then call it.
@@ -205,8 +204,16 @@
   ;; Calva will indicate code that is instrumented for
   ;; debugging. Now evaluate the problematic function
   ;; call. The debugger will start and wait for you
-  ;; to step through the function. To un-instrument
-  ;; the function, just evaluate it the normal way.
+  ;; to step through the function.
+  ;;
+  ;; PLEASE NOTE: There is currently a bug making this
+  ;; stepping less convenient than it should be, you
+  ;; will need to select the top stack frame in order
+  ;; to step. See:
+  ;; https://github.com/BetterThanTomorrow/calva/issues/1210
+  ;;
+  ;; To un-instrument the function, just evaluate it
+  ;; the normal way (top level evaluation).
   ;; Debugger docs here: https://calva.io/debugger/
   )
 
