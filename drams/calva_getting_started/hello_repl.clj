@@ -174,8 +174,8 @@
 ;; the new code, or code depending on it.
 
 ;; == The Calva Debugger ==
-;; As powerful as the REPL is, Calva actually also
-;; has a debugger. The easiest way to use it is to
+;; https://calva.io/debugger/
+;; The easiest way to use it is to
 ;; instrument a function for debugging. You do that
 ;; by having the cursor in the function and then 
 ;; use the command:
@@ -215,6 +215,14 @@
   ;; To un-instrument the function, just evaluate it
   ;; the normal way (top level evaluation).
   ;; Debugger docs here: https://calva.io/debugger/
+
+  ;; NB: If you are new to Clojure you might find some
+  ;; familiarity noting that Calva has a debugger.
+  ;; However, try exploring Interactive Programming,
+  ;; using the REPL first. That's the Clojure Way.
+  ;; This section is here for you to get aware that
+  ;; the debugger exists, for those rare occasions
+  ;; when it is actually needed.
   )
 
 ;; == Stopping Infinite Loops ==
