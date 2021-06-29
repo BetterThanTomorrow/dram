@@ -1494,7 +1494,7 @@ to the compiler") "This is not ignored"
                 {:x 4 :y 6})
 
   ;; What if the requirements were that if the
-  ;; function is called with ne argument it should
+  ;; function is called with one argument it should
   ;; add it to the origin? (See what I did there?
   ;; The identity value is where the function
   ;; should start, so start from the origin. 😎)
