@@ -1358,7 +1358,7 @@ to the compiler") "This is not ignored"
 (comment
   ;; = Functions =
   ;; Before diving into higher order functions, let's
-  ;; look at functions.Functions are first class
+  ;; look at functions. Functions are first class
   ;; Clojure citizens and the main building blocks for
   ;; solving your business problems. 
 
