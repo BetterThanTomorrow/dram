@@ -15,6 +15,8 @@
 ;; you have dug into the Clojure Guide.
 
 ;; About commands and shortcuts:
+;; Please read https://calva.io/finding-commands/
+;; (It's very short.)
 ;; When we refer to commands by their name, use
 ;; the VS Code Command Palette to search for them
 ;; if you don't know the keyboard shortcut.
@@ -32,7 +34,9 @@
   [s]
   (str "Hello " s "!"))
 
-;; Forms inside `(comment ...)` are also top level.
+;; Forms inside `(comment ...)` are also considered
+;; to be top level. This makes it easy to experiment
+;; with code.
 
 (comment
   (greet "World"))
@@ -88,7 +92,7 @@
      :play-time 40
      :ratings {:pez 5.0
                :kat 5.0
-               :wiv 5.0
+               :wiw 5.0
                :vig 3.0
                :rex 5.0
                :lun 4.0}})
@@ -107,6 +111,26 @@
   ;; Place the cursor after `(->> colt-express` and
   ;; try it. Then after `:ratings`, and after `vals`.
   )
+
+;; == Evaluating Top Level Form to Cursor
+;; Ctrl+Shift+Alt+Enter will evaluate all code from
+;; the start of the current top level form, up until
+;; the cursor, with all open brackets closed.
+;; Try it by repeating the above example, but start
+;; with placing the cursor at, say, right behind
+;; `:wiw 5.0`, then evaluating top level to cursor.
+
+(comment
+  ;; Also try evaluating top level to cursor after
+  ;; each step in the thread below.
+
+  (let [foo-express (assoc-in colt-express
+                              [:ratings :vig]
+                              5.0)]
+    (->> foo-express
+         :ratings
+         vals
+         (apply +))))
 
 ;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
