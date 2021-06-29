@@ -1434,7 +1434,7 @@ to the compiler") "This is not ignored"
 
   ;; It is easy enough to spot like this and also to
   ;; wonder why you would ever write a function that
-  ;; way. Yet you probably will do this mistake,
+  ;; way. Yet you probably will make this mistake,
   ;; especially if you ever write some Hiccup, which
   ;; is a super nice way of writing HTML with Clojure
   ;; data structures. It's used by the popular Reagent
