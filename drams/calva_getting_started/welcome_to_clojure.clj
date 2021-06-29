@@ -155,7 +155,7 @@
                   ; in current namespace
 
   ;; == KEYWORDS ==
-  ;; Keywords are start with a `:`. They are a thing
+  ;; Keywords start with a `:`. They are a thing
   ;; in themselves, often used as identifiers and as
   ;; keys in maps (more on maps later). Keywords are
   ;; very memory and speed efficient. 
@@ -202,7 +202,7 @@ like this, if leading spaces are no-no."
 
 (comment
   ;; = NAMESPACES =
-  ;; Important as namespaces are, we won't dwell on
+  ;; As important as namespaces are, we won't dwell on
   ;; the subject very much in this guide. The official
   ;; docs make them the best justice:
   ;; https://clojure.org/reference/namespaces
@@ -218,7 +218,7 @@ like this, if leading spaces are no-no."
   ;; Also know that there is such a thing as the
   ;; current namespace. (A bit like the current working
   ;; directory in the shell.) When you evaluated the
-  ;; `def` form above, you'll saw where `foo-2` got
+  ;; `def` form above, you saw where `foo-2` got
   ;; defined.
 
   ;; When evaluating a symbol from any namespace it
@@ -613,7 +613,7 @@ like this, if leading spaces are no-no."
   (type (deref an-atom))
 
   ;; Again, `deref` is used for dereferencing a lot
-  ;; different reference types, including futures,
+  ;; of different reference types, including futures,
   ;; https://clojure.org/reference/refs
   ;; https://clojure.org/about/concurrent_programming
 
@@ -631,9 +631,10 @@ like this, if leading spaces are no-no."
 
   ;; === THE DISPATCHER (HASH SIGN) ===
   ;; That hash sign shows up now and then. It has a
-  ;; special role. It is aka Dispatch. Depending on
-  ;; what character is following it, different cool
-  ;; things happen. Here follows some common ones:
+  ;; special role. It is also known as Dispatch. 
+  ;; Depending on what character is following it, 
+  ;; different cool things happen. Some cool ones 
+  ;; follow here:
 
   ;; Regular expressions have literal syntax, they are
   ;; written like strings, but with a hash sign in front
@@ -688,7 +689,7 @@ like this, if leading spaces are no-no."
 to the compiler") "This is not ignored"
 
   ;; To test this select the ignore marker together with
-  ;; the function call and the string, then use Ctrl+Enter,
+  ;; the function call and the string, then use Alt+Enter,
   ;; to make Calva send it all to the Reader, which will
   ;; read it, ignore the function call, and only evaluate
   ;; the string.
@@ -735,9 +736,8 @@ to the compiler") "This is not ignored"
   ;; define your own. Here let it suffice with mentioning
   ;; the two build in ones.
 
-  ;; #inst will convert the string it tags to an instance.
-  ;; (I.e. an instance in time, not an instance in the
-  ;; Object Orientation sense of the word.)
+  ;; #inst will convert the string it tags to an instant.
+  ;; (I.e. a moment in time)
 
   #inst "2018-03-28T10:48:00.000"
   (type *1)
@@ -1128,7 +1128,7 @@ to the compiler") "This is not ignored"
   ;;    to something true (truthy)
   ;; 3. The form to evaluate if the condition does not
   ;;    evaluate to something truthy (the ”else” branch)
-  ;; Roll this dice, some ten-twenty times, checking if
+  ;; Roll this die, some ten-twenty times, checking if
   ;; it is a six:
 
   (if (= 6 (inc (rand-int 6)))
