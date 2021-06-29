@@ -1358,7 +1358,7 @@ to the compiler") "This is not ignored"
 (comment
   ;; = Functions =
   ;; Before diving into higher order functions, let's
-  ;; look at functions.Functions are first class
+  ;; look at functions. Functions are first class
   ;; Clojure citizens and the main building blocks for
   ;; solving your business problems. 
 
@@ -1434,7 +1434,7 @@ to the compiler") "This is not ignored"
 
   ;; It is easy enough to spot like this and also to
   ;; wonder why you would ever write a function that
-  ;; way. Yet you probably will do this mistake,
+  ;; way. Yet you probably will make this mistake,
   ;; especially if you ever write some Hiccup, which
   ;; is a super nice way of writing HTML with Clojure
   ;; data structures. It's used by the popular Reagent
@@ -1494,7 +1494,7 @@ to the compiler") "This is not ignored"
                 {:x 4 :y 6})
 
   ;; What if the requirements were that if the
-  ;; function is called with ne argument it should
+  ;; function is called with one argument it should
   ;; add it to the origin? (See what I did there?
   ;; The identity value is where the function
   ;; should start, so start from the origin. 😎)
