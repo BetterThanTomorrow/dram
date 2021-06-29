@@ -130,7 +130,11 @@
     (->> foo-express
          :ratings
          vals
-         (apply +))))
+         (apply +)))
+  
+  ;; This technique makes Rich Comments exploration 
+  ;; extra convenient.
+  )
 
 ;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
