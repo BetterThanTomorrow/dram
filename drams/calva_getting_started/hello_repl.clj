@@ -66,7 +66,7 @@
 
 ;; You might discover that Calva regards words in
 ;; strings as forms. Don't panic if `three` causes
-;; en evacuation error. It is not defined, since
+;; an evaluation error. It is not defined, since
 ;; it shouldn't be. You can define it, of course,
 ;; just for fun and learning: Top level eval these 
 
@@ -249,7 +249,7 @@
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
 ;; easy and fun. Sometimes you happen to evaluate
-;; something that never finishes, or takes to long
+;; something that never finishes, or takes too long
 ;; to finish. For this, Calva has a command named
 ;; *Interrupt Running Evaluations*. You will need
 ;; it if you top-level evaluate this:
