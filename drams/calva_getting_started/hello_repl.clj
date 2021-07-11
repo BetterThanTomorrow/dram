@@ -248,7 +248,7 @@
 
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
-;; easy and fun. Sometimes you happen to evaluate
+;; easy and fun, sometimes you happen to evaluate
 ;; something that never finishes, or takes too long
 ;; to finish. For this, Calva has a command named
 ;; *Interrupt Running Evaluations*. You will need
@@ -267,7 +267,7 @@
 ;; There is also some help with writing blocks of
 ;; line comments (like this one).
 ;; Alt+Enter with the cursor in a line comment
-;; will ”continure” the comment on next line.
+;; will ”continue” the comment on next line.
 ;; Try it, why don't ya! 😎
 ;; 
 ;; There is some extra help given when Calva thinks
