@@ -1,6 +1,71 @@
 (ns hello-repl)
 
-;; Welcome to the Getting Started REPL!
+"Welcome to the Getting Started REPL! 💜"
+
+;; Once you see a message in the output/REPL window ->
+;; saying that this file is loaded, you can start by
+;; placing the cursor anywhere on line 3 and press
+;; `Alt+Enter`. (`Option+Enter` on some machines.)
+
+;; Did it? Great!
+;; See that `=> "Welcome ...` at the end of the line?
+;; That's the result of the evaluation you just
+;; performed. Yes, you just used the Clojure REPL!
+;; 🎉 Congratulations! 🎂
+
+(comment
+  ;; You can evaluate the below string the same way
+
+  "Hello World again!"
+
+  ;; You are in a 'Rich Comment Form' which is where
+  ;; we Clojurians most often develop new code.
+  ;; https://calva.io/rich-comments/
+
+  ;; Evaluate the following form too, while at it (you can
+  ;; place the cursor anywhere on any of the two lines):
+
+  (repeat 7
+          "I am using the REPL! 💪")
+
+  ;; Only `=> ("I am using the REPL! 💪"` is displayed
+  ;; inline. You can see the full result, and also copy
+  ;; it, if you hover the evaluated expression. Or press
+  ;; `Ctrl+K Ctrl+I` (Win/Linux), `Cmd+K Cmd+I` (Mac).
+
+  ;; Let's get into the mood for real. 😂
+  ;; The cursor on any of the five code lines below:
+  ;; `Alt+Enter`, then `Cmd+K Cmd+I`.
+
+  (map (fn [s]
+         (if (< (count s) 5)
+           (str "Give me " s "! ~•~ " (last s) "!")
+           s))
+       ["an R" "an E" "a  P" "an L" "What do you get?" "REPL!"])
+
+  ;; (Clear the inline display with `Esc`.)
+
+  ;; You might notice that the output/REPL window ->
+  ;; is also displaying the results. Depending on your
+  ;; preferences you might want to close that window or move
+  ;; it to the same editor group (unsplit) as the files you
+  ;; edit. But don't do that just yet, get a feel how how
+  ;; it works having it in a split pane first.
+
+  ;; BTW. That output/REPL window ->
+  ;; You can evaluate code from its prompt too.
+  ;; But the cool peeps do not do that very often.
+  ;; Because the REPL lives in the files with the application
+  ;; code! And because Rich Comment Forms (RCF).
+  ;; It is Interactive Programming, and it is 💪.
+  )
+
+
+
+;;
+;; = HOW THIS GUIDE WORKS =
+;;
+
 ;; There are three files for you to explore. For
 ;; everyone new to Calva:
 ;; 1. hello_repl.clj (this file)
@@ -26,8 +91,8 @@
 ;; Alt+Enter is the Calva default keyboard shortcut
 ;; to evaluate the current ”top level” forms. Top
 ;; level meaning the outermost ”container” of forms, 
-;; which is the file. Place the cursor anywhere
-;; inside this function to give it a try.
+;; which is the file. This function defintion is on
+;; the top level. Please evaluate it!
 
 (defn greet
   "I'll greet you"
@@ -41,11 +106,6 @@
 (comment
   (greet "World"))
 
-;; You should see "Hello World!" displayed inline,
-;; and also printed to the `output.calva-repl` editor,
-;; aka ”The Output Window”, aka ”The REPL Window”.
-;; To clear inline results display, press `ESC`.
-
 ;; Anything printed to stdout is not shown inline.
 
 (comment
@@ -57,7 +117,7 @@
 
 ;; == Evaluating the Current Form ==
 ;; Ctrl+Enter evaluates the ”current” form
-;; Try with the cursor at different places in this
+;; Try it with the cursor at different places in this
 ;; code snippet:
 
 (comment
@@ -68,14 +128,16 @@
 ;; strings as forms. Don't panic if `three` causes
 ;; en evacuation error. It is not defined, since
 ;; it shouldn't be. You can define it, of course,
-;; just for fun and learning: Top level eval these 
+;; just for fun and learning: Top level eval these
+;; two definitions.
 
 (comment
   (def three 3)
   (def four "four"))
 
-;; Then eval current form inside the string above
-;; Calva sends to the REPL whatever you ask it send.
+;; Then eval current form inside the string above.
+;; Whatever you ask Calva to send to the REPL, Calva
+;; will send to the REPL.
 
 ;; == Evaluating in Threaded Expressions
 ;; Ctrl+Alt+Enter will evaluate the current enclosing
@@ -106,6 +168,7 @@
        :ratings
        vals
        average)
+  
   ;; To see the result at each step in the thread
   ;; You can also Ctrl+Alt+Enter after each form.
   ;; Place the cursor after `(->> colt-express` and
@@ -127,6 +190,11 @@
   ;; *Evaluate From Start of Top Level Form to Cursor*
   ;; command at different places to examine the code.
   ;; Try it at the numbered line comment below.
+
+  ; But first top-level eval this one
+  (defn average [coll]
+    (/ (apply + coll) (count coll)))
+  
   (do
     (def bar-express
       {:name "Bar Express"
@@ -140,9 +208,6 @@
                  :rex 5.0
                  :lun 4.0}})
 
-    (defn average [coll]
-      (/ (apply + coll) (count coll)))
-
     (let [foo-express (-> bar-express
                           (assoc :name "Foo Express")
                           (assoc-in [:ratings :lyr] 5.0)
@@ -150,7 +215,9 @@
       (->> foo-express   ; 2
            :ratings      ; 3
            vals          ; 4
-           average       ; 5
+           (average)     ; 5 (If this blows up you need to
+                         ;   top level eval the `average`
+                         ;   function definition.)
            ))))
 
 ;; == Rich Comments Support ==
@@ -176,19 +243,20 @@
 
   (Math/abs -1)
   (greet "Calva REPL")
-  (range 10))
+  (range 10)
 
-;; Google Rich Comments, if you are new
-;; to this style of coding.
+  ;; https://calva.io/rich-comments/
+
+  )
 
 ;; == You Control what is Evaluated ==
 ;; Please note that Calva never evaluates your code
 ;; unless you explicitly ask for it. So, except for
 ;; this file, you will have to load files you open
 ;; yourself. Make it a habit to do this, because
-;; sometimes things don't work in peculiar ways when
-;; your file is not loaded.
-;; Try with this file: `Ctrl+Alt+C Enter`.
+;; sometimes things don't work, and they fail in 
+;; peculiar ways, when your file is not loaded.
+;; Try it with this file: `Ctrl+Alt+C Enter`.
 
 ;; Also, once you have evaluated a form and then
 ;; update it. Calva will not automatically evaluate
