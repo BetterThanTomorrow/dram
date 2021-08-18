@@ -16,7 +16,7 @@
 (comment
   ;; You can evaluate the below string the same way
 
-  "Hello World again!"
+  "Hello World!"
 
   ;; You are in a 'Rich Comment Form' which is where
   ;; we Clojurians most often develop new code.
