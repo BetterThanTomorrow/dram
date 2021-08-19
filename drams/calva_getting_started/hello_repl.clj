@@ -228,26 +228,30 @@
 
 (comment
   "I ♥️ Clojure"
+
   (greet "World")
+
   foo
 
-  ;; Also try the commands *Show Hover*,
-  ;; *Show Definition Preview Hover*
-  ;; *Go to Definition*  
+  (range 10)
 
+  ;; https://calva.io/rich-comments/
+  )
+  
+
+;; Also try the commands *Show Hover*,
+;; *Show Definition Preview Hover*
+;; *Go to Definition*  
+
+(comment
   (println (greet "side effect"))
   (+ (* 2 2)
      2)
 
   ;; Here too, if you have Java sources installed
-
   (Math/abs -1)
-  (greet "Calva REPL")
-  (range 10)
-
-  ;; https://calva.io/rich-comments/
-
   )
+
 
 ;; == You Control what is Evaluated ==
 ;; Please note that Calva never evaluates your code
@@ -294,12 +298,6 @@
   ;; debugging. Now evaluate the problematic function
   ;; call. The debugger will start and wait for you
   ;; to step through the function.
-  ;;
-  ;; PLEASE NOTE: There is currently a bug making this
-  ;; stepping less convenient than it should be, you
-  ;; will need to select the top stack frame in order
-  ;; to step. See:
-  ;; https://github.com/BetterThanTomorrow/calva/issues/1210
   ;;
   ;; To un-instrument the function, just evaluate it
   ;; the normal way (top level evaluation).
