@@ -119,6 +119,13 @@
 
   (str 1 2 3) ; Calls the function `str` with the
               ; arguments 1, 2, and 3.
+
+  ;; Only functions can be passed as values
+
+  (map str [:foo :bar])    ; works
+  (map for [:foo :bar])    ; can't take value of a macro
+  (map def [:foo :bar])    ; def is not even a symbol
+
   )
 
 (comment
