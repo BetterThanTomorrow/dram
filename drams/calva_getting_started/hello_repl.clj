@@ -215,14 +215,22 @@
 ;; You can re-indent, and format, code at will, using
 ;; the `Tab` key. It will format the current enclosing
 ;; form. Try it at the numbered places in this piece
-;; of code, starting at `1`:
+;; of code, starting at `; 1`:
 
 (comment ; 3
+     (defn- divisible
+           "Is `n` divisible by `d`?"
+[n d]
+(zero? (mod n d)
+           )
+       
+  )
+  
        (defn fizz-buzz [n] ; 2
                        (cond ; 1
-(divizable? n (* 5 3)) "FizzBuzz"
-         (divizable? n 5)       "Buzz"
-              (divizable? n 3)       "Fizz"
+(divisible n (* 5 3)) "FizzBuzz"
+                      (divisible n 5)       "Buzz"
+              (divisible n 3)       "Fizz"
   :else                  n))
                                )
 
