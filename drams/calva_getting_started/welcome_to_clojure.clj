@@ -119,6 +119,13 @@
 
   (str 1 2 3) ; Calls the function `str` with the
               ; arguments 1, 2, and 3.
+
+  ;; Only functions can be passed as values
+
+  (map str [:foo :bar])    ; works
+  (map for [:foo :bar])    ; can't take value of a macro
+  (map def [:foo :bar])    ; def is not even a symbol
+
   )
 
 (comment
@@ -1358,7 +1365,7 @@ to the compiler") "This is not ignored"
 (comment
   ;; = Functions =
   ;; Before diving into higher order functions, let's
-  ;; look at functions.Functions are first class
+  ;; look at functions. Functions are first class
   ;; Clojure citizens and the main building blocks for
   ;; solving your business problems. 
 
@@ -1434,7 +1441,7 @@ to the compiler") "This is not ignored"
 
   ;; It is easy enough to spot like this and also to
   ;; wonder why you would ever write a function that
-  ;; way. Yet you probably will do this mistake,
+  ;; way. Yet you probably will make this mistake,
   ;; especially if you ever write some Hiccup, which
   ;; is a super nice way of writing HTML with Clojure
   ;; data structures. It's used by the popular Reagent
@@ -1494,7 +1501,7 @@ to the compiler") "This is not ignored"
                 {:x 4 :y 6})
 
   ;; What if the requirements were that if the
-  ;; function is called with ne argument it should
+  ;; function is called with one argument it should
   ;; add it to the origin? (See what I did there?
   ;; The identity value is where the function
   ;; should start, so start from the origin. 😎)
@@ -1863,9 +1870,19 @@ to the compiler") "This is not ignored"
   ;; `reduce`.
   ;; Of course, now we have the task of adding two
   ;; numbers together, without using the existing
-  ;; `+` function... 🤔
+  ;; `+` function... 🤔 SICP has this one, using
+  ;; Peano Arithmetics
+  ;; https://youtu.be/V_7mmwpgJHU?t=814
+  ;; https://en.wikipedia.org/wiki/Peano_axioms#Addition
+
+  (defn plus [x y]
+    (if (zero? x)
+      y
+      (plus (dec x) (inc y))))
+  
+  ;; But there are too many cases not handled here...
   ;; Hmmm... Let's keep it simple and only do
-  ;; integer math. Then we can use the Java's
+  ;; integer math. Then we can use Java's
   ;; `Integer.sum(x, y)` method.
 
   (Integer/sum 1 1)

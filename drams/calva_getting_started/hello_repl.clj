@@ -1,6 +1,71 @@
 (ns hello-repl)
 
-;; Welcome to the Getting Started REPL!
+"Welcome to the Getting Started REPL! 💜"
+
+;; Once you see a message in the output/REPL window ->
+;; saying that this file is loaded, you can start by
+;; placing the cursor anywhere on line 3 and press
+;; `Alt+Enter`. (`Option+Enter` on some machines.)
+
+;; Did it? Great!
+;; See that `=> "Welcome ...` at the end of the line?
+;; That's the result of the evaluation you just
+;; performed. Yes, you just used the Clojure REPL!
+;; 🎉 Congratulations! 🎂
+
+(comment
+  ;; You can evaluate the below string the same way
+
+  "Hello World!"
+
+  ;; You are in a 'Rich Comment Form' which is where
+  ;; we Clojurians most often develop new code.
+  ;; https://calva.io/rich-comments/
+
+  ;; Evaluate the following form too, while at it (you can
+  ;; place the cursor anywhere on any of the two lines):
+
+  (repeat 7
+          "I am using the REPL! 💪")
+
+  ;; Only `=> ("I am using the REPL! 💪"` is displayed
+  ;; inline. You can see the full result, and also copy
+  ;; it, if you hover the evaluated expression. Or press
+  ;; `Ctrl+K Ctrl+I` (Win/Linux), `Cmd+K Cmd+I` (Mac).
+
+  ;; Let's get into the mood for real. 😂
+  ;; The cursor on any of the five code lines below:
+  ;; `Alt+Enter`, then `Cmd+K Cmd+I`.
+
+  (map (fn [s]
+         (if (< (count s) 5)
+           (str "Give me " s "! ~•~ " (last s) "!")
+           s))
+       ["an R" "an E" "a  P" "an L" "What do you get?" "REPL!"])
+
+  ;; (Clear the inline display with `Esc`.)
+
+  ;; You might notice that the output/REPL window ->
+  ;; is also displaying the results. Depending on your
+  ;; preferences you might want to close that window or move
+  ;; it to the same editor group (unsplit) as the files you
+  ;; edit. But don't do that just yet, get a feel how how
+  ;; it works having it in a split pane first.
+
+  ;; BTW. That output/REPL window ->
+  ;; You can evaluate code from its prompt too.
+  ;; But the cool peeps do not do that very often.
+  ;; Because the REPL lives in the files with the application
+  ;; code! And because Rich Comment Forms (RCF).
+  ;; It is Interactive Programming, and it is 💪.
+  )
+
+
+
+;;
+;; = HOW THIS GUIDE WORKS =
+;;
+
 ;; There are three files for you to explore. For
 ;; everyone new to Calva:
 ;; 1. hello_repl.clj (this file)
@@ -26,8 +91,8 @@
 ;; Alt+Enter is the Calva default keyboard shortcut
 ;; to evaluate the current ”top level” forms. Top
 ;; level meaning the outermost ”container” of forms, 
-;; which is the file. Place the cursor anywhere
-;; inside this function to give it a try.
+;; which is the file. This function defintion is on
+;; the top level. Please evaluate it!
 
 (defn greet
   "I'll greet you"
@@ -41,11 +106,6 @@
 (comment
   (greet "World"))
 
-;; You should see "Hello World!" displayed inline,
-;; and also printed to the `output.calva-repl` editor,
-;; aka ”The Output Window”, aka ”The REPL Window”.
-;; To clear inline results display, press `ESC`.
-
 ;; Anything printed to stdout is not shown inline.
 
 (comment
@@ -55,27 +115,156 @@
 ;; inline, and ”Hello World!” followed by the result
 ;; printed to the output window.
 
+;; Maybe you wonder what a ”form” is? Loosly defined
+;; it is about the same as an S-expression:
+;; https://en.wikipedia.org/wiki/S-expression
+;; That is, either a ”word” or something enclosed in
+;; brackets of some type, parens (), hard brackets [],
+;; curlies {}, or quotes "". This whole thing is a
+;; form:
+
+(str 23 (apply + [2 3]) (:foo {:foo "foo"}))
+
+;; So is `str`, `23`, "foo", `(apply + [2 3])`,
+;; `{:foo "foo"}`, `+`, `[2 3]`, `apply`, and also
+;; `(:foo {:foo "foo"})`.
+
+;; Calva has a concept of ”current form”, to let you
+;; evaluate forms that are not at the top level. The
+;; ”current form” is determined by where the cursor is.
+
 ;; == Evaluating the Current Form ==
 ;; Ctrl+Enter evaluates the ”current” form
-;; Try with the cursor at different places in this
+;; Try it with the cursor at different places in this
 ;; code snippet:
 
 (comment
+  (str 23 (apply + [2 3]) (:foo {:foo "foo"}))
+
+  ;; `foo` is undefined until you top-level eval it.
   (def foo
-    [1 2 "three four"]))
+    [1 2 "three four"])
+  )
 
 ;; You might discover that Calva regards words in
 ;; strings as forms. Don't panic if `three` causes
 ;; an evaluation error. It is not defined, since
 ;; it shouldn't be. You can define it, of course,
-;; just for fun and learning: Top level eval these 
+;; just for fun and learning: Top level eval these
+;; two definitions.
 
 (comment
   (def three 3)
-  (def four "four"))
+  (def four "four")
+  )
 
-;; Then eval current form inside the string above
-;; Calva sends to the REPL whatever you ask it send.
+;; Then eval current form inside the string above.
+;; Whatever you ask Calva to send to the REPL, Calva
+;; will send to the REPL.
+
+
+;; == Rich Comments Support ==
+;; Repeating an important concept: Forms inside
+;; `(comment ...)` are also considered top level
+;; by Calva. Alt+Enter at different places below
+;; to get a feel for it.
+
+(comment
+  "I ♥️ Clojure"
+
+  (greet "World")
+
+  foo
+
+  (range 10)
+
+  ;; https://calva.io/rich-comments/
+  )
+
+
+;; Also try the commands *Show Hover*,
+;; *Show Definition Preview Hover*
+;; *Go to Definition*  
+
+(comment
+  (println (greet "side effect"))
+  (+ (* 2 2)
+     2)
+
+  ;; Here too, if you have Java sources installed
+  (Math/abs -1)
+  )
+
+
+;; == You Control what is Evaluated ==
+;; Please note that Calva never evaluates your code
+;; unless you explicitly ask for it. So, except for
+;; this file, you will have to load files you open
+;; yourself. Make it a habit to do this, because
+;; sometimes things don't work, and they fail in 
+;; peculiar ways, when your file is not loaded.
+
+;; Try it with this file: `Ctrl+Alt+C Enter`.
+;; The result of loading a file is whatever is the
+;; last top level form in the file.
+
+;; == Editing Code ==
+;; A note about editing Clojure in Calva:
+;; If you edit and experiment with the examples you 
+;; will notice that Calva auto-indents your code. 
+;; You can re-indent, and format, code at will, using
+;; the `Tab` key. It will format the current enclosing
+;; form. Try it at the numbered places in this piece
+;; of code, starting at `; 1`:
+
+(comment ; 3
+     (defn- divisible
+           "Is `n` divisible by `d`?"
+[n d]
+(zero? (mod n d)
+           )
+       
+  )
+  
+       (defn fizz-buzz [n] ; 2
+                       (cond ; 1
+(divisible n (* 5 3)) "FizzBuzz"
+                      (divisible n 5)       "Buzz"
+              (divisible n 3)       "Fizz"
+  :else                  n))
+                               )
+
+;; === Paredit `strict` mode  is on ===
+;; Calva supports structural editing (editing that
+;; considers forms rather than lines) using a system
+;; called Paredit. By default Paredit tries to protect
+;; from accidentely deleting brackets and unbalancing
+;; the structure of forms. To override the protection,
+;; use `Alt+Backspace` or `Alt+delete`.
+
+(comment
+  (defn strict-greet
+    "Try to remove brackets and string quotes
+   using Backspace or Delete. Try the same
+   with the Alt key pressed."
+    [name]
+    (str "Strictly yours, " name "!"))
+
+  (strict-greet "dear Paredit fan")
+  )
+
+;; (Restore with *Undo* if needed.)
+;; Soe `hello_paredit.clj` for more. And also:
+;; https://calva.io/paredit
+
+;;;;;;;;;;;;;;;;;;; CHECKPOINT ;;;;;;;;;;;;;;;;;;;
+
+;; You now know enough about Calva to experiment
+;; with the code in `welcome_to_clojure.clj`.
+;; This file continues with some more neat Calva
+;; features, so you should definitely return here
+;; when you have learnt some things about Clojure.
+;; Like, what a threaded expression is.
 
 ;; == Evaluating in Threaded Expressions
 ;; Ctrl+Alt+Enter will evaluate the current enclosing
@@ -106,6 +295,7 @@
        :ratings
        vals
        average)
+
   ;; To see the result at each step in the thread
   ;; You can also Ctrl+Alt+Enter after each form.
   ;; Place the cursor after `(->> colt-express` and
@@ -127,6 +317,11 @@
   ;; *Evaluate From Start of Top Level Form to Cursor*
   ;; command at different places to examine the code.
   ;; Try it at the numbered line comment below.
+
+  ; But first top-level eval this one
+  (defn average [coll]
+    (/ (apply + coll) (count coll)))
+
   (do
     (def bar-express
       {:name "Bar Express"
@@ -140,9 +335,6 @@
                  :rex 5.0
                  :lun 4.0}})
 
-    (defn average [coll]
-      (/ (apply + coll) (count coll)))
-
     (let [foo-express (-> bar-express
                           (assoc :name "Foo Express")
                           (assoc-in [:ratings :lyr] 5.0)
@@ -150,49 +342,11 @@
       (->> foo-express   ; 2
            :ratings      ; 3
            vals          ; 4
-           average       ; 5
-           ))))
-
-;; == Rich Comments Support ==
-;; Repeating an important concept: Forms inside
-;; `(comment ...)` are also considered top level
-;; by Calva. Alt+Enter at different places below
-;; to get a feel for it.
-
-(comment
-  "I ♥️ Clojure"
-  (greet "World")
-  foo
-
-  ;; Also try the commands *Show Hover*,
-  ;; *Show Definition Preview Hover*
-  ;; *Go to Definition*  
-
-  (println (greet "side effect"))
-  (+ (* 2 2)
-     2)
-
-  ;; Here too, if you have Java sources installed
-
-  (Math/abs -1)
-  (greet "Calva REPL")
-  (range 10))
-
-;; Google Rich Comments, if you are new
-;; to this style of coding.
-
-;; == You Control what is Evaluated ==
-;; Please note that Calva never evaluates your code
-;; unless you explicitly ask for it. So, except for
-;; this file, you will have to load files you open
-;; yourself. Make it a habit to do this, because
-;; sometimes things don't work in peculiar ways when
-;; your file is not loaded.
-;; Try with this file: `Ctrl+Alt+C Enter`.
-
-;; Also, once you have evaluated a form and then
-;; update it. Calva will not automatically evaluate
-;; the new code, or code depending on it.
+           (average)     ; 5 (If this blows up you need to
+                         ;   top level eval the `average`
+                         ;   function definition.)
+           )))
+  )
 
 ;; == The Calva Debugger ==
 ;; https://calva.io/debugger/
@@ -227,12 +381,6 @@
   ;; call. The debugger will start and wait for you
   ;; to step through the function.
   ;;
-  ;; PLEASE NOTE: There is currently a bug making this
-  ;; stepping less convenient than it should be, you
-  ;; will need to select the top stack frame in order
-  ;; to step. See:
-  ;; https://github.com/BetterThanTomorrow/calva/issues/1210
-  ;;
   ;; To un-instrument the function, just evaluate it
   ;; the normal way (top level evaluation).
   ;; Debugger docs here: https://calva.io/debugger/
@@ -255,50 +403,8 @@
 ;; it if you top-level evaluate this:
 
 (comment
-  (def tmp1 (dorun (range))))
-
-;; == Editing Code ==
-;; A note about editing Clojure in Calva:
-;; If you edit and experiment with the examples
-;; you will notice that Calva auto-indents your
-;; code. You can re-indent, and format, code at
-;; will, using the `Tab` key.
-
-;; There is also some help with writing blocks of
-;; line comments (like this one).
-;; Alt+Enter with the cursor in a line comment
-;; will ”continure” the comment on next line.
-;; Try it, why don't ya! 😎
-;; 
-;; There is some extra help given when Calva thinks
-;; you are typing a bulleted or numbered list.
-;; 
-;; * foo
-;; * bar
-;; 
-;; 1. CIDER 
-;; 2. Cursive
-
-;; === More about editing ===
-;; Please continue to `hello_paredit.clj` to learn
-;; the very basics of structural editing in Calva.
-;; Here's maybe the most important thing from that
-;; guide: _Paredit strict mode is active by default_ 
-;; It will help you to not delete brackets that
-;; would break the structure of the code.
-;; Use Alt+Backspace to override.
-
-(comment
-  (defn strict-greet
-    "Try to remove brackets and string quotes
-   using Backspace or Delete. Try the same
-   with the Alt key pressed."
-    [name]
-    (str "Strictly yours, " name "!"))
-  
-  (strict-greet "dear Paredit fan"))
-
-;; (Restore with *Undo* if needed.)
+  (def tmp1 (dorun (range)))
+  )
 
 ;; Done? Awesome. Please consider to familiarize
 ;; yourself more with Paredit using the interactive
