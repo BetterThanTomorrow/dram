@@ -238,7 +238,7 @@
 ;; Calva supports structural editing (editing that
 ;; considers forms rather than lines) using a system
 ;; called Paredit. By default Paredit tries to protect
-;; from accidentely deleting brackets and unbalancing
+;; from accidentally deleting brackets and unbalancing
 ;; the structure of forms. To override the protection,
 ;; use `Alt+Backspace` or `Alt+delete`.
 
@@ -254,7 +254,7 @@
   )
 
 ;; (Restore with *Undo* if needed.)
-;; Soe `hello_paredit.clj` for more. And also:
+;; See `hello_paredit.clj` for more. And also:
 ;; https://calva.io/paredit
 
 ;;;;;;;;;;;;;;;;;;; CHECKPOINT ;;;;;;;;;;;;;;;;;;;
