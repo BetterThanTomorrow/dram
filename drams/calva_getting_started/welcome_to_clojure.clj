@@ -331,11 +331,14 @@ like this, if leading spaces are no-no."
   ;; => class java.lang.Long cannot be cast to class
   ;;    clojure.lang.IFn
   ;; (Of course, the linter already warned you.)
-  ;; This is because the Clojure will try to call
-  ;; `1` as a function. When evaluating unquoted lists
-  ;; the first element in the list is regarded as being
-  ;; in ”function position”. A Clojure program is data. 
-  ;; In fancier words, Clojure is homoiconic:
+  ;; When evaluating unquoted lists the first element
+  ;; in the list is regarded as being in ”function
+  ;; position”. That means Clojure will try to call `1`
+  ;; as a function, which won't work because it is not
+  ;; a function.
+  ;; You might be starting to suspect that a Clojure
+  ;; program is just data? Which is corrrect. Clojure
+  ;; code is data. Fancier, Clojure is homoiconic:
   ;; https://wiki.c2.com/?HomoiconicLanguages
   ;; This gives great macro power, more about that below.
 
@@ -354,10 +357,13 @@ like this, if leading spaces are no-no."
   ;; Everything after the first position is
   ;; handed to the function as arguments
 
-  ;; Note: I'll be referring to literals, symbols, and
-  ;; literal collections collectively as forms,
+  ;; Note: I'll be referring to literals, symbols, lists,
+  ;; and other literal collections, collectively as forms,
   ;; sometimes, sexprs:
   ;; https://en.wikipedia.org/wiki/S-expression
+  ;; Above, `(str 1 2 3 4 5 :foo)` is a form, as is `str`,
+  ;; `1` and `:foo`.
+  
 
   ;; You define new functions and bind them to names
   ;; in the current namespace using the macro `defn`.
