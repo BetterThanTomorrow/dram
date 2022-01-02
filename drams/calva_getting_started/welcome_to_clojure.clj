@@ -1848,7 +1848,7 @@ to the compiler") "This is not ignored"
 
   (+ 1 1)
 
-  ;; Giving `reduce` three arguments makes it us 
+  ;; Giving `reduce` three arguments makes it use 
   ;; the second argument as the starting ”result”.
 
   (reduce + 100 [1 1 2 3 5 8 13 21])
