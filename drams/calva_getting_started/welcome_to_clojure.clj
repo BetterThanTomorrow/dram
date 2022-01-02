@@ -1848,7 +1848,7 @@ to the compiler") "This is not ignored"
 
   (+ 1 1)
 
-  ;; Giving `reduce` three arguments makes it use 
+  ;; Giving `reduce` three arguments makes it us 
   ;; the second argument as the starting ”result”.
 
   (reduce + 100 [1 1 2 3 5 8 13 21])
@@ -2187,8 +2187,8 @@ to the compiler") "This is not ignored"
   ;; = Transforming Data Structures =
   ;; Clojure has a core library that makes it easy,
   ;; fun, and readable to ”reach in” to a data
-  ;; data structure and manipulate it, creating a
-  ;; copy with holding the result.
+  ;; structure and manipulate it, creating a
+  ;; copy with the result.
 
   ;; We have seen `assoc`, which creates a copy of
   ;; the data structure with a new value at the index
