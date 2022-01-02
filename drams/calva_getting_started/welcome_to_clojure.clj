@@ -1064,7 +1064,7 @@ to the compiler") "This is not ignored"
   ;; There is also a thread-first macro
   ;; `->` https://clojuredocs.org/clojure.core/-%3E
   ;; Sometimes you neither want to thread first
-  ;; of last. There is a macro for this too.
+  ;; or last. There is a macro for this too.
   ;; `as->` lets you bind a variable name to the
   ;; threaded thing and place it wherever you
   ;; fancy in each function call.
