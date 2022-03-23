@@ -258,9 +258,9 @@ like this, if leading spaces are no-no."
   ;; your code brittle. It is better to `require`
   ;; the namespace. If you haven't loaded it, you
   ;; can do that in the same go:
-  
+
   (require 'hello-paredit :reload)
-  
+
   hello-paredit/strict-greet
   (hello-paredit/strict-greet "World")
 
@@ -275,26 +275,63 @@ like this, if leading spaces are no-no."
   ;; obvious enough). Examine the `ns` form of this
   ;; file to see why these forms compile without
   ;; complaints:
-  
+
   (doc require) ; Check the output window
   (string/split "foo:bar:baz" #":")
 
   ;; See also:
   ;; https://clojuredocs.org/clojure.core/ns
 
+  ;; Any namespace can be created at the REPL. However,
+  ;; when a namespace is required, either via the
+  ;; `require` or `use` functions, or via the `ns` form
+  ;; The Clojure Reader will look up the file addressed
+  ;; by the namespace required in the classpath. When
+  ;; doing so, dots in in the namespace name separate
+  ;; directories, and dashes will be replaced by underscores.
+  ;; Say you have a `src` in your classpath, and a file
+  ;; `src/foo/bar_baz.clj` in the project. This file should
+  ;; have an `ns` form looking like:
+
+  (ns foo.bar-baz ,,,)
+
+  ;; And you require it using something like:
+
+  (require 'foo.bar-baz)
+
+  ;; Or:
+
+  (ns welcome-to-clojure
+    (:require [foo.bar-baz]))
+
+  ;; If you evaluate any of those requires, you will get an
+  ;; error message from the repl, telling you which files the
+  ;; Clojure Reader looked for to find the namespace definition.
+
+  ;; Two common mistakes:
+  ;; 1. Naming files using dashes instead of underscores.
+  ;; 2. Using `(require ...)` instead of `(:require)` in the
+  ;;    `ns` form.
+
+  ;; The `ns` form has a lot of functionality and can be a bit
+  ;; tricky to figure out. Here's a nice cheat sheet:
+  ;; https://gist.github.com/ghoseb/287710/
+
+  
+  ;; === Namespaced keywords ===
   ;; Keywords can also be namespaced, but they are
   ;; not really registered in a namespace, like
   ;; symbols are, so you can just use them, regardless
-  
+
   :foo-whatever
   :whatever-namespace/foo
-  
+
   ;; The notion about the current namespace exists
   ;; for keywords in that the double-colon prefix
   ;; expands to `:<current-namespace>/foo`:
-  
+
   ::foo
-  
+
   ;; This is important to know about. `:foo` will
   ;; refer to the same keyword regardless of from which
   ;; namespace it is used. `::foo` will not.
