@@ -374,7 +374,7 @@ like this, if leading spaces are no-no."
   ;; as a function, which won't work because it is not
   ;; a function.
   ;; You might be starting to suspect that a Clojure
-  ;; program is just data? Which is corrrect. Clojure
+  ;; program is just data? Which is correct. Clojure
   ;; code is data. Fancier, Clojure is homoiconic:
   ;; https://wiki.c2.com/?HomoiconicLanguages
   ;; This gives great macro power, more about that below.
@@ -429,7 +429,7 @@ like this, if leading spaces are no-no."
   )
 
 (comment
-  ;; = SPECIAL FORMS =
+  ;; = SPECIAL FORMS and MACROS =
   ;; The core library is composed from the functions and macros
   ;; in the library itself. Bootstrapping the library is
   ;; a few (15-ish) built-in primitive forms,
@@ -523,9 +523,44 @@ like this, if leading spaces are no-no."
     'value-if-true
     'value-if-false)
 
-  ;; Rumour has it that all conditional constructs (macros)
-  ;; are built using `if`. Try to imagine a programming
-  ;; language without conditionals!
+  ;; `macroexpand does nothing here, since `if` is not
+  ;; a macro
+  
+  (macroexpand '(if test
+                  value-if-true
+                  value-if-false))
+
+  ;; Fun fact: Most conditional constructs (macros) are
+  ;; (eventually) built using `if`.
+
+  (macroexpand '(when test
+                  value-if-true))
+
+  (macroexpand '(or a b))
+
+  (require 'clojure.walk) ;; you'll need to evaluate this
+
+  (clojure.walk/macroexpand-all '(or a b)) ;; to evaluate this
+
+  (macroexpand '(cond
+                  y value-if-y
+                  z value-if-z
+                  :else value-if-x-neither-y-nor-z))
+
+  (clojure.walk/macroexpand-all '(cond
+                                   y value-if-y
+                                   z value-if-z
+                                   :else value-if-x-neither-y-nor-z))
+
+  ;; A programming language needs its conditionals. But
+  ;; at the core Clojure almost makes due with only `if`.
+  ;; Almost. `case` uses jump tables:
+
+  (macroexpand '(case x
+                  y value-if-x-is-y
+                  z value-if-x-is-z
+                  value-if-x-is-neither-y-nor-z))
+
 
   ;; We'll return to `if` and conditionals.
 
@@ -554,10 +589,10 @@ like this, if leading spaces are no-no."
     (println "`x` in `do`, _after_ `let`: " x))
 
   (println "`x` _outside_ `do`: " x)
-  
+
   ;; As noted before in this guide, the `def` special
   ;; form defines things ”globally”, though namespaced.
-  
+
   ;; If you have followed the instructions to examine
   ;; things mentioned here, for instance by
   ;; ctrl/cmd-clicking the `let` symbol in the code
