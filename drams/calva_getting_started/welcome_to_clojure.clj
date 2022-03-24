@@ -510,8 +510,8 @@ like this, if leading spaces are no-no."
     [arg]
     (+ arg 2))
 
-  ;; We can use the function `macroexpand` to see that
-  ;; what the macro produces:
+  ;; We can use the function `macroexpand` to see what
+  ;; the macro produces:
 
   (macroexpand '(defn add2-3
                   [arg]
@@ -524,14 +524,16 @@ like this, if leading spaces are no-no."
     'value-if-false)
 
   ;; `macroexpand does nothing here, since `if` is not
-  ;; a macro
+  ;; a macro:
   
   (macroexpand '(if test
                   value-if-true
                   value-if-false))
 
-  ;; Fun fact: Most conditional constructs (macros) are
-  ;; (eventually) built using `if`.
+  ;; (Nor is it a function)
+
+  ;; Fun fact: Besides `case`, all conditional and control
+  ;; flow constructs in Clojure are build using `if`:
 
   (macroexpand '(when test
                   value-if-true))
@@ -554,7 +556,9 @@ like this, if leading spaces are no-no."
 
   ;; A programming language needs its conditionals. But
   ;; at the core Clojure almost makes due with only `if`.
-  ;; Almost. `case` uses jump tables:
+  ;; Almost. As I mentioned earlier, `case` is an exception.
+  ;; At least on the JVM, where Clojure uses jump tables to
+  ;; implement it:
 
   (macroexpand '(case x
                   y value-if-x-is-y
