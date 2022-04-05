@@ -1,9 +1,9 @@
 {:name "Getting Started REPL"
- :files [{:path "deps.edn"
-          :open? false}
-         {:path "hello_repl.clj"
+ :files [{:path "hello_repl.clj"
           :open? true}
          {:path "hello_paredit.clj"
           :open? true}
          {:path "welcome_to_clojure.clj"
-          :open? true}]}
+          :open? true}
+         {:path "deps.edn"
+          :open? false}]}
