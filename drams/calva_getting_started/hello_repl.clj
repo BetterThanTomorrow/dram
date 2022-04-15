@@ -409,7 +409,7 @@
 ;; Done? Awesome. Please consider to familiarize
 ;; yourself more with Paredit using the interactive
 ;; guide. If you are new to Clojure, please
-;; continue with `hello_clojure.clj`, which is an
+;; continue with `welcome_to_clojure.clj`, which is an
 ;; interactive guide to the Clojure language.
 
 ;; Have a Clojure project you want to get hook
