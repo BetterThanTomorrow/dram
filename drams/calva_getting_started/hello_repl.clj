@@ -31,7 +31,7 @@
   ;; Only `=> ("I am using the REPL! 💪"` is displayed
   ;; inline. You can see the full result, and also copy
   ;; it, if you hover the evaluated expression. Or press
-  ;; `Ctrl+K Ctrl+I` (Win/Linux), `Cmd+K Cmd+I` (Mac).
+  ;; `Ctrl+K Ctrl/Cmd+I`.
 
   ;; Let's get into the mood for real. 😂
   ;; The cursor on any of the five code lines below:
@@ -43,7 +43,18 @@
            s))
        ["an R" "an E" "a  P" "an L" "What do you get?" "REPL!"])
 
-  ;; (Clear the inline display with `Esc`.)
+  ;; Clear the inline display with `Esc`. The inline
+  ;; results are also cleared when you edit the file.
+
+  ;; Which brings us to a VERY IMPORTANT THING:
+  ;; By default, Calva will be a Guardian of the Parens.
+  ;; This means that the backspace and delete buttons
+  ;; will not delete balanced brackets. Please go ahead
+  ;; try to delete a bracket in the expression above.
+  ;; See?
+
+  ;; TO DELETE A BALANCED BRACKET:
+  ;;   press `alt/option+backspace` or `alt/option+delete`
 
   ;; You might notice that the output/REPL window ->
   ;; is also displaying the results. Depending on your
