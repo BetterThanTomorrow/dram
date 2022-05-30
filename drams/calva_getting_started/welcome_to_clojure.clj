@@ -57,7 +57,7 @@
 ;; time, you will be presented with the option to
 ;; download new files or continue with the files you
 ;; have. You can also always find the latest version here:
-;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/welcome_to_clojure.clj
+;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/calva_getting_started/welcome_to_clojure.clj
 
 (comment
   ;; = EXPRESSIONS =
