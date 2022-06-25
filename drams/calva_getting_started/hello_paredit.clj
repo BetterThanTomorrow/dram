@@ -44,8 +44,8 @@
 ;; (Restore with *Undo* if needed.)
 
 ;; == Select with Ease ==
-;; Place the cursor in a form, say `select-me`,
-;; And then use *Paredit Expand Selection*
+;; Place the cursor in a form, for example on `select-me`
+;; below, and then use *Paredit Expand Selection*
 ;; Repeat the command to expand one level more
 
 (comment
