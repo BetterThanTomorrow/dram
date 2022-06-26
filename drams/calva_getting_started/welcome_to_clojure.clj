@@ -178,7 +178,7 @@
   ;; This means it is the same thing, occupying the
   ;; same (very tiny) place in memory.
   ;; Even if you construct a non-literal keyword
-  ;; it remains identical to it's literal form
+  ;; it remains identical to its literal form
 
   (identical? (keyword "foo") :foo)
 
@@ -1924,7 +1924,7 @@ to the compiler") "This is not ignored"
 
   (+ 1 1)
 
-  ;; Giving `reduce` three arguments makes it us 
+  ;; Giving `reduce` three arguments makes it use
   ;; the second argument as the starting ”result”.
 
   (reduce + 100 [1 1 2 3 5 8 13 21])
@@ -2243,7 +2243,7 @@ to the compiler") "This is not ignored"
   ;; A function is considered pure if it abides to
   ;; these rules:
   ;; 1. Always return the same value for the same input
-  ;; 2. Does not effect anything in its environment.
+  ;; 2. Does not affect anything in its environment.
   ;;    So, not mutating anything, including not printing
   ;;    anything anywhere, or hitting mutating API
   ;;    endpoints.
