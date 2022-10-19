@@ -80,15 +80,14 @@
 ;; There are three files for you to explore. For
 ;; everyone new to Calva:
 ;; 1. hello_repl.clj (this file)
-;; 2. hello_paredit.clj (intro to structural editing)
-;; If you are new to Clojure:
-;; 3. welcome_to_clojure.clj (a Beginner's Clojure Guide)
+;; 2. welcome_to_clojure.clj (a Beginner's Clojure Guide)
+;; 3. hello_paredit.clj (intro to Calva structural editing)
 
 ;; Please don't worry if you don't understand the code 
-;; in the first two files. They are short and made so 
-;; that you can just follow along without the actual
-;; code making sense yet. Things will clear up once 
-;; you have dug into the Clojure Guide.
+;; in the this file and in the paredit file.
+;; They are short and made so that you can just follow
+;; along without the actual code making sense yet. Things
+;; will clear up once you have dug into the Clojure Guide.
 
 ;; About commands and shortcuts:
 ;; Please read https://calva.io/finding-commands/
