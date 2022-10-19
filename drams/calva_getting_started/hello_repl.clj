@@ -101,7 +101,7 @@
 ;; Alt+Enter is the Calva default keyboard shortcut
 ;; to evaluate the current ”top level” forms. Top
 ;; level meaning the outermost ”container” of forms, 
-;; which is the file. This function defintion is on
+;; which is the file. This function definition is on
 ;; the top level. Please evaluate it!
 
 (defn greet

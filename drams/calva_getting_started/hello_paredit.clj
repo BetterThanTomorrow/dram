@@ -44,8 +44,8 @@
 ;; (Restore with *Undo* if needed.)
 
 ;; == Select with Ease ==
-;; Place the cursor in a form, say `select-me`,
-;; And then use *Paredit Expand Selection*
+;; Place the cursor in a form, for example on `select-me`
+;; below, and then use *Paredit Expand Selection*
 ;; Repeat the command to expand one level more
 
 (comment
@@ -62,7 +62,7 @@
 ;; Move form-by-form using *Paredit Forward Sexp*
 ;; and *Paredit Backward Sexp*
 ;; Note: Despite what the command palette is showing, the
-;; Keyboard shortcuts for For Mac are alt+right/left and
+;; Keyboard shortcuts for Mac are alt+right/left and
 ;; for Windows and Linux they are ctrl+right/left
 ;; See https://github.com/BetterThanTomorrow/calva/issues/1161
 
