@@ -125,7 +125,7 @@
 ;; inline, and ”Hello World!” followed by the result
 ;; printed to the output window.
 
-;; Maybe you wonder what a ”form” is? Loosly defined
+;; Maybe you wonder what a ”form” is? Loosely defined
 ;; it is about the same as an S-expression:
 ;; https://en.wikipedia.org/wiki/S-expression
 ;; That is, either a ”word” or something enclosed in
