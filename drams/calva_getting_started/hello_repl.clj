@@ -10,7 +10,7 @@
 ;; Did it? Great!
 ;; See that `=> "Welcome ...` at the end of the line?
 ;; That's the result of the evaluation you just
-;; performed. Yes, you just used the Clojure REPL!
+;; performed. You just used the Clojure REPL!
 ;; 🎉 Congratulations! 🎂
 
 (comment
@@ -21,6 +21,7 @@
   ;; You are in a 'Rich Comment Form' which is where
   ;; we Clojurians most often develop new code.
   ;; https://calva.io/rich-comments/
+  ;; It is often abbreviated as RCF.
 
   ;; Evaluate the following form too, while at it (you can
   ;; place the cursor anywhere on any of the two lines):
@@ -69,7 +70,10 @@
   ;; Because the REPL lives in the files with the application
   ;; code! And because Rich Comment Forms (RCF).
   ;; It is Interactive Programming, and it is 💪.
-  )
+  
+  :rcf) ; <- This is a convenient way to keep the closing
+        ;    paren of a Rich comment form from folding
+        ;    when the code is formatted.
 
 
 
@@ -114,12 +118,14 @@
 ;; with code.
 
 (comment
-  (greet "World"))
+  (greet "World")
+  :rcf)
 
 ;; Anything printed to stdout is not shown inline.
 
 (comment
-  (println (greet "World")))
+  (println (greet "World"))
+  :rcf)
 
 ;; You should see the result of the evaluation, nil,
 ;; inline, and ”Hello World!” followed by the result
@@ -142,6 +148,11 @@
 ;; Calva has a concept of ”current form”, to let you
 ;; evaluate forms that are not at the top level. The
 ;; ”current form” is determined by where the cursor is.
+;; Calva has two commands that will let you easily
+;; experiment with which form is considered current:
+;; * Calva: Select Current Form
+;; * Calva: Expand Selection
+
 
 ;; == Evaluating the Current Form ==
 ;; Ctrl+Enter evaluates the ”current” form
@@ -154,7 +165,7 @@
   ;; `foo` is undefined until you top-level eval it.
   (def foo
     [1 2 "three four"])
-  )
+  :rcf)
 
 ;; You might discover that Calva regards words in
 ;; strings as forms. Don't panic if `three` causes
@@ -166,7 +177,7 @@
 (comment
   (def three 3)
   (def four "four")
-  )
+  :rcf)
 
 ;; Then eval current form inside the string above.
 ;; Whatever you ask Calva to send to the REPL, Calva
@@ -189,7 +200,7 @@
   (range 10)
 
   ;; https://calva.io/rich-comments/
-  )
+  :rcf)
 
 
 ;; Also try the commands *Show Hover*,
@@ -203,7 +214,7 @@
 
   ;; Here too, if you have Java sources installed
   (Math/abs -1)
-  )
+  :rcf)
 
 
 ;; == You Control what is Evaluated ==
@@ -242,7 +253,7 @@
                       (divisible n 5)       "Buzz"
               (divisible n 3)       "Fizz"
   :else                  n))
-                               )
+                               :rcf)
 
 ;; === Paredit `strict` mode  is on ===
 ;; Calva supports structural editing (editing that
@@ -261,7 +272,7 @@
     (str "Strictly yours, " name "!"))
 
   (strict-greet "dear Paredit fan")
-  )
+  :rcf)
 
 ;; (Restore with *Undo* if needed.)
 ;; See `hello_paredit.clj` for more. And also:
@@ -310,7 +321,7 @@
   ;; You can also Ctrl+Alt+Enter after each form.
   ;; Place the cursor after `(->> colt-express` and
   ;; try it. Then after `:ratings`, and after `vals`.
-  )
+  :rcf)
 
 ;; == Evaluating Top Level Form to Cursor
 ;; Shift+Alt+Enter will evaluate all code from
@@ -356,7 +367,7 @@
                          ;   top level eval the `average`
                          ;   function definition.)
            )))
-  )
+  :rcf)
 
 ;; == The Calva Debugger ==
 ;; https://calva.io/debugger/
@@ -402,7 +413,7 @@
   ;; This section is here for you to get aware that
   ;; the debugger exists, for those rare occasions
   ;; when it is actually needed.
-  )
+  :rcf)
 
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
@@ -414,7 +425,7 @@
 
 (comment
   (def tmp1 (dorun (range)))
-  )
+  :rcf)
 
 ;; Done? Awesome. Please consider to familiarize
 ;; yourself more with Paredit using the interactive
@@ -427,7 +438,10 @@
 
 ;; Learn much more about Calva at https://calva.io 
 
+;; This string is the last expression in this file
 "hello_repl.clj is loaded, and ready with some things for you to try."
+;; It is what you'll see printed in the Output
+;; window when you load the file.
 
 ;; This guide downloaded from:
 ;; https://github.com/BetterThanTomorrow/dram
