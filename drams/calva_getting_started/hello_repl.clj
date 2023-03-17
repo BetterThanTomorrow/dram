@@ -5,9 +5,10 @@
 ;; VS Code. Please check out this page if you are new
 ;; to the editor: https://code.visualstudio.com/docs
 ;;
+;; == Keyboard Shortcuts Notation used in this tutorial ==
 ;; We use a notation for keyboard shortcuts, where
 ;; `+` means the keys are pressed at the same time
-;; and ` ` separates any chords in the sequence. So:
+;; and ` ` separates any keyboard presses in the sequence.
 ;; `Ctrl+Alt+C Enter` means to press Ctrl, Alt, and C
 ;; all at the same time, then release the keys and
 ;; then press Enter.
