@@ -1,5 +1,17 @@
 (ns hello-repl)
 
+;; == Some VS Code knowledge required ==
+;; This tutorial assumes you know some few things about
+;; VS Code. Please check out this page if you are new
+;; to the editor: https://code.visualstudio.com/docs
+;;
+;; We use a notation for keyboard shortcuts, where
+;; `+` means the keys are pressed at the same time
+;; and ` ` separates any chords in the sequence. So:
+;; `Ctrl+Alt+C Enter` means to press Ctrl, Alt, and C
+;; all at the same time, then release the keys and
+;; then press Enter.
+
 "Welcome to the Getting Started REPL! 💜"
 
 ;; Once you see a message in the output/REPL window ->
