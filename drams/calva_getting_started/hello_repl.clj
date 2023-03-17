@@ -16,7 +16,7 @@
 
 ;; Once you see a message in the output/REPL window ->
 ;; saying that this file is loaded, you can start by
-;; placing the cursor anywhere on line 3 and press
+;; placing the cursor anywhere on line 15 and press
 ;; `Alt+Enter`. (`Option+Enter` on some machines.)
 
 ;; Did it? Great!
