@@ -1,7 +1,7 @@
 (ns hello-repl)
 
-;; == Some VS Code knowledge required ==
-;; This tutorial assumes you know some few things about
+;; == Some VS Code knowledge is required ==
+;; This tutorial assumes you know a few things about
 ;; VS Code. Please check out this page if you are new
 ;; to the editor: https://code.visualstudio.com/docs
 ;;
@@ -27,7 +27,7 @@
 ;; 🎉 Congratulations! 🎂
 
 (comment
-  ;; You can evaluate the below string the same way
+  ;; You can evaluate the string below in the same way
 
   "Hello World!"
 
@@ -36,7 +36,7 @@
   ;; https://calva.io/rich-comments/
   ;; It is often abbreviated as RCF.
 
-  ;; Evaluate the following form too, while at it (you can
+  ;; Evaluate the following form too (you can
   ;; place the cursor anywhere on any of the two lines):
 
   (repeat 7
@@ -48,7 +48,7 @@
   ;; `Ctrl+K Ctrl/Cmd+I`.
 
   ;; Let's get into the mood for real. 😂
-  ;; The cursor on any of the five code lines below:
+  ;; Place the cursor on any of the five code lines below:
   ;; `Alt+Enter`, then `Cmd+K Cmd+I`.
 
   (map (fn [s]
@@ -63,7 +63,7 @@
   ;; Which brings us to a VERY IMPORTANT THING:
   ;; By default, Calva will be a Guardian of the Parens.
   ;; This means that the backspace and delete buttons
-  ;; will not delete balanced brackets. Please go ahead
+  ;; will not delete balanced brackets. Please go ahead and
   ;; try to delete a bracket in the expression above.
   ;; See?
 
@@ -104,7 +104,7 @@
 ;; in the this file and in the paredit file.
 ;; They are short and made so that you can just follow
 ;; along without the actual code making sense yet. Things
-;; will clear up once you have dug into the Clojure Guide.
+;; will clear up once you dig into the Clojure Guide.
 
 ;; About commands and shortcuts:
 ;; Please read https://calva.io/finding-commands/
@@ -297,7 +297,7 @@
 ;; with the code in `welcome_to_clojure.clj`.
 ;; This file continues with some more neat Calva
 ;; features, so you should definitely return here
-;; when you have learnt some things about Clojure.
+;; after you learn some things about Clojure.
 ;; Like, what a threaded expression is.
 
 ;; == Evaluating in Threaded Expressions
@@ -430,7 +430,7 @@
 
 ;; == Stopping Infinite Loops ==
 ;; Since evaluating Clojure expressions is so
-;; easy and fun. Sometimes you happen to evaluate
+;; easy and fun, sometimes you happen to evaluate
 ;; something that never finishes, or takes too long
 ;; to finish. For this, Calva has a command named
 ;; *Interrupt Running Evaluations*. You will need
@@ -440,13 +440,13 @@
   (def tmp1 (dorun (range)))
   :rcf)
 
-;; Done? Awesome. Please consider to familiarize
+;; Done? Awesome. Please consider familiarizing
 ;; yourself more with Paredit using the interactive
 ;; guide. If you are new to Clojure, please
 ;; continue with `welcome_to_clojure.clj`, which is an
 ;; interactive guide to the Clojure language.
 
-;; Have a Clojure project you want to get hook
+;; Have a Clojure project you want to hook
 ;; Calva up to? See: https://calva.io/connect/
 
 ;; Learn much more about Calva at https://calva.io 
