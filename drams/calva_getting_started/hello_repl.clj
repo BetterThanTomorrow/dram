@@ -1,6 +1,6 @@
 (ns hello-repl)
 
-;; == Some VS Code knowledge is required ==
+;; == Some VS Code knowledge required ==
 ;; This tutorial assumes you know a few things about
 ;; VS Code. Please check out this page if you are new
 ;; to the editor: https://code.visualstudio.com/docs
@@ -63,8 +63,8 @@
   ;; Which brings us to a VERY IMPORTANT THING:
   ;; By default, Calva will be a Guardian of the Parens.
   ;; This means that the backspace and delete buttons
-  ;; will not delete balanced brackets. Please go ahead and
-  ;; try to delete a bracket in the expression above.
+  ;; will not delete balanced brackets. Please go ahead
+  ;; and try to delete a bracket in the expression above.
   ;; See?
 
   ;; TO DELETE A BALANCED BRACKET:
