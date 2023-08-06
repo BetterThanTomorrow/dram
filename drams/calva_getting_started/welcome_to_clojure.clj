@@ -414,7 +414,7 @@ like this, if leading spaces are no-no."
   ;; The function body calls the core functions `+`
   ;; with the arguments `arg` and 2.
   ;; Evaluating the form will define it and you'll see:
-  ;; => #'hello-clojure/add2
+  ;; => #'welcome-to-clojure/add2
   ;; That's a var ”holding” the value of the function
   ;; You can now reference the var using the symbol
   ;; `add2`. Putting it in the function position of a
