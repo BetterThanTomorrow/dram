@@ -11,7 +11,8 @@
 ;; and ` ` separates any keyboard presses in the sequence.
 ;; `Ctrl+Alt+C Enter` means to press Ctrl, Alt, and C
 ;; all at the same time, then release the keys and
-;; then press Enter.
+;; then press Enter. (The Alt key is named Optuion or
+;; Opt, on some machines)
 
 "Welcome to the Getting Started REPL! 💜"
 
@@ -83,7 +84,7 @@
   ;; Because the REPL lives in the files with the application
   ;; code! And because Rich Comment Forms (RCF).
   ;; It is Interactive Programming, and it is 💪.
-  
+
   :rcf) ; <- This is a convenient way to keep the closing
         ;    paren of a Rich comment form from folding
         ;    when the code is formatted.
@@ -100,7 +101,7 @@
 ;; 2. welcome_to_clojure.clj (a Beginner's Clojure Guide)
 ;; 3. hello_paredit.clj (intro to Calva structural editing)
 
-;; Please don't worry if you don't understand the code 
+;; Please don't worry if you don't understand the code
 ;; in the this file and in the paredit file.
 ;; They are short and made so that you can just follow
 ;; along without the actual code making sense yet. Things
@@ -117,7 +118,7 @@
 ;; == Evaluating definitions ==
 ;; Alt+Enter is the Calva default keyboard shortcut
 ;; to evaluate the current ”top level” forms. Top
-;; level meaning the outermost ”container” of forms, 
+;; level meaning the outermost ”container” of forms,
 ;; which is the file. This function definition is on
 ;; the top level. Please evaluate it!
 
@@ -218,7 +219,7 @@
 
 ;; Also try the commands *Show Hover*,
 ;; *Show Definition Preview Hover*
-;; *Go to Definition*  
+;; *Go to Definition*
 
 (comment
   (println (greet "side effect"))
@@ -235,7 +236,7 @@
 ;; unless you explicitly ask for it. So, except for
 ;; this file, you will have to load files you open
 ;; yourself. Make it a habit to do this, because
-;; sometimes things don't work, and they fail in 
+;; sometimes things don't work, and they fail in
 ;; peculiar ways, when your file is not loaded.
 
 ;; Try it with this file: `Ctrl+Alt+C Enter`.
@@ -244,8 +245,8 @@
 
 ;; == Editing Code ==
 ;; A note about editing Clojure in Calva:
-;; If you edit and experiment with the examples you 
-;; will notice that Calva auto-indents your code. 
+;; If you edit and experiment with the examples you
+;; will notice that Calva auto-indents your code.
 ;; You can re-indent, and format, code at will, using
 ;; the `Tab` key. It will format the current enclosing
 ;; form. Try it at the numbered places in this piece
@@ -257,9 +258,9 @@
 [n d]
 (zero? (mod n d)
            )
-       
+
   )
-  
+
        (defn fizz-buzz [n] ; 2
                        (cond ; 1
 (divisible n (* 5 3)) "FizzBuzz"
@@ -386,7 +387,7 @@
 ;; https://calva.io/debugger/
 ;; The easiest way to use it is to
 ;; instrument a function for debugging. You do that
-;; by having the cursor in the function and then 
+;; by having the cursor in the function and then
 ;; use the command:
 ;; *Instrument Current Top Level Form for Debugging*
 ;; Then you call the function. This will cause the
@@ -449,7 +450,7 @@
 ;; Have a Clojure project you want to hook
 ;; Calva up to? See: https://calva.io/connect/
 
-;; Learn much more about Calva at https://calva.io 
+;; Learn much more about Calva at https://calva.io
 
 ;; This string is the last expression in this file
 "hello_repl.clj is loaded, and ready with some things for you to try."

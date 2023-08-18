@@ -7,6 +7,7 @@
 
 ;; Start with loading this file.
 ;; Ctrl+Alt+C Enter
+;; (The Alt key is sometimes named Option or Opt)
 
 ;; Then evaluate this expression with Alt+Enter:
 
@@ -22,15 +23,15 @@
 ;; principles in order to make the Clojure journey
 ;; you have ahead easier to comprehend.
 
-;; With the foundations in place you'll have a good 
+;; With the foundations in place you'll have a good
 ;; chance of having the right gut feeling for how to
 ;; code something, how to formulate your questions,
-;; how to search effectively for information, how to make 
+;; how to search effectively for information, how to make
 ;; sense of code you stumble across, and so on.
 
 ;; There will be links here and there, ctrl/cmd-click
 ;; those to open them in a browser. Here's the first
-;; such link; 
+;; such link;
 ;; https://clojure.org/guides/learn/syntax
 ;; There you can read more about the concepts
 ;; mentioned in this guide.
@@ -165,7 +166,7 @@
   ;; Keywords start with a `:`. They are a thing
   ;; in themselves, often used as identifiers and as
   ;; keys in maps (more on maps later). Keywords are
-  ;; very memory and speed efficient. 
+  ;; very memory and speed efficient.
 
   ;; The same keyword is of course equal to itself
 
@@ -196,7 +197,7 @@
   ;; the collections we have strings. They are sometimes
   ;; treated as sequences (a cool abstraction I'll
   ;; talk more about).
-  ;; Strings are enclosed by double quotes. 
+  ;; Strings are enclosed by double quotes.
 
   "A string can be
    multi-line, but will contain any leading spaces."
@@ -213,7 +214,7 @@ like this, if leading spaces are no-no."
   ;; the subject very much in this guide. The official
   ;; docs make them the best justice:
   ;; https://clojure.org/reference/namespaces
-  ;;   
+  ;;
   ;; There are some things we really need to know
   ;; though...
   ;; Clojure symbols are defined in namespaces (With
@@ -317,7 +318,7 @@ like this, if leading spaces are no-no."
   ;; tricky to figure out. Here's a nice cheat sheet:
   ;; https://gist.github.com/ghoseb/287710/
 
-  
+
   ;; === Namespaced keywords ===
   ;; Keywords can also be namespaced, but they are
   ;; not really registered in a namespace, like
@@ -351,7 +352,7 @@ like this, if leading spaces are no-no."
 
   {:foo [1 2]
    :bar #{1 2}}
-  
+
   ;; In Clojure we do most things with just these
   ;; collections. Literal collections and functions.
   )
@@ -400,7 +401,7 @@ like this, if leading spaces are no-no."
   ;; https://en.wikipedia.org/wiki/S-expression
   ;; Above, `(str 1 2 3 4 5 :foo)` is a form, as is `str`,
   ;; `1` and `:foo`.
-  
+
 
   ;; You define new functions and bind them to names
   ;; in the current namespace using the macro `defn`.
@@ -418,13 +419,13 @@ like this, if leading spaces are no-no."
   ;; That's a var ”holding” the value of the function
   ;; You can now reference the var using the symbol
   ;; `add2`. Putting it in the function position of a
-  ;; list with 3 in the first argument position and 
+  ;; list with 3 in the first argument position and
   ;; evaluating the list gives us back what?
 
   (add2 3)
 
   ;; Clojure has an extensive core library of functions
-  ;; and macros. See: https://clojuredocs.org for a 
+  ;; and macros. See: https://clojuredocs.org for a
   ;; community-driven Clojure core (and more) search engine.
   )
 
@@ -466,7 +467,7 @@ like this, if leading spaces are no-no."
   ;; A very important special form is `fn` (which is
   ;; actually four special forms, but anyway).
   ;; Without this form we can't define new functions.
-  ;; The following form evaluates to a function which 
+  ;; The following form evaluates to a function which
   ;; adds 2 to its argument.
 
   (fn [arg] (+ arg 2))
@@ -525,7 +526,7 @@ like this, if leading spaces are no-no."
 
   ;; `macroexpand does nothing here, since `if` is not
   ;; a macro:
-  
+
   (macroexpand '(if test
                   value-if-true
                   value-if-false))
@@ -603,7 +604,7 @@ like this, if leading spaces are no-no."
   ;; snippets, you'll find that in  `core.clj`, `let`
   ;; is defined as a macro. Never mind that. It is
   ;; actually referred to as a special form here
-  ;; https://clojure.org/reference/special_forms#let  
+  ;; https://clojure.org/reference/special_forms#let
 
   ;; Let's (pun unintended) wrap the special forms section
   ;; up with noting that together with _how_ Clojure
@@ -654,16 +655,16 @@ like this, if leading spaces are no-no."
   ;; bracket of that form gets commented out, the
   ;; structure breaks.
          )
-  ;;     ^ Healing the structure.        
+  ;;     ^ Healing the structure.
 
   ;; If you remove the semicolon on the opening form
-  ;; above, make sure to also remove this closing paren.           
+  ;; above, make sure to also remove this closing paren.
 
   ;; Since everything on the line is ignored, you can
   ;; add as many semicolons as you want.
   ;;;;;;;;;; (skipped by the Reader)
   ;; It's common to use two semicolons to start a full
-  ;; line comment. 
+  ;; line comment.
 
   ;; == EXTRA SYNTAX ===
   ;; We've already seen the single quote
@@ -720,9 +721,9 @@ like this, if leading spaces are no-no."
 
   ;; === THE DISPATCHER (HASH SIGN) ===
   ;; That hash sign shows up now and then. It has a
-  ;; special role. It is also known as Dispatch. 
-  ;; Depending on what character is following it, 
-  ;; different cool things happen. Some cool ones 
+  ;; special role. It is also known as Dispatch.
+  ;; Depending on what character is following it,
+  ;; different cool things happen. Some cool ones
   ;; follow here:
 
   ;; Regular expressions have literal syntax, they are
@@ -732,7 +733,7 @@ like this, if leading spaces are no-no."
 
   ;; Regexps are handled by the host platform, so they
   ;; are Java regexps in this tutorial. If you
-  ;; evaluated the above regexp, we can test it. 
+  ;; evaluated the above regexp, we can test it.
 
   (re-seq *1 "regexp regular expression")
 
@@ -854,7 +855,7 @@ to the compiler") "This is not ignored"
   ;; notice how available the host platform is when
   ;; coding Clojure. The same goes for
   ;; ClojureScript and for Clojure CLR.
-  
+
   ;; Repeating this important resource on the Reader:
   ;; https://clojure.org/reference/reader
   ;; And in addition to that, read about All Those
@@ -867,7 +868,7 @@ to the compiler") "This is not ignored"
   ;; Clojure has powerful data transformation
   ;; capabilities. We'll touch on that a bit later.
   ;; Here I want to highlight that this power can
-  ;; be wielded for extending the language itself. 
+  ;; be wielded for extending the language itself.
   ;; Since Clojure code is structured and code is
   ;; data, Clojure can be used to produce Clojure
   ;; code from Clojure code. It is similar to the
@@ -879,7 +880,7 @@ to the compiler") "This is not ignored"
 
   ;; This guide is mostly concerned with letting you
   ;; know that macros are a thing, to help you to
-  ;; quickly realize when you are using a macro rather 
+  ;; quickly realize when you are using a macro rather
   ;; than a function. I.e. I will not go into the
   ;; subject of how to create macros.
 
@@ -940,7 +941,7 @@ to the compiler") "This is not ignored"
   ;; https://clojuredocs.org/clojure.core/do
   ;; `do` is handy when you want to have some side-
   ;; effect going, in addition to evaluating something.
-  ;; In development this often happens when you 
+  ;; In development this often happens when you
   ;; want to `println` something before the result
   ;; of the expression is evaluated and returned.
 
@@ -967,7 +968,7 @@ to the compiler") "This is not ignored"
   ;; As far as macros go, `when` is about as simple as
   ;; they get. From two built-in special forms,
   ;; `if` and `do`, it composes a form that helps us
-  ;; write easy to write and easy to read code. 
+  ;; write easy to write and easy to read code.
 
   ;; == `for` ==
   ;; The `for` macro really demonstrates how Clojure
@@ -1063,7 +1064,7 @@ to the compiler") "This is not ignored"
   ;; built-in ”threading” macros do this. Sometimes
   ;; when the nesting of function(-ish) calls get
   ;; deep it can get a bit hard to read and to keep
-  ;; track of all the parens 
+  ;; track of all the parens
 
   (Math/abs
    (apply -
@@ -1158,13 +1159,13 @@ to the compiler") "This is not ignored"
   (as-> 15 $
     (range 1 $ 3)
     (interpose ":" $))
-  
+
   ;; Others use other names 😄
 
   (as-> 15 <>
     (range 1 <> 3)
     (interpose ":" <>))
-  
+
   ;; I think emojis should be avoided, the official
   ;; docs only mention alphanumerics plus:
   ;; `*`, `+`, `!`, `-`, `_`, `'`, `?`, `<`, `>`, and `=`
@@ -1185,7 +1186,7 @@ to the compiler") "This is not ignored"
   (cond-> 1        ; we start with 1
     true inc       ; the condition is true so (inc 1) => 2
     false (* 42)   ; the condition is false so the operation is skipped
-    (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6 
+    (= 2 2) (* 3)) ; (= 2 2) is true so (* 2 3) => 6
 
   ;; See ”Threading with Style” by Stuart Sierra
   ;; for idiomatic use of the threading facilities.
@@ -1252,7 +1253,7 @@ to the compiler") "This is not ignored"
   (when false :truthy)
 
   ;; About that last one: `when` evaluates to `nil`
-  ;; when the condition is falsy. Since `nil` is 
+  ;; when the condition is falsy. Since `nil` is
   ;; falsy the above `when` expression would be
   ;; making the ”else” branch of an `if` to be
   ;; evaluated
@@ -1449,7 +1450,7 @@ to the compiler") "This is not ignored"
   ;; Before diving into higher order functions, let's
   ;; look at functions. Functions are first class
   ;; Clojure citizens and the main building blocks for
-  ;; solving your business problems. 
+  ;; solving your business problems.
 
   ;; We have seen a few ways you can create functions.
   ;; Here's an anonymous function that returns the
@@ -1610,7 +1611,7 @@ to the compiler") "This is not ignored"
   ;; return the origin, because if you do not add
   ;; any coordinate you stay at the start.
   ;; Write a function `add-coords-3` that returns
-  ;; the origin when called like this 
+  ;; the origin when called like this
 
   (add-coords-3)
 
@@ -1654,7 +1655,7 @@ to the compiler") "This is not ignored"
             (:y coord-2))})
     ([coord-1 coord-2 & more-coords]
      ;; Implement this arity when you have learnt
-     ;; about the higher order function `reduce` 
+     ;; about the higher order function `reduce`
      ))
 
   (apply add-coords-4 [{:x 1 :y 1}
@@ -1894,7 +1895,7 @@ to the compiler") "This is not ignored"
   ;; in Clojure.
 
   ;; With other such ”for loopy” tasks you will
-  ;; be wielding `reduce`. Unlike `map` it is not 
+  ;; be wielding `reduce`. Unlike `map` it is not
   ;; limited to producing results of the same length
   ;; or shape as the input collection. Instead it
   ;; accumulates a result of any shape. For instance,
@@ -1915,7 +1916,7 @@ to the compiler") "This is not ignored"
   ;;  uses the two first elements from the list
   ;;  for the first function call.
   ;;  Here's reducing the `+` function using the
-  ;;  two-arity version of `reduce` 
+  ;;  two-arity version of `reduce`
 
   (reduce + [1 1 2 3 5 8 13 21])
 
@@ -1961,7 +1962,7 @@ to the compiler") "This is not ignored"
     (if (zero? x)
       y
       (plus (dec x) (inc y))))
-  
+
   ;; But there are too many cases not handled here...
   ;; Hmmm... Let's keep it simple and only do
   ;; integer math. Then we can use Java's
@@ -2042,7 +2043,7 @@ to the compiler") "This is not ignored"
   ;; mention. When writing reducing functions you can
   ;; stop the process before the input sequence is
   ;; exhausted, using the `reduced` function. Say we
-  ;; want the input sequence as a string separated by 
+  ;; want the input sequence as a string separated by
   ;; `:`, as above, but stop when we see a `nil` item.
   ;; Here's the last version for comparison:
 
@@ -2083,7 +2084,7 @@ to the compiler") "This is not ignored"
   ;;   “The seq abstraction, it’s rather lazy.”
 
   ;; We are not going down the rabbit hole of the
-  ;; `reducers` library, though... 
+  ;; `reducers` library, though...
   )
 
 ;; ... Instead we are picking up that Nate and
@@ -2106,7 +2107,7 @@ to the compiler") "This is not ignored"
   ;; Enemies of the State 😄
   ;; https://www.youtube.com/watch?v=qe60zwUAOqE
 
-  ;; This is to some extent true, as Clojurians we 
+  ;; This is to some extent true, as Clojurians we
   ;; often try to stay in a data transformation mode
   ;; for the duration of an operation and only deal
   ;; with the impure world, at the ”boundaries”. at
@@ -2209,7 +2210,7 @@ to the compiler") "This is not ignored"
   (= universa unified-universa)
 
   ;; You'll never have to write an `equals()`
-  ;; method again! 😄  
+  ;; method again! 😄
 
   ;; Immutability also makes our programs different
   ;; than they are when you can change the value of
@@ -2222,7 +2223,7 @@ to the compiler") "This is not ignored"
 
   ;; It is totally worth it to insist on getting it.
   ;; The payoff is huge. If you are only going to
-  ;; check out one of the resources I am recommending 
+  ;; check out one of the resources I am recommending
   ;; in this guide, I suggest it be this one about
   ;; solving problems the Clojure way, by Rafal
   ;; Dittwald:
@@ -2238,7 +2239,7 @@ to the compiler") "This is not ignored"
   ;; some languages do (looking at you Haskell), but
   ;; it makes it easy to fall into the habit of
   ;; writing pure functions and thus push side effects
-  ;; towards the ”edges” of your program. 
+  ;; towards the ”edges” of your program.
 
   ;; A function is considered pure if it abides to
   ;; these rules:
@@ -2247,7 +2248,7 @@ to the compiler") "This is not ignored"
   ;;    So, not mutating anything, including not printing
   ;;    anything anywhere, or hitting mutating API
   ;;    endpoints.
-  
+
   ;; A pure function is deterministic and you can
   ;; safely call it without worrying that it will update
   ;; application state or do anything else than
@@ -2374,12 +2375,12 @@ to the compiler") "This is not ignored"
 
   (assoc-in colt-express [:categories 2] "Planning")
   ;; (But... don't, see below under `update` for
-  ;; how to `conj` the category instead.) 
+  ;; how to `conj` the category instead.)
 
   ;; Unlike with `assoc`, you can only add one thing
   ;; at a time with `assoc-in`
 
-  ;; Removing things from a map is done with 
+  ;; Removing things from a map is done with
   ;; `dissoc`
 
   (dissoc colt-express :play-time :ratings :categories)
@@ -2443,7 +2444,7 @@ to the compiler") "This is not ignored"
 
 
 
-  
+
 
   ;; The reward is one less visit to StackOverflow
   ;; for you when lacking `dissoc-in` 😄
@@ -2490,10 +2491,10 @@ to the compiler") "This is not ignored"
   ;; as their first argument. That makes them
   ;; easy to use with the Thread First, `->`,
   ;; macro. This is by design and highly idiomatic
-  ;; Clojure.  
+  ;; Clojure.
 
   ;; It is common to see data transformation pipe-
-  ;; lines like this 
+  ;; lines like this
 
   (-> exit-haunted
       (assoc :play-time 90)
@@ -2521,7 +2522,7 @@ to the compiler") "This is not ignored"
   ;; amazing literal syntax for these the code gets
   ;; gets easy to read and reason about. And
   ;; manipulating them is easy and intuitive.
-  
+
   ;; `sets` are `seqs` (more on that later)
 )
 
