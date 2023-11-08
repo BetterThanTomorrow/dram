@@ -1,4 +1,4 @@
-(ns hello-repl)
+(ns get-started.hello-repl)
 
 ;; == Some VS Code knowledge required ==
 ;; This tutorial assumes you know a few things about

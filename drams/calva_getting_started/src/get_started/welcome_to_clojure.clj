@@ -1,4 +1,4 @@
-(ns welcome-to-clojure
+(ns get-started.welcome-to-clojure
   (:require [clojure.repl :refer [source apropos dir pst doc find-doc]]
             [clojure.string :as string]
             [clojure.test :refer [is are]]))
@@ -58,7 +58,7 @@
 ;; time, you will be presented with the option to
 ;; download new files or continue with the files you
 ;; have. You can also always find the latest version here:
-;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/calva_getting_started/welcome_to_clojure.clj
+;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/calva_getting_started/src/get_started/welcome_to_clojure.clj
 
 (comment
   ;; = EXPRESSIONS =
@@ -246,9 +246,9 @@ like this, if leading spaces are no-no."
   ;; `comment` macro ignores the body and just
   ;; evaluates to/returns `nil`)
 
-  hello-repl/greet
+  get-started.hello-repl/greet
 
-  (hello-repl/greet "from the welcome-to-clojure namespace")
+  (get-started.hello-repl/greet "from the welcome-to-clojure namespace")
 
   ;; If those throw, you need to first load
   ;; `hello_repl.clj`, or at least evaluate its `ns`
@@ -260,10 +260,10 @@ like this, if leading spaces are no-no."
   ;; the namespace. If you haven't loaded it, you
   ;; can do that in the same go:
 
-  (require 'hello-paredit :reload)
+  (require 'get-started.hello-paredit :reload)
 
-  hello-paredit/strict-greet
-  (hello-paredit/strict-greet "World")
+  get-started.hello-paredit/strict-greet
+  (get-started.hello-paredit/strict-greet "World")
 
   ;; For most Clojure code you write you will arrange
   ;; it into separate files with one namespace each,
@@ -817,7 +817,7 @@ to the compiler") "This is not ignored"
   ;; keywords get namespaced with the current namespace
 
   ::foo
-  (= ::foo :welcome-to-clojure/foo)
+  (= ::foo :calva-getting-started.src.get-started.welcome-to-clojure/foo)
 
   ;; Tagged literals, then. It's a way to invoke functions
   ;; bound to the tags on the form following it.
