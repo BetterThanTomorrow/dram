@@ -11,7 +11,7 @@
 ;; and ` ` separates any keyboard presses in the sequence.
 ;; `Ctrl+Alt+C Enter` means to press Ctrl, Alt, and C
 ;; all at the same time, then release the keys and
-;; then press Enter. (The Alt key is named Optuion or
+;; then press Enter. (The Alt key is named Option or
 ;; Opt, on some machines)
 
 "Welcome to the Getting Started REPL! 💜"
