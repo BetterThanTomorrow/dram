@@ -1,4 +1,4 @@
-(ns hello-paredit)
+(ns get-started.hello-paredit)
 
 ;; Start with loading this file
 ;; Ctrl+Alt+C Enter
@@ -29,7 +29,7 @@
 ;; (To get into a good mood. 😍)
 
 ;; == Strict Mode Protection ==
-;; Paredit strict mode is active by default. 
+;; Paredit strict mode is active by default.
 ;; It will help you to not delete brackets that
 ;; would break the structure of the code.
 ;; Use Alt+Backspace to override.
