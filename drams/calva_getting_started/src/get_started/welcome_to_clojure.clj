@@ -208,6 +208,23 @@ like this, if leading spaces are no-no."
   ;; You'll see for what a bit later.)
   )
 
+;; = TIPS: Tools for practicing Clojure =
+;;
+;; Here are two resources that work very well together
+;; with this guide:
+;;
+;; Rich4Clojure: Practice Clojure wit 4Clojure problems in VS Code
+;; * https://github.com/PEZ/Rich4Clojure
+;; Learning Clojure using Koans using VS Code and Calva
+;; * https://github.com/DanBunea/clojure-koans
+;;
+;; Both let you learn and practice Clojure by solving
+;; problems, connected to the REPL, in the editor, like
+;; this guide. A way to use them is to open them in
+;; separate VS Code windows and go back and forth between
+;; them and this guide, as you learn thing, and as you
+;; see the need to learn more.
+
 (comment
   ;; = NAMESPACES =
   ;; As important as namespaces are, we won't dwell on
