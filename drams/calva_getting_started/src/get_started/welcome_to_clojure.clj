@@ -258,10 +258,7 @@ like this, if leading spaces are no-no."
 
   ;; If you have loaded the `hello_repl.clj` file
   ;; the `hello-repl` namespace is created and its
-  ;; top level symbols are defined (not the ones
-  ;; hidden in `(comment ...)` forms, because the
-  ;; `comment` macro ignores the body and just
-  ;; evaluates to/returns `nil`)
+  ;; top level symbols are defined.
 
   get-started.hello-repl/greet
 
