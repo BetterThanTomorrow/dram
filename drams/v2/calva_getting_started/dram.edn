@@ -1,0 +1,11 @@
+{:name "Getting Started REPL"
+ :files [{:path "src/get_started/hello_repl.clj"
+          :open? true}
+         {:path "src/get_started/welcome_to_clojure.clj"
+          :open? true}
+         {:path "src/get_started/hello_paredit.clj"
+          :open? true}
+         {:path "deps.edn"
+          :open? false}
+         {:path ".gitignore"
+          :open? false}]}

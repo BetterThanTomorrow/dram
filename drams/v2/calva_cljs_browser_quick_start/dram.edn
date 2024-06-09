@@ -1,0 +1,9 @@
+{:name "ClojureScript Quick Start"
+ :files [{:path "src/hello_world/core.cljs"
+          :open? true}
+         {:path "index.html"
+          :open? true}
+         {:path "deps.edn"
+          :open? false}
+         {:path ".gitignore"
+          :open? false}]}
