@@ -308,16 +308,16 @@ like this, if leading spaces are no-no."
   ;; `src/foo/bar_baz.clj` in the project. This file should
   ;; have an `ns` form looking like:
 
-  (ns foo.bar-baz ,,,)
+  ;(ns foo.bar-baz ,,,)
 
   ;; And you require it using something like:
 
-  (require 'foo.bar-baz)
+  ;(require 'foo.bar-baz)
 
   ;; Or:
 
-  (ns welcome-to-clojure
-    (:require [foo.bar-baz]))
+  ;(ns welcome-to-clojure
+  ;  (:require [foo.bar-baz]))
 
   ;; If you evaluate any of those requires, you will get an
   ;; error message from the repl, telling you which files the
