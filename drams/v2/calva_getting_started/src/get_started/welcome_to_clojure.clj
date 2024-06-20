@@ -54,10 +54,9 @@
 ;; here and there and evaluate again.
 
 ;; NB: This is work in progress...
-;; When you fire up the Getting Started REPL the next
-;; time, you will be presented with the option to
-;; download new files or continue with the files you
-;; have. You can also always find the latest version here:
+;; When you create the Getting Started REPL project the
+;; next time, it may have been updated. 😀
+;; You can also always find the latest version here:
 ;; https://github.com/BetterThanTomorrow/dram/blob/dev/drams/calva_getting_started/src/get_started/welcome_to_clojure.clj
 
 (comment

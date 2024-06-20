@@ -2,15 +2,15 @@
 
 The first sips of [Calva](https://calva.io), [Clojure](https://clojure.org), [Paredit](https://calva.io/paredit), or anything Clojure-ish, really.
 
-![Fire up a Calva REPL](vscode-calva-command-palette.png)
+![Create a Getting started REPL project](vscode-command-palette-calva-getting-started.png)
 
 ## Made for Calva's Getting Started REPL
 
-This is a repository for **Getting Started** files for Calva. 
+This is a repository for **Getting Started** files for Calva.
 
 See: https://calva.io/getting-started/
 
-![Welcoe to Clojure](hello_clojure.png)
+![Welcome to Clojure](hello_clojure.png)
 
 ## How to Contribute
 
@@ -26,7 +26,7 @@ See the *drams* directory for the files. Make sure to edit the files inside the 
 
 ## License
 
-The original author [Peter Strömberg aka PEZ](https://github.com/PEZ) claims No Copyright: 
+The original author [Peter Strömberg aka PEZ](https://github.com/PEZ) claims No Copyright:
 * https://creativecommons.org/publicdomain/zero/1.0/
 
 (Don't hesitate to credit me if you use the material, I do enjoy that.)

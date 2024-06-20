@@ -33,4 +33,4 @@
 )
 
 ;; Learn about the Calva REPL and about Clojure with
-;; the command: *Fire up the Getting Started REPL*.
+;; the command: *Calva: Create a Getting Started REPL project*.
