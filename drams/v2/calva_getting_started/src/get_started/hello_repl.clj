@@ -9,17 +9,28 @@
 ;; We use a notation for keyboard shortcuts, where
 ;; `+` means the keys are pressed at the same time
 ;; and ` ` separates any keyboard presses in the sequence.
-;; `Ctrl+Alt+C Enter` means to press Ctrl, Alt, and C
+;; `Ctrl+Alt/Option+C Enter` means to press
+;; Ctrl, Alt (or Option), and C
 ;; all at the same time, then release the keys and
 ;; then press Enter. (The Alt key is named Option or
 ;; Opt, on some machines)
+;; When a button is different on different platforms,
+;; we will type the buttons separated by a slash.
+
+;; == Evaluation results ==
+;; Evaluating code will show the first line of results
+;; inline. The full result is shown in two places:
+;; 1. The Calva Output “terminal”, which you will find
+;;    in the VS Code Terminal view.
+;; 2. The Calva Inspector, which is a side panel view
+;;    that lets you inspect the result in more detail.
 
 "Welcome to the Getting Started REPL! 💜"
 
-;; Once you see a message in the output/REPL window ->
+;; Once you see a message in the Calva Output “terminal”
 ;; saying that this file is loaded, you can start by
-;; placing the cursor anywhere on line 17 and press
-;; `Alt+Enter`. (`Option+Enter` on some machines.)
+;; placing the cursor anywhere on line 25 and press
+;; `Alt/Option+Enter`.
 
 ;; Did it? Great!
 ;; See that `=> "Welcome ...` at the end of the line?
@@ -56,11 +67,11 @@
   ;; Only `=> ("I am using the REPL! 💪"` is displayed
   ;; inline. You can see the full result, and also copy
   ;; it, if you hover the evaluated expression. Or press
-  ;; `Ctrl+K Ctrl/Cmd+I`.
+  ;; `Ctrl/Cmd+K Ctrl/Cmd+I`.
 
   ;; Let's get into the mood for real. 😂
   ;; Place the cursor on any of the five code lines below:
-  ;; `Alt+Enter`, then `Cmd+K Cmd+I`.
+  ;; `Alt+Enter`, then `Ctrl/Cmd+K Ctrl/Cmd+I`.
 
   (map (fn [s]
          (if (< (count s) 5)

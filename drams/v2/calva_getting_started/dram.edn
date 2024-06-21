@@ -7,5 +7,7 @@
           :open? true}
          {:path "deps.edn"
           :open? false}
+         {:path ".vecode/settings.json"
+          :open? false}
          {:path ".gitignore"
           :open? false}]}
