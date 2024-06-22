@@ -3,5 +3,7 @@
           :open? true}
          {:path "deps.edn"
           :open? false}
+         {:path ".vscode/settings.json"
+          :open? false}
          {:path ".gitignore"
           :open? false}]}

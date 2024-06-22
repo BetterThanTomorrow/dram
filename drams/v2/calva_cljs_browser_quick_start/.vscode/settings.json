@@ -1,0 +1,20 @@
+{
+  "calva.autoOpenInspector": true,
+  "calva.autoOpenREPLWindow": false,
+  "calva.enableInspectorRainbow": true,
+  "calva.outputDestinations": {
+    "evalResults": "terminal",
+    "evalOutput": "terminal",
+    "otherOutput": "terminal"
+  },
+  "calva.replConnectSequences": [
+    {
+      "name": "ClojureScript Browser Quick Start",
+      "autoSelectForConnect": true,
+      "autoSelectForJackIn": true,
+      "projectRootPath": ["."],
+      "cljsType": "ClojureScript built-in for node",
+      "projectType": "deps.edn"
+    }
+  ],
+}
