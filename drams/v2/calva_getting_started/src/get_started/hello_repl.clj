@@ -1,5 +1,7 @@
 (ns get-started.hello-repl)
 
+"Welcome to the Getting Started REPL! 💜"
+
 ;; == Some VS Code knowledge required ==
 ;; This tutorial assumes you know a few things about
 ;; VS Code. Please check out this page if you are new
@@ -25,28 +27,27 @@
 ;; 2. The Calva Inspector, which is a side panel view
 ;;    that lets you inspect the result in more detail.
 
-"Welcome to the Getting Started REPL! 💜"
-
-;; Once you see a message in the Calva Output “terminal”
-;; saying that this file is loaded, you can start by
-;; placing the cursor anywhere on line 25 and press
+;; This project is configured to automatically start
+;; the REPL and connect it to the editor (Jack-in)
+;; If this does not happen, you may be using an older
+;; version of Calva. Please update to the latest
+;; version (or at least to v2.0.460).
+;;
+;; Once the REPL is connected (the REPL button in the
+;; status bar turns ember), you should load this file
+;; in the REPL. Use the command:
+;;   Calva: Load/Evaluate Current File and its Requires/Dependencies
+;; Then you can evaluate the code ;; on the line above
+;; reading "Welcome to the Getting Started REPL! 💜"
+;; by placing the cursor on the line and press
 ;; `Alt/Option+Enter`.
 
-;; Did it? Great!
+;; Did you? Great!
 ;; See that `=> "Welcome ...` at the end of the line?
 ;; That's the result of the evaluation you just
 ;; performed. You just used the Clojure REPL!
 ;; 🎉 Congratulations! 🎂
-
-;; == NB: If you close this project ==
-;; If you close this project, and open it again, the
-;; project REPL will not automatically start and be
-;; connected. You will need to start it yourself.
-;; To start the project REPL, open the Command Palette
-;; and search for:
-;; Calva: Start a Project REPL and Connect (aka Jack-in)
-;; Run the command and then select the `deps.edn` project
-;; type.
+;; You can dismiss the inline result by pressing `Esc`.
 
 (comment
   ;; You can evaluate the string below in the same way
