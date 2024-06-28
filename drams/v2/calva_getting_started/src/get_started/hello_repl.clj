@@ -66,11 +66,14 @@
           "I am using the REPL! 💪")
 
   ;; Only `=> ("I am using the REPL! 💪"` is displayed
-  ;; inline. You can see the full result, and also copy
-  ;; it, if you hover the evaluated expression. Or press
-  ;; `Ctrl/Cmd+K Ctrl/Cmd+I`.
+  ;; inline. You can see the full result, in three places:
+  ;; 1. The Calva Output “terminal”
+  ;; 2. The Calva Inspector. It has an _Inspect_ button
+  ;;    for each result that let's you expand the result
+  ;;    and explore it as a tree structure.
+  ;; 3. At the bottom of the inline result display hover
 
-  ;; Let's get into the mood for real. 😂
+  ;; Let's get into the REPL mood for real. 😂
   ;; Place the cursor on any of the five code lines below:
   ;; `Alt+Enter`, then `Ctrl/Cmd+K Ctrl/Cmd+I`.
 
