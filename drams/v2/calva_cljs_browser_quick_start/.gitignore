@@ -15,5 +15,4 @@ pom.xml.asc
 .calva/output-window
 .DS_Store
 
-drams/*/.calva/
-drams/*/out
+.cljs_node_repl/
