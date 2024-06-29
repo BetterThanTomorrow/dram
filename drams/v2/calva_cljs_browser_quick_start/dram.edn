@@ -1,5 +1,5 @@
 {:name "ClojureScript Quick Start"
- :files [{:path "src/hello_world/core.cljs"
+ :files [{:path "src/cljs_browser/hello.cljs"
           :open? true}
          {:path "index.html"
           :open? true}

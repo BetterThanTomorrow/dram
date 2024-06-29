@@ -14,7 +14,7 @@
       "autoSelectForConnect": true,
       "autoSelectForJackIn": true,
       "projectRootPath": ["."],
-      "cljsType": "ClojureScript built-in for node",
+      "cljsType": "ClojureScript built-in for browser",
       "projectType": "deps.edn"
     }
   ],
