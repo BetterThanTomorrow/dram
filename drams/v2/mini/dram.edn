@@ -1,0 +1,9 @@
+{:name "Mini Project REPL"
+ :files [{:path "src/mini/playground.clj"
+          :open? true}
+         {:path "deps.edn"
+          :open? false}
+         {:path ".gitignore"
+          :open? false}
+         {:path ".vscode/settings.json"
+          :open? false}]}
