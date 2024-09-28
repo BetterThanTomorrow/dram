@@ -18,3 +18,5 @@ pom.xml.asc
 drams/**/.calva/
 drams/**/out/
 drams/**/.cljs_node_repl/
+**/.clj-kondo/.cache/
+**/.lsp/.cache/
