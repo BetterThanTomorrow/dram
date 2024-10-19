@@ -1,0 +1,79 @@
+//// Configuration of the mini-project for use with Calva
+{
+  //// Autostart the repl and connect it to the editor (Jack-in)
+  //// https://calva.io/customizing-jack-in-and-connect/#customizing-jack-in
+  "calva.autoStartRepl": true,
+  //// If you disable the above setting, you start the repl
+  //// manually with the command;
+  //// "Calva: Start a Project REPL and Connect (aka Jack-in)"
+  //// https://calva.io/connect-sequences/
+  "calva.replConnectSequences": [
+    {
+      "name": "Acme shadow-cljs Fullstack",
+      "projectRootPath": ["."],
+      "autoSelectForJackIn": true,
+      "projectType": "deps.edn",
+      "cljsType": "shadow-cljs",
+      "menuSelections": {
+        "cljsDefaultBuild": "frontend",
+        "cljsLaunchBuilds": ["frontend"]
+      },
+      "afterCLJReplJackInCode": "(shadow.cljs.devtools.server.runtime/get-instance)\n(require 'repl)\n(repl/go!)\n(println \"REPL started.\nWeb server started on http://localhost:3000\")",
+    }
+  ],
+
+  "calva.customREPLCommandSnippets": [
+    {
+      "name": "Restart Acme Server",
+      "snippet": "(require 'repl) (repl/restart!)",
+      "repl": "clj",
+    }
+  ],
+
+  //// The below settings are more suitible for User settings.
+  //// They are included here as a suggestion for a nice repl
+  //// workflow setup. Move the settings you like
+  //// to your User (global) settings.json file.
+  //// Search for JSON in the command palette to find it.
+
+  //// Calm down the VS Code hover popus by delaying them a bit
+  "editor.hover.delay": 1500,
+
+  //// We use the Output “terminal” for evaluation results
+  //// and side effect output.
+  //// See https://calva.io/output/
+  "calva.outputDestinations": {
+    "evalResults": "terminal",
+    "evalOutput": "terminal",
+    "otherOutput": "terminal"
+  },
+
+  //// Auto-open the Calva Inspector when the repl connects.
+  //// (All evaluation results are available in the inspector.)
+  "calva.autoOpenInspector": true,
+  "calva.enableInspectorRainbow": true,
+  //// For large, and potantially lazy, data structures have a
+  //// a look at the Shadow CLJS inspector on:
+  ////   http://localhost:9630/inspect
+
+  //// Don't open the REPL prompt window automatically
+  //// We recommend using regular editor files instead.
+  //// See also: https://calva.io/fiddle-files/
+  //// (There's a command for opening the REPL window.)
+  "calva.autoOpenREPLWindow": false,
+
+  //// https://calva.io/pprint/
+  // "calva.prettyPrintingOptions": {
+  //   "printEngine": "pprint",
+  //   "enabled": true,
+  //   "width": 120,
+  //// Truncate sequences to print at most 50 items
+  //   "maxLength": 50
+  //// Or use `null` maxLength for non-truncated sequences
+  //   "maxLength": null
+  //// NB: that will lock up the REPL if you evaluate an
+  ////     infinite sequence, e.g. (range)
+  ////     There's a Calva command for interrupting running
+  ////     evaluations. (Which doesn't always work.)
+  // },
+}
