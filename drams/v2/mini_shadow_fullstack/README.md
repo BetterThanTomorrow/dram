@@ -14,6 +14,10 @@ The project will be created and opened and started. Give it some little time and
 ### Conveniences
 
 * The project will automatically start the REPL, the server, and the shadow-cljs watcher, whenever you open the project folder in VS Code. You can adjust this behaviour from [the workspace settings file](.vscode/settings.json)
+  * If you would like the browser to open automatically, you can update the `afterCLJReplJackInCode` in the settings to end with:
+    ```clojure
+    (clojure.java.browse/browse-url "http://localhost:3000")
+    ```
 * We use [clj-reload](https://github.com/tonsky/clj-reload) to reload updated Clojure (shadow-cljs reloads the ClojureScript code).
 * There is a custom Calva REPL command added that will reload updated Clojure code and restart the server. Bring up the custom commands menu with `ctrl+alt+space space`. But you can also define a regular keybinding for this, like so:
   ```json

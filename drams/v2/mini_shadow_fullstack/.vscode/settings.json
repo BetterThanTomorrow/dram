@@ -18,6 +18,8 @@
         "cljsDefaultBuild": "frontend",
         "cljsLaunchBuilds": ["frontend"]
       },
+      // Add (clojure.java.browse/browse-url \"http://localhost:3000\") last in the
+      // afterCLJReplJackInCode to open the browser automatically when the server has started
       "afterCLJReplJackInCode": "(shadow.cljs.devtools.server.runtime/get-instance)\n(require 'repl)\n(repl/go!)\n(println \"REPL started.\nWeb server started on http://localhost:3000\")",
     }
   ],
