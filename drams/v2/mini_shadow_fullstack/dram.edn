@@ -1,21 +1,21 @@
 {:name "Mini shadow-cljs Fullstack project"
- :files [{:path ".vscode/settings.json"
+ :files [{:path "README.md"
+          :open? true}
+         {:path "src/dev/repl.clj"
+          :open? true}
+         {:path "src/main/acme/server.clj"
+          :open? true}
+         {:path "src/main/acme/frontend/app.cljs"
+          :open? true}
+         {:path "deps.edn"
+          :open? true}
+         {:path "shadow-cljs.edn"
+          :open? true}
+         {:path ".vscode/settings.json"
           :open? false}
          {:path "public/index.html"
           :open? false}
          {:path "public/main.css"
           :open? false}
-         {:path "src/dev/repl.clj"
-          :open? true}
-         {:path "src/main/acme/frontend/app.cljs"
-          :open? true}
-         {:path "src/main/acme/server.clj"
-          :open? true}
          {:path ".gitignore"
-          :open? false}
-         {:path "deps.edn"
-          :open? true}
-         {:path "shadow-cljs.edn"
-          :open? true}
-         {:path "README.md"
-          :open? true}]}
+          :open? false}]}
