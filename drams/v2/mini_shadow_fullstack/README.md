@@ -39,6 +39,7 @@ For minimal requirements this project does not use NPM, and instead relies on [d
 * [Shadow CLJS User’s Guide](https://shadow-cljs.github.io/docs/UsersGuide.html)
 * [clojurescript.org](https://clojurescript.org/)
 * [Replicant](https://github.com/cjohansen/replicant) - Pure ClojureScript VDOM rendering. You don't need NPM (nor React) to render Hiccup.
+  * Here's a mini Replicant app template: [replicant-mini-app](https://github.com/anteoas/replicant-mini-app) that you can copy into this project.
 
 ## Differences from Thomas Heller's setup
 
