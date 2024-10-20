@@ -25,7 +25,7 @@
   ::stopped)
 
 (defn go! []
-  (reload/init {:dirs ["src" "dev"]})
+  (reload/init {:dirs ["src/main" "src/dev"]})
   (start!))
 
 (defn restart! []
