@@ -42,8 +42,7 @@ For minimal requirements this project does not use NPM, and instead relies on [d
 
 ## Differences from Thomas Heller's setup
 
-The project differes only slightly from what is described in [Fullstack Workflow with shadow-cljs
-](https://code.thheller.com/blog/shadow-cljs/2024/10/18/fullstack-cljs-workflow-with-shadow-cljs.html):
+The project differes only slightly from what is described in [Fullstack Workflow with shadow-cljs](https://code.thheller.com/blog/shadow-cljs/2024/10/18/fullstack-cljs-workflow-with-shadow-cljs.html):
 
 * In the original the project REPL is started with `clj -M -m shadow.cljs.devtools.cli clj-repl`, but that doesn't currently work with Calva. So this project relies on Calva's shadow-cljs REPL start facilities.
   * For this reason, in [repl/start!](src/dev/repl.clj) we don't start the shadow watcher.
