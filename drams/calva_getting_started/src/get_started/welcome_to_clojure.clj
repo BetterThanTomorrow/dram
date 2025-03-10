@@ -831,7 +831,7 @@ to the compiler") "This is not ignored"
   ;; keywords get namespaced with the current namespace
 
   ::foo
-  (= ::foo :calva-getting-started.src.get-started.welcome-to-clojure/foo)
+  (= ::foo :get-started.welcome-to-clojure/foo)
 
   ;; Tagged literals, then. It's a way to invoke functions
   ;; bound to the tags on the form following it.
