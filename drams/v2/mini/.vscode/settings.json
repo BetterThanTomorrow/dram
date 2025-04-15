@@ -44,12 +44,16 @@
   "calva.autoOpenInspector": true,
   "calva.enableInspectorRainbow": true,
 
+  //// Make sure we show the output terminal when it is created
+  "calva.autoOpenResultOutputDestination": true,
+  //// Don't hide the output terminal with the jack-in window
+  "calva.autoOpenJackInTerminal": false,
+
   //// Don't open the REPL prompt window automatically
   //// We recommend using regular editor files instead.
   //// See also: https://calva.io/fiddle-files/
   //// (There's a command for opening the REPL window.)
   "calva.autoOpenREPLWindow": false,
-  "calva.autoOpenJackInTerminal": false
 
   //// https://calva.io/pprint/
   // "calva.prettyPrintingOptions": {
