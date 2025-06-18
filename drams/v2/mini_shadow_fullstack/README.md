@@ -1,15 +1,19 @@
 # A Mini shadow-cljs Fullstack App
 
-This project mainly sets up the very tiny [shadow-cljs](https://github.com/thheller/shadow-cljs) fullstack starter project as described in [Fullstack Workflow with shadow-cljs
+The very tiny [shadow-cljs](https://github.com/thheller/shadow-cljs) fullstack starter project as described in [Fullstack Workflow with shadow-cljs
 ](https://code.thheller.com/blog/shadow-cljs/2024/10/18/fullstack-cljs-workflow-with-shadow-cljs.html) by [Thomas Heller](https://github.com/thheller). You should probably read that article!
+
+ (There are some some small adaptations to the original workflow project, to take advantage of Calva.)
 
 ## Usage
 
-You can copy the project from this repository, but it is mainly intended to be created and started by [Calva](https://calva.io), using the command:
+To get going, create and start the project using [Calva](https://calva.io) with the command:
 * **Calva: Open the REPL Menu (Start/Connect a REPL, etc.)**.
 * Then select **Create a mini shadow.cljs Fullstack project**.
 
-The project will be created and opened and started. Give it some little time and you should then be able to open the app which will be served on [localhost:3000](http://localhost:3000).
+The project will be created, opened, and started. Give it some little time and you should then be able to open the app which will be served on [localhost:3000](http://localhost:3000).
+
+Once you've created the project, play around with it, and make it your own.
 
 ### Conveniences
 
