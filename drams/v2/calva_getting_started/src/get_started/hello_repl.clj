@@ -96,20 +96,6 @@
   ;; TO DELETE A BALANCED BRACKET:
   ;;   press `alt/option+backspace` or `alt/option+delete`
 
-  ;; You might notice that the output/REPL window ->
-  ;; is also displaying the results. Depending on your
-  ;; preferences you might want to close that window or move
-  ;; it to the same editor group (unsplit) as the files you
-  ;; edit. But don't do that just yet, get a feel how how
-  ;; it works having it in a split pane first.
-
-  ;; BTW. That output/REPL window ->
-  ;; You can evaluate code from its prompt too.
-  ;; But the cool peeps do not do that very often.
-  ;; Because the REPL lives in the files with the application
-  ;; code! And because Rich Comment Forms (RCF).
-  ;; It is Interactive Programming, and it is 💪.
-
   :rcf) ; <- This is a convenient way to keep the closing
         ;    paren of a Rich comment form from folding
         ;    when the code is formatted.
@@ -168,7 +154,7 @@
 
 ;; You should see the result of the evaluation, nil,
 ;; inline, and ”Hello World!” followed by the result
-;; printed to the output window.
+;; printed to the output terminal.
 
 ;; Maybe you wonder what a ”form” is? Loosely defined
 ;; it is about the same as an S-expression:
@@ -199,26 +185,24 @@
 ;; code snippet:
 
 (comment
+
   (str 23 (apply + [2 3]) (:foo {:foo "foo"}))
 
-  ;; `foo` is undefined until you top-level eval it.
+  ;; You might discover that Calva regards words in
+  ;; strings as forms. Don't panic if `foo` causes
+  ;; an evaluation error. It is not defined, since
+  ;; it shouldn't be. You can define it, of course,
+  ;; just for fun and learning: Top level eval these
+  ;; definitions. (`Alt/Option+Enter`)
+
   (def foo
     [1 2 "three four"])
-  :rcf)
-
-;; You might discover that Calva regards words in
-;; strings as forms. Don't panic if `three` causes
-;; an evaluation error. It is not defined, since
-;; it shouldn't be. You can define it, of course,
-;; just for fun and learning: Top level eval these
-;; two definitions.
-
-(comment
   (def three 3)
   (def four "four")
+
   :rcf)
 
-;; Then eval current form inside the string above.
+;; Then eval current form inside the strings above.
 ;; Whatever you ask Calva to send to the REPL, Calva
 ;; will send to the REPL.
 
@@ -226,7 +210,7 @@
 ;; == Rich Comments Support ==
 ;; Repeating an important concept: Forms inside
 ;; `(comment ...)` are also considered top level
-;; by Calva. Alt+Enter at different places below
+;; by Calva. Alt/Option+Enter at different places below
 ;; to get a feel for it.
 
 (comment
@@ -278,21 +262,18 @@
 ;; of code, starting at `; 1`:
 
 (comment ; 3
-     (defn- divisible
-           "Is `n` divisible by `d`?"
-[n d]
-(zero? (mod n d)
-           )
+  (defn- divisible
+    "Is `n` divisible by `d`?"
+    [n d]
+    (zero? (mod n d)))
 
-  )
-
-       (defn fizz-buzz [n] ; 2
-                       (cond ; 1
-(divisible n (* 5 3)) "FizzBuzz"
-                      (divisible n 5)       "Buzz"
-              (divisible n 3)       "Fizz"
-  :else                  n))
-                               :rcf)
+  (defn fizz-buzz [n] ; 2
+    (cond ; 1
+      (divisible n (* 5 3)) "FizzBuzz"
+      (divisible n 5)       "Buzz"
+      (divisible n 3)       "Fizz"
+      :else                  n))
+  :rcf)
 
 ;; === Paredit `strict` mode  is on ===
 ;; Calva supports structural editing (editing that
