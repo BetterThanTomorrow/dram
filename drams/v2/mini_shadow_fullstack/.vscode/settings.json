@@ -18,9 +18,7 @@
         "cljsDefaultBuild": "frontend",
         "cljsLaunchBuilds": ["frontend"]
       },
-      // Add (clojure.java.browse/browse-url \"http://localhost:3000\") last in the
-      // afterCLJReplJackInCode to open the browser automatically when the server has started
-      "afterCLJReplJackInCode": "(shadow.cljs.devtools.server.runtime/get-instance)\n(require 'repl)\n(repl/go!)\n(println \"REPL started.\nWeb server started on http://localhost:3000\")",
+      "afterPrimaryReplConnectedCode": "(shadow.cljs.devtools.server.runtime/get-instance)\n(require 'repl)\n(repl/go!)\n(println \"REPL started.\nWeb server started on http://localhost:3000\") (tagged-literal 'flare/html {:url \"http://localhost:3000/\", :title \"Acme App\" :key \"acme-app\"})",
     }
   ],
 
@@ -62,6 +60,7 @@
   //// We recommend using regular editor files instead.
   //// See also: https://calva.io/fiddle-files/
   //// (There's a command for opening the REPL window.)
+  "calva.autoOpenResultOutputDestination": true,
   "calva.autoOpenREPLWindow": false,
 
   //// https://calva.io/pprint/

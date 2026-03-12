@@ -5,4 +5,4 @@
   (-> js/document
       (.getElementById "root")
       (.-innerHTML)
-      (set! "Acme App started.")))
+      (set! "Acme App started! Edit app.cljs and save.")))
