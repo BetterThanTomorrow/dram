@@ -7,14 +7,15 @@
   </head>
   <body>
     <div id="root">
-      <p>Waiting for the app to compile and load...</p>
+      <p>Waiting 10s for the app to compile and load...</p>
+      <p>(Edit index.html to change this behavior)</p>
     </div>
     <script>
       setTimeout(function() {
         var s = document.createElement("script");
         s.src = "js/compiled/main.js";
         document.body.appendChild(s);
-      }, 5000);
+      }, 10000);
     </script>
   </body>
 </html>
