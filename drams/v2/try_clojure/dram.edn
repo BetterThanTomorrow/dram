@@ -1,0 +1,6 @@
+{:name "Try Clojure"
+ :files [{:github "https://github.com/clojure/try-clojure/archive/refs/heads/main.zip"}
+         {:path ".vscode/settings.json"}
+         {:path ".gitignore"}
+         {:path "calva-README.md"}]
+ :open ["src/try_clojure/core.clj"]}

@@ -1,4 +1,8 @@
-[{:title "Create a ”Getting Started” REPL project",
+[{:title "Create a ”Try Clojure” project",
+  :src "LOCAL-REPO/drams/v2/try_clojure",
+  :description "https://github.com/clojure/try-clojure with some Calva config",
+  :extraDetail "Requires Java"}
+ {:title "Create a ”Getting Started” REPL project",
   :src "LOCAL-REPO/drams/v2/calva_getting_started",
   :description "An interactive guide introducing you to Calva and Clojure.",
   :extraDetail "Requires Java"}
