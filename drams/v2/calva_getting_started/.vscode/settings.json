@@ -21,28 +21,22 @@
     }
   ],
 
-  // The below settings are more suitible for User settings.
-  // They are included here to make it easier to write guides
-  // about how to use the project.
-  // You can also see them as a suggestion for a nice repl
-  // workflow setup. Move the settings you like to your
-  // User (global) settings.json file.
+  //// Calm down the VS Code hover popus by delaying them a bit
+  //// Move this to your User settings if you like it
+  "editor.hover.delay": 1500,
 
-  // We use the Output “terminal” for evaluation results
-  // and side effect output.
-  // See https://calva.io/output/
-  "calva.outputDestinations": {
-    "evalResults": "terminal",
-    "evalOutput": "terminal",
-    "otherOutput": "terminal"
-  },
-  // Auto-open the Calva Inspector when the repl connects.
-  // (All evaluation results are available in the inspector.)
-  "calva.autoOpenInspector": true,
-  "calva.enableInspectorRainbow": true,
-  // Don't open the REPL prompt window automatically
-  // We recommend using regular editor files instead.
-  // See also: https://calva.io/fiddle-files/
-  // (There's a command for opening the REPL window.)
-  "calva.autoOpenREPLWindow": false
+  //// https://calva.io/pprint/
+  // "calva.prettyPrintingOptions": {
+  //   "printEngine": "pprint",
+  //   "enabled": true,
+  //   "width": 120,
+  //// Truncate sequences to print at most 50 items
+  //   "maxLength": 50
+  //// Or use `null` maxLength for non-truncated sequences
+  //   "maxLength": null
+  //// NB: that will lock up the REPL if you evaluate an
+  ////     infinite sequence, e.g. (range)
+  ////     There's a Calva command for interrupting running
+  ////     evaluations. (Which doesn't always work.)
+  // },
 }
