@@ -16,7 +16,7 @@
       "cljsType": "none",
       "projectType": "deps.edn",
       "menuSelections": {
-        "cljAliases": [""]
+        "cljAliases": []
       }
     }
   ],
